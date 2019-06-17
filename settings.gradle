@@ -1,0 +1,2 @@
+include ':app', ':leanback_v17'
+project(':leanback_v17').projectDir = new File('leanback')

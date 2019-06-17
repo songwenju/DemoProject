@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dip"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="250dip"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="RecyclerviewA" />
+
+        <TextView
+            android:layout_width="250dip"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="RecyclerviewB" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <com.xiaomi.demoproject.recyclerviewfocus.view.ui.RecyclerviewAListView
+            android:id="@+id/rvALsitView"
+            android:layout_width="250dip"
+            android:layout_height="250dip">
+
+        </com.xiaomi.demoproject.recyclerviewfocus.view.ui.RecyclerviewAListView>
+
+        <com.xiaomi.demoproject.recyclerviewfocus.view.ui.RecyclerviewBListView
+            android:id="@+id/rvBLsitView"
+            android:layout_width="250dip"
+            android:layout_height="250dip">
+
+        </com.xiaomi.demoproject.recyclerviewfocus.view.ui.RecyclerviewBListView>
+    </LinearLayout>
+
+
+</LinearLayout>

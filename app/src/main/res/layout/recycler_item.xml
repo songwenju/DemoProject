@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="108dp">
+
+    <TextView
+        android:id="@+id/item_text"
+        android:layout_width="200dp"
+        android:layout_height="108dp"
+        android:background="@drawable/bg_fusion_cell"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@color/colorAccent"
+        android:textSize="28sp" />
+
+    <LinearLayout
+        android:background="@color/pin_dialog_text_color"
+        android:layout_width="match_parent"
+        android:layout_toRightOf="@id/item_text"
+        android:layout_height="108dp">
+
+        <TextView
+            android:id="@+id/sub_text"
+            android:layout_width="200dp"
+            android:layout_height="108dp"
+            android:background="@drawable/bg_fusion_cell"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/epg_bg"
+            android:textSize="28sp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="108dp"
+            android:background="@drawable/bg_fusion_cell"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/epg_bg"
+            android:textSize="28sp" />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="108dp"
+            android:background="@drawable/bg_fusion_cell"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/epg_bg"
+            android:textSize="28sp" />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="108dp"
+            android:background="@drawable/bg_fusion_cell"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/epg_bg"
+            android:textSize="28sp" />
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_marginTop="107dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
+
+</RelativeLayout>

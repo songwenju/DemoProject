@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:id="@+id/banner_detail_layout"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="26dp"
+              android:layout_marginLeft="96dp"
+              android:layout_marginRight="96dp"
+              android:background="@drawable/nav_infobar_basic_bg">
+
+    <!-- detail info content -->
+    <TextView
+        android:layout_marginLeft="12dp"
+        android:id="@+id/banner_detail_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:lineSpacingExtra="3dip"
+        android:paddingLeft="10dip"
+        android:text="На что способны те, кто умеет ходить на шпильках по скользкой брусчатке и различать 20 оттенков красного цвета, путает право и лево за рулём и заводит тараканов в голове, чтобы исчезли бабочки в животе? На создание самого лучшего юмористического шоу страны! А лучшего, потому что женского!"
+        android:textColor="#99FFFFFF"
+        android:textSize="15sp"/>
+
+    <LinearLayout
+        android:id="@+id/banner_detail_info_right_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- page up icon -->
+
+        <ImageView
+            android:id="@+id/banner_detail_info_uparrow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/nav_detail_icon_arrow_up"/>
+        <!-- page num -->
+
+        <TextView
+            android:id="@+id/banner_detail_info_pagenum"
+            android:layout_width="match_parent"
+            android:layout_height="60dip"
+            android:layout_weight="1"
+            android:background="#4b5459"
+            android:gravity="center"
+            android:textSize="@dimen/nav_textsize_normal"/>
+        <!-- page down icon -->
+
+        <ImageView
+            android:id="@+id/banner_detail_info_downarrow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/nav_detail_icon_arrow_down"/>
+    </LinearLayout>
+</LinearLayout>

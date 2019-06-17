@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/banner_info_layout"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/av_layout"
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:background="@drawable/circle_react"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="10dp"
+            android:src="@drawable/av_point"/>
+
+        <TextView
+            android:id="@+id/av_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:text="AV"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/hdmi_layout"
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:background="@drawable/circle_react"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="11dp"
+            android:src="@drawable/hdmi"/>
+
+        <TextView
+            android:id="@+id/hdmi_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="HDMI 1"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/resolution_layout"
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:background="@drawable/circle_react"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="1920 * 1080"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,975 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/banner_info_layout"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginTop="@dimen/nav_banner_marginTop"
+              android:gravity="bottom"
+              android:orientation="vertical"
+              android:visibility="visible">
+
+    <!-- banner info top part : basic and simple info panel -->
+
+    <LinearLayout
+        android:id="@+id/banner_top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/nav_banner_top_layout_width"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/nav_banner_marginLeft"
+        android:background="@drawable/nav_infobar_basic_bg"
+        android:gravity="bottom">
+
+        <!-- banner info top-left part : basic info panel -->
+
+        <RelativeLayout
+            android:id="@+id/banner_basic_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/banner_basic_layout_cn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/nav_banner_marginLeft"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- current program name -->
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/banner_current_program_title"
+                        android:layout_width="56dp"
+                        android:layout_height="28dp"
+
+                        android:text="111"
+                        android:textColor="@color/key_back"
+                        android:textSize="@dimen/nav_textsize_normal"/>
+
+
+                    <TextView
+                        android:id="@+id/banner_special_info"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_large"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+                <view
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/white"/>
+                <!-- second line -->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.35"
+                    android:orientation="vertical">
+
+                    <!-- show no signal , no channels , locked tips -->
+
+
+                    <RelativeLayout
+                        android:id="@+id/banner_basic_second_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- current program duration -->
+
+                        <TextView
+                            android:id="@+id/banner_current_program_duration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:textColor="@color/dark_yellow"
+                            android:textSize="@dimen/nav_textsize_timeduration"/>
+                        <!-- current audio language -->
+
+                        <TextView
+                            android:id="@+id/banner_audio_language"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/nav_textsize_normal"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <!-- third line -->
+
+                <LinearLayout
+                    android:id="@+id/banner_basic_third_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.30">
+
+                    <!-- left part of third line -->
+
+                    <LinearLayout
+                        android:id="@+id/banner_basic_third_line_left"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!-- left top part of third line -->
+
+                        <LinearLayout
+                            android:id="@+id/banner_next_program_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6">
+
+                            <!-- next program duration -->
+
+                            <TextView
+                                android:id="@+id/banner_next_program_duration"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:gravity="left"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/nav_textsize_timeduration"/>
+                            <!-- next program name -->
+
+                            <TextView
+                                android:id="@+id/banner_next_program_name"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="left|center"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/nav_textsize_timeduration"/>
+                        </LinearLayout>
+
+                        <!-- left bottom part of third line -->
+
+                        <LinearLayout
+                            android:id="@+id/banner_basic_icons_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/nav_channel_list_padTop"
+                            android:layout_weight="4">
+
+                            <!-- lock icon -->
+
+                            <TextView
+                                android:id="@+id/banner_channel_lock_icon"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:drawableRight="@drawable/nav_banner_lock_icon"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/nav_textsize_normal"
+                                android:visibility="invisible"/>
+
+                            <!-- favorite icon -->
+                            <TextView
+                                android:id="@+id/banner_channel_favorite_icon"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.2"
+                                android:drawableLeft="@drawable/nav_infobar_favorite"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/nav_textsize_normal"
+                                android:visibility="visible"/>
+
+                            <!-- ttx icon -->
+                            <TextView
+                                android:id="@+id/banner_channel_ttx_icon"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.1"
+                                android:drawableLeft="@drawable/nav_infobar_ttx_icon"
+                                android:visibility="invisible"/>
+
+                            <!-- subtitle icon -->
+                            <TextView
+                                android:id="@+id/banner_channel_subtitle_icon"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableLeft="@drawable/nav_banner_icon_sttl"
+                                android:drawablePadding="@dimen/banner_channel_subtitle_icon_drawablePadding"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/nav_textsize_timeduration"
+                                android:visibility="visible"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!-- right part of third line -->
+
+                    <LinearLayout
+                        android:id="@+id/banner_basic_third_line_right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:orientation="vertical">
+
+                        <!-- video format -->
+
+                        <TextView
+                            android:id="@+id/banner_video_format"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/nav_textsize_normal"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- end cn layout -->
+            <LinearLayout
+                android:id="@+id/banner_basic_layout_eu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/nav_banner_marginLeft"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- current program name -->
+
+                <LinearLayout
+                    android:id="@+id/banner_eu_basic_firstline"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.35">
+
+                    <TextView
+                        android:id="@+id/banner_current_program_title_eu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:focusable="true"
+                        android:gravity="top|left"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:singleLine="true"
+                        android:text="@string/nav_channel_infoTitle"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_large"/>
+
+                    <TextView
+                        android:id="@+id/banner_current_program_type_eu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:ellipsize="end"
+                        android:gravity="top|right"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_large"/>
+                </LinearLayout>
+                <!-- second line -->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.35"
+                    android:orientation="vertical">
+
+                    <!-- show no signal , no channels , locked tips -->
+
+                    <TextView
+                        android:id="@+id/banner_special_info_eu"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_large"
+                        android:visibility="gone"/>
+
+                    <RelativeLayout
+                        android:id="@+id/banner_basic_second_line_eu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- current program duration -->
+
+                        <TextView
+                            android:id="@+id/banner_current_program_duration_eu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:textColor="@color/dark_yellow"
+                            android:textSize="@dimen/nav_textsize_timeduration"/>
+                        <!-- current audio language -->
+
+                        <TextView
+                            android:id="@+id/banner_audio_language_eu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/nav_textsize_normal"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <!-- third line -->
+
+                <LinearLayout
+                    android:id="@+id/banner_basic_third_line_eu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.30">
+
+                    <!-- left part of third line -->
+
+                    <LinearLayout
+                        android:id="@+id/banner_basic_third_line_left_eu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!-- left top part of third line -->
+
+                        <LinearLayout
+                            android:id="@+id/banner_next_program_layout_eu"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6">
+
+                            <!-- next program duration -->
+
+                            <TextView
+                                android:id="@+id/banner_next_program_duration_eu"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:gravity="left"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/nav_textsize_timeduration"/>
+                            <!-- next program name -->
+
+                            <TextView
+                                android:id="@+id/banner_next_program_title_eu"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:gravity="left|center"
+                                android:singleLine="true"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/nav_textsize_timeduration"/>
+                        </LinearLayout>
+
+                        <!-- left bottom part of third line -->
+
+                        <LinearLayout
+                            android:id="@+id/banner_basic_icons_layout_eu"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/nav_channel_list_padTop"
+                            android:layout_weight="4">
+
+                            <TextView
+                                android:id="@+id/banner_program_rating_eu"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.75"
+                                android:gravity="left"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/nav_textsize_normal"/>
+
+                            <!-- eu eye or ear hinder -->
+
+                            <TextView
+                                android:id="@+id/banner_channel_eys_ear_icon_eu"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.15"
+                                android:drawableLeft="@drawable/nav_banner_eye_icon"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/nav_textsize_normal"
+                                android:visibility="visible"/>
+
+                            <!-- lock icon -->
+
+                            <TextView
+                                android:id="@+id/banner_channel_lock_icon_eu"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.15"
+                                android:drawableRight="@drawable/nav_banner_lock_icon"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/nav_textsize_normal"
+                                android:visibility="visible"/>
+                            <!-- favorite icon -->
+
+                            <TextView
+                                android:id="@+id/banner_channel_favorite_icon_eu"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.1"
+                                android:drawableLeft="@drawable/nav_infobar_favorite"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/nav_textsize_normal"
+                                android:visibility="visible"/>
+
+                            <!-- TTX icon -->
+
+                            <TextView
+                                android:id="@+id/banner_channel_ttx_icon_eu"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.1"
+                                android:drawableLeft="@drawable/nav_infobar_ttx_icon"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/nav_textsize_timeduration"
+                                android:visibility="visible"/>
+
+                            <!-- subtitle icon -->
+
+                            <TextView
+                                android:id="@+id/banner_channel_subtitle_icon_eu"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:drawableLeft="@drawable/nav_banner_icon_sttl"
+                                android:drawablePadding="@dimen/banner_channel_subtitle_icon_drawablePadding"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/nav_textsize_timeduration"
+                                android:visibility="visible"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!-- right part of third line -->
+
+                    <LinearLayout
+                        android:id="@+id/banner_basic_third_line_right_eu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="right"
+                        android:orientation="vertical">
+
+                        <!-- video format -->
+
+                        <TextView
+                            android:id="@+id/banner_video_format_eu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/nav_textsize_normal"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/banner_basic_layout_us"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/banner_current_program_title_us"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.35"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:gravity="top|left"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/nav_textsize_large"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.35"
+                    android:orientation="vertical">
+
+                    <!-- show no signal , no channels , locked tips -->
+
+                    <TextView
+                        android:id="@+id/banner_special_info_us"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_large"
+                        android:visibility="gone"/>
+
+                    <LinearLayout
+                        android:id="@+id/banner_basic_second_line_us"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- current program duration -->
+
+                        <TextView
+                            android:id="@+id/banner_current_program_duration_us"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="left"
+                            android:textColor="@color/dark_yellow"
+                            android:textSize="@dimen/nav_textsize_normal"/>
+                        <!-- current audio language -->
+
+                        <TextView
+                            android:id="@+id/banner_audio_language_us"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/nav_textsize_normal"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/banner_basic_third_line_us"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/nav_channel_list_padTop"
+                    android:layout_weight="0.30">
+
+                    <!-- us rating -->
+
+                    <TextView
+                        android:id="@+id/banner_program_rating_us"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.85"
+                        android:gravity="left"
+                        android:text="@string/nav_banner_not_rating"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_normal"/>
+                    <!-- sa eye or ear hinder -->
+                    <TextView
+                        android:id="@+id/banner_channel_eys_ear_icon_us"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.1"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_normal"
+                        android:visibility="visible"/>
+                    <!-- us lock icon -->
+
+                    <TextView
+                        android:id="@+id/banner_channel_lock_icon_us"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.1"
+                        android:drawableRight="@drawable/nav_banner_lock_icon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_normal"
+                        android:visibility="visible"/>
+
+                    <!-- us favorite icon -->
+
+                    <TextView
+                        android:id="@+id/banner_channel_favorite_icon_us"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.1"
+                        android:drawableLeft="@drawable/nav_infobar_favorite"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_normal"
+                        android:visibility="visible"/>
+
+                    <!-- us CC icon -->
+
+                    <TextView
+                        android:id="@+id/banner_channel_cc_icon_us"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:drawableLeft="@drawable/nav_cc_icon"
+                        android:drawablePadding="@dimen/banner_channel_subtitle_icon_drawablePadding"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_normal"
+                        android:visibility="visible"/>
+
+                    <!-- us video format -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right">
+
+                        <TextView
+                            android:id="@+id/banner_video_format_us"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/nav_textsize_normal"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/banner_basic_layout_sa"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/banner_current_program_title_sa"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.35"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:gravity="top|left"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/nav_textsize_large"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.35"
+                    android:orientation="vertical">
+
+                    <!-- show no signal , no channels , locked tips -->
+
+                    <TextView
+                        android:id="@+id/banner_special_info_sa"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_large"
+                        android:visibility="gone"/>
+
+                    <LinearLayout
+                        android:id="@+id/banner_basic_second_line_sa"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- current program duration -->
+
+                        <TextView
+                            android:id="@+id/banner_current_program_duration_sa"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:textColor="@color/dark_yellow"
+                            android:textSize="@dimen/nav_textsize_normal"/>
+
+                        <TextView
+                            android:id="@+id/banner_next_program_duration_sa"
+                            android:layout_width="fill_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1"
+                            android:gravity="center_horizontal|top"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/nav_textsize_timeduration"/>
+
+                        <TextView
+                            android:id="@+id/banner_next_program_title_sa"
+                            android:layout_width="fill_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="left|top"
+                            android:singleLine="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/nav_textsize_timeduration"/>
+                        <!-- current audio language -->
+
+                        <TextView
+                            android:id="@+id/banner_audio_language_sa"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:gravity="right"
+                            android:singleLine="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/nav_textsize_normal"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/banner_basic_third_line_sa"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/nav_channel_list_padTop"
+                    android:layout_weight="0.30">
+
+                    <!-- us rating -->
+
+                    <TextView
+                        android:id="@+id/banner_program_rating_sa"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.15"
+                        android:gravity="left"
+                        android:text="@string/nav_banner_not_rating"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_normal"/>
+
+                    <!-- sa eye or ear hinder -->
+                    <TextView
+                        android:id="@+id/banner_channel_eys_ear_icon_sa"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.45"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_normal"
+                        android:visibility="visible"/>
+                    <!-- us lock icon -->
+
+                    <TextView
+                        android:id="@+id/banner_channel_lock_icon_sa"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.45"
+                        android:drawableRight="@drawable/nav_banner_lock_icon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_normal"
+                        android:visibility="visible"/>
+
+                    <!-- us favorite icon -->
+
+                    <TextView
+                        android:id="@+id/banner_channel_favorite_icon_sa"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.4"
+                        android:drawableLeft="@drawable/nav_infobar_favorite"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_normal"
+                        android:visibility="visible"/>
+
+                    <!-- us subtitle icon -->
+
+
+                    <TextView
+                        android:id="@+id/banner_channel_cc_icon_sa"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.1"
+                        android:drawableLeft="@drawable/nav_cc_icon"
+                        android:drawablePadding="@dimen/banner_channel_subtitle_icon_drawablePadding"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/nav_textsize_normal"
+                        android:visibility="visible"/>
+
+                    <TextView
+                        android:id="@+id/banner_ginga_tv_icon_sa"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.45"
+                        android:drawableRight="@drawable/nav_infobar_ginga_icon"
+                        android:textSize="@dimen/nav_textsize_normal"
+                        android:visibility="visible"/>
+
+
+                    <!-- us video format -->
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.1"
+                        android:gravity="right">
+
+                        <TextView
+                            android:id="@+id/banner_video_format_sa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/nav_textsize_normal"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- banner info top-right part : simple info panel -->
+
+        <LinearLayout
+            android:id="@+id/banner_simple_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/padding_small"
+            android:layout_marginRight="@dimen/padding_small"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:visibility="invisible">
+
+            <!-- channel number or source name -->
+
+            <TextView
+                android:id="@+id/banner_simple_first_line"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.35"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/nav_textsize_normal"/>
+            <!-- second line of simple banner -->
+
+            <RelativeLayout
+                android:id="@+id/banner_simple_second_line_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.35"
+                android:gravity="center">
+
+                <!-- channel name -->
+
+                <TextView
+                    android:id="@+id/banner_simple_channel_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/nav_channel_list_padTop"
+                    android:layout_marginTop="@dimen/nav_channel_list_padTop"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/nav_textsize_large"/>
+                <!-- input source locked icon -->
+
+                <ImageView
+                    android:id="@+id/banner_simple_lock_icon"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:src="@drawable/nav_banner_lock_icon"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+            <!-- third line of simple line -->
+
+            <RelativeLayout
+                android:id="@+id/banner_simple_third_line_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.30"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/banner_simple_cc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:paddingLeft="@dimen/nav_channel_list_item_padding"
+                    android:textSize="@dimen/nav_textsize_normal"
+                    android:visibility="visible"/>
+
+                <TextView
+                    android:id="@+id/banner_simple_third_middle"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:textColor="@color/dark_yellow"
+                    android:textSize="@dimen/nav_textsize_normal"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:id="@+id/banner_simple_type_time_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/banner_simple_receiver_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:textColor="@color/dark_yellow"
+                            android:textSize="@dimen/nav_textsize_normal"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/banner_simple_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:textColor="@color/dark_yellow"
+                            android:textSize="@dimen/nav_textsize_normal"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- banner info bottom part : detail info panel -->
+
+    <LinearLayout
+        android:id="@+id/banner_detail_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/nav_infobar_basic_bg"
+        android:visibility="gone">
+
+        <!-- detail info content -->
+
+        <TextView
+            android:id="@+id/banner_detail_info"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:lineSpacingExtra="3dip"
+            android:paddingLeft="10dip"
+            android:textColor="@color/white"
+            android:textSize="@dimen/nav_textsize_normal"/>
+
+        <LinearLayout
+            android:id="@+id/banner_detail_info_right_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:orientation="vertical"
+            android:visibility="invisible">
+
+            <!-- page up icon -->
+
+            <ImageView
+                android:id="@+id/banner_detail_info_uparrow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/nav_detail_icon_arrow_up"/>
+            <!-- page num -->
+
+            <TextView
+                android:id="@+id/banner_detail_info_pagenum"
+                android:layout_width="match_parent"
+                android:layout_height="60dip"
+                android:layout_weight="1"
+                android:background="#4b5459"
+                android:gravity="center"
+                android:textSize="@dimen/nav_textsize_normal"/>
+            <!-- page down icon -->
+
+            <ImageView
+                android:id="@+id/banner_detail_info_downarrow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/nav_detail_icon_arrow_down"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

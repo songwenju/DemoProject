@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="background">#2E2F32</color>
+
+    <!-- PIN dialog -->
+    <color name="pin_dialog_background">#384248</color>
+    <color name="pin_dialog_text_color_enabled">#FFEEEEEE</color>
+    <color name="pin_dialog_text_color_disabled">#4DEEEEEE</color>
+    <color name="pin_dialog_text_color">#C0EEEEEE</color>
+    <color name="pin_number_picker_focused_background">#4B5459</color>
+    <color name="key_back">#4C4C4C</color>
+
+    <color name="dark_yellow">#fefe11</color>
+
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+    <color name="white_dark">#9FFF</color>
+
+    <color name="menu_item_back_focus">#80CACACA</color>
+    <color name="menu_item_back_normal">#cc3B3B3B</color>
+
+
+
+
+    <drawable name="nav_ch_list">#33EEEEEE</drawable>
+    <drawable name="barcolor">#33b5e5</drawable>
+    <drawable name="nav_input_pwd">#4b5459</drawable>
+    <drawable name="epg_list_item">#800176BC</drawable>
+    <drawable name="epg_list_item_normal">#F2263238</drawable>
+
+    <!-- List Common Color -->
+    <color name="nav_list_common_title_color">#0089d6</color>
+    <color name="nav_list_common_view_back_color">#455A64</color>
+    <drawable name="nav_list_common_select_back_color">#33EEEEEE</drawable>
+
+
+    <color name="nav_list_common_button_text_color">#009688</color>
+
+
+    <color name="list_con">#22556678</color>
+    <color name="list_bian">#55668877</color>
+
+    <color name="nav_button_normal">#9B9B9B</color>
+    <color name="nav_button_select">#006DFF</color>
+
+
+    <!--EPG color-->
+    <color name="epg_bg">#99000000</color>
+    <color name="epg_text_color">#99000000</color>
+    <color name="epg_bg_focused">#0084FF</color>
+    <color name="epg_bg_pressed">#86B9FF</color>
+    <color name="epg_bg_program_title">#CCC0C5CA</color>
+
+    <color name="epg_channel_title_color">#000000</color>
+    <color name="epg_channel_text_color_normal">#99000000</color>
+    <color name="epg_channel_text_color_focus">#FFF</color>
+
+    <color name="fusion_list_cell_focused">#E60084FF</color>
+
+
+    <!-- Program guide -->
+    <color name="program_guide_scrim">#99000000</color>
+    <color name="program_guide_side_panel_background">#0176BC</color>
+    <color name="program_guide_side_panel_text_color">#FFEEEEEE</color>
+    <color name="program_guide_side_panel_text_color_unfocused">#80EEEEEE</color>
+    <color name="program_guide_table_header_row_background">#F2455A64</color>
+    <color name="program_guide_table_header_row_current_time_text_color">#17FFFF</color>
+    <color name="program_guide_table_header_row_time_text_color">#80EEEEEE</color>
+    <color name="program_guide_table_header_column_background">#F237474F</color>
+    <color name="program_guide_table_header_column_channel_number_text_color">#EEEEEE</color>
+    <color name="program_guide_table_header_column_channel_number_blocked_text_color">#80EEEEEE</color>
+    <color name="program_guide_table_header_column_channel_name_text_color">#EEEEEE</color>
+    <color name="program_guide_table_border_color">#0DEEEEEE</color>
+    <color name="program_guide_table_grid_background">#F2263238</color>
+    <!-- Color code to make color #800176BC on top of #4D17FFFF.
+         Overlay is done in rest of progress because its color has higher alpha value. -->
+    <color name="program_guide_table_item_focus_progress_overlay">#49000F8A</color>
+    <color name="program_guide_table_item_program_title_text_color">#EEEEEE</color>
+    <color name="program_guide_table_item_program_episode_title_text_color">#B3EEEEEE</color>
+    <color name="program_guide_table_item_grayed_out_program_episode_title_text_color">#4CEEEEEE</color>
+    <color name="program_guide_table_item_grayed_out_program_text_color_not_focused">#4CEEEEEE</color>
+    <color name="program_guide_table_item_grayed_out_program_text_color_focused">#80EEEEEE</color>
+    <color name="program_guide_table_detail_background">#1A0176BC</color>
+    <color name="program_guide_table_detail_title_text_color">#EEEEEE</color>
+    <color name="program_guide_table_detail_episode_title_text_color">#B3EEEEEE</color>
+    <color name="program_guide_table_detail_title_grayed_text_color">#4CEEEEEE</color>
+    <color name="program_guide_table_detail_time_text_color">#B3EEEEEE</color>
+    <color name="program_guide_table_detail_dvr_text_color">#EEEEEE</color>
+    <color name="program_guide_table_detail_desc_text_color">#B3EEEEEE</color>
+    <color name="program_guide_time_indicator_color">#17FFFF</color>
+
+
+
+</resources>

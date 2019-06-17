@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/banner_info_layout"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginTop="@dimen/nav_banner_marginTop"
+              android:gravity="bottom"
+              android:background="@color/background"
+              android:orientation="vertical"
+              android:visibility="visible">
+
+    <!-- banner info top part : basic and simple info panel -->
+
+    <LinearLayout
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/circle_react"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="10dp"
+            android:src="@drawable/av_point"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/nav_channel_list_padTop"
+            android:layout_marginTop="@dimen/nav_channel_list_padTop"
+            android:ellipsize="end"
+            android:layout_marginLeft="15dp"
+            android:singleLine="true"
+            android:text="AV"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/circle_react"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:src="@drawable/live_tv"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/nav_channel_list_padTop"
+            android:layout_marginTop="@dimen/nav_channel_list_padTop"
+            android:ellipsize="end"
+            android:layout_marginLeft="15dp"
+            android:singleLine="true"
+            android:text="Antenna"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/banner_simple_layout"
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/circle_react"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="11dp"
+            android:src="@drawable/hdmi"/>
+
+        <TextView
+            android:id="@+id/banner_simple_channel_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/nav_channel_list_padTop"
+            android:layout_marginTop="@dimen/nav_channel_list_padTop"
+            android:ellipsize="end"
+            android:layout_marginLeft="15dp"
+            android:singleLine="true"
+            android:text="HDMI 1"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="192dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/circle_react"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/nav_channel_list_padTop"
+            android:layout_marginTop="@dimen/nav_channel_list_padTop"
+            android:ellipsize="end"
+            android:layout_marginLeft="15dp"
+            android:singleLine="true"
+            android:text="1920 * 1080"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="140dp"
+        android:layout_height="85dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/menu_item_back_selector"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp"
+            android:text="New channels"
+            android:textColor="@color/white"
+            android:textSize="15sp"/>
+
+        <ImageView
+            android:layout_width="21dp"
+            android:layout_height="18dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="12dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="6dp"
+            android:src="@drawable/ic_menu_infobar"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/banner_top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/nav_banner_top_layout_width"
+        android:layout_marginLeft="96dp"
+        android:layout_marginRight="96dp"
+        android:background="@drawable/nav_infobar_basic_bg"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <!-- banner info top-left part : basic info panel -->
+
+        <RelativeLayout
+            android:id="@+id/banner_basic_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+            <include layout="@layout/nav_eu_layout"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/nav_detail_layout"/>
+
+
+</LinearLayout>

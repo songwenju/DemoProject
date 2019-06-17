@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="setup_wizard_margin">20dp</dimen>
+    <dimen name="setup_wizard_margin_1">35dp</dimen>
+    <dimen name="setup_wizard_margin_2">40dp</dimen>
+    <dimen name="setup_wizard_list_padding">-10dp</dimen>
+    <dimen name="setup_wizard_height">45dp</dimen>
+
+    <dimen name="setup_wizard_pad_foot">30dp</dimen>
+    <dimen name="setup_wizard_pad_left_right">30dp</dimen>
+    <dimen name="setup_wizard_textsize">24sp</dimen>
+    <dimen name="setup_wizard_common_textsize">20sp</dimen>
+    <dimen name="setup_wizard_common_padding">10dip</dimen>
+
+    <dimen name="setup_wizard_sat_list_min_width">150dp</dimen>
+    
+    <!-- channel list -->
+    <dimen name="nav_channel_list_padTop">1dp</dimen>
+    <dimen name="nav_channel_list_marTl">5dp</dimen>
+    <dimen name="nav_channel_list_padBottom">7dp</dimen>
+    <dimen name="nav_channel_list_marTop">10dp</dimen>
+    <dimen name="nav_channel_list_height_lv">210dp</dimen>
+    <dimen name="nav_channel_list_detail_margin">3dp</dimen>
+    <!-- favorite list -->
+    <dimen name="nav_favorite_list_marLeft">2dp</dimen>
+    <!-- information  infobar -->
+    <dimen name="nav_infobar_width_simple">170dp</dimen>
+    <!-- input sources -->
+    <dimen name="nav_sourceList_marLeft">30dp</dimen>
+    <dimen name="nav_sourceList_width">150dp</dimen>
+
+    <!-- font size -->
+
+    <dimen name="nav_textsize_large">25sp</dimen>
+    <dimen name="nav_textsize_normal">24sp</dimen>
+    <dimen name="nav_textsize_timeduration">16sp</dimen>
+    <dimen name="channelList_leftright_marginSize">50dp</dimen>
+    <dimen name="channelList_top_marginSize">5dp</dimen>
+    <!-- nav_volume -->
+
+    <dimen name="nav_volume_height">50dp</dimen>
+
+    <!-- nav_parental -->
+    <dimen name="nav_parental_mar">20dp</dimen>
+    <dimen name="nav_parental_height">120dp</dimen>
+    <dimen name="nav_parental_edWidth">80dp</dimen>
+    <dimen name="nav_parental_width">500dp</dimen>
+    <!-- nav_aspect -->
+    <dimen name="nav_aspect_mar">30dp</dimen>
+    <dimen name="nav_textSize">20sp</dimen>
+    <dimen name="status_bar_edge_ignore">5dp</dimen>
+
+    <!-- nav_zoom -->
+    <dimen name="nav_nav_channel_zoom_up_marginBottom">170dp</dimen>
+    <dimen name="nav_channel_zoom_down_marginTop">170dp</dimen>
+    <dimen name="nav_channel_zoom_left_marginRight">350dp</dimen>
+    <dimen name="nav_channel_zoom_right_marginLeft">350dp</dimen>
+    <dimen name="nav_channel_zoom_center_imageview_size">50dp</dimen>
+    <dimen name="nav_channel_zoom_padding">130dp</dimen>
+    <!-- LinerLayout prama -->
+
+    <dimen name="info_area_magin_gap">5dip</dimen>
+    <dimen name="bottom_layout_oneColmun_magin_leftRight">20dip</dimen>
+    <dimen name="bottom_layout_twoColmun_magin_leftRight">30dip</dimen>
+    <dimen name="bottom_source_list_magin_bottom">10dip</dimen>
+
+    <!-- nav_shorttip -->
+    <dimen name="nav_shorttip_marginLeft">100dip</dimen>
+
+    <!-- nav_capture -->
+    <dimen name="nav_capture_padding">55dip</dimen>
+    <dimen name="nav_capture_paddingBottom">15dip</dimen>
+
+    <!-- for epg_main and epg_list_view -->
+    <dimen name="epg_icon_margin">300dip</dimen>
+    <dimen name="epg_title_lmargin">20dip</dimen>
+    <dimen name="epg_time_rmargin">16dip</dimen>
+    <dimen name="epg_title_rpadding">5dip</dimen>
+    <dimen name="epg_title_dpadding">8dip</dimen>
+    <dimen name="epg_title_rmargin">6dip</dimen>
+    <dimen name="epg_title_lpadding">2dip</dimen>
+    <dimen name="epg_program_type_rating_margin">10dip</dimen>
+
+    <!-- for epg text size -->
+    <dimen name="epg_channel_number_ts">24sp</dimen>
+    <dimen name="epg_type_sub_ts">28sp</dimen>
+    <dimen name="epg_type_main_ts">26sp</dimen>
+    <dimen name="epg_program_ts">20sp</dimen>
+    <dimen name="epg_time_ts">18sp</dimen>
+    <dimen name="epg_bottom_ts">16sp</dimen>
+    <dimen name="epg_bottom_ts_enter">22sp</dimen>
+    <dimen name="epg_list_item_textsize">14sp</dimen>
+    <dimen name="epg_list_item_padding_top">11dp</dimen>
+    <dimen name="epg_type_item_ts">22sp</dimen>
+    <dimen name="epg_program_type_ts">16sp</dimen>
+    <dimen name="epg_pwd_height">40dp</dimen>
+    <dimen name="epg_appreence_textsize">16sp</dimen>
+    <dimen name="epg_program_detail_padding_top">12dp</dimen>
+    <dimen name="epg_us_bottominfo_margin_top">5dip</dimen>
+    <dimen name="epg_us_programdetail_padding_top">20dp</dimen>
+    <dimen name="epg_us_programdetail_padding_rigth">100dip</dimen>
+    <dimen name="epg_us_pageinfo_padding_rigth">90dip</dimen>
+    <dimen name="epg_for_bootom_drawable_padding">10dp</dimen>
+    <dimen name="epg_us_lockicon_margin_rigtn">20dp</dimen>
+
+    <!-- for epg passwords -->
+    <dimen name="epg_pwd_error_marginTop">5dip</dimen>
+    <dimen name="epg_pwd_value_marginLeft">10dip</dimen>
+    <dimen name="epg_pwd_value_marginRight">10dip</dimen>
+
+    <!-- nav_channel -->
+    <dimen name="nav_channel_details_channel_info_padding">8dp</dimen>
+    <dimen name="nav_channel_list_item_padding">4dip</dimen>
+    <dimen name="nav_channel_list_item_no_marginleft">20dip</dimen>
+    <dimen name="nav_channel_list_item_no_marginright">5dip</dimen>
+    <dimen name="nav_channel_type_list_item_margin">10dip</dimen>
+    <dimen name="nav_channel_list_function_layout_padding">15dip</dimen>
+
+    <!-- nav_tv_pwd -->
+    <dimen name="nav_tv_pwd_padding">40dip</dimen>
+    <dimen name="nav_tv_pwd_ts">20sp</dimen>
+    <dimen name="nav_pwd_margin_Letf">30dp</dimen>
+    <dimen name="nav_pwd_height">120dp</dimen>
+    <dimen name="nav_pwd_width">500dp</dimen>
+
+    <!-- nav_banner -->
+    <dimen name="nav_banner_marginTop">15dip</dimen>
+    <dimen name="nav_banner_marginLeft">20dip</dimen>
+    <dimen name="nav_banner_top_layout_width">131dip</dimen>
+    <dimen name="banner_channel_subtitle_icon_drawablePadding">10dip</dimen>
+    <dimen name="nav_banner_icon_height">24dip</dimen>
+
+    <!-- common_tv_setup_dialog -->
+  <dimen name="common_tv_setup_dialog_padding">10dip</dimen>
+       <!-- timmeshift&PVR -->
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
+    <dimen name="padding_large">16dp</dimen>
+
+    <!-- font size PVR FileList -->
+    <dimen name="nav_pvr_textsize">20sp</dimen>
+
+    <!-- font size PVR FileList Title -->
+    <dimen name="nav_pvr_title_textsize">23sp</dimen>
+
+    <!-- OAD's padding -->
+    <dimen name="nav_oad_padding">50dp</dimen>
+    <!-- font size PVR FileList padding -->
+    <dimen name="nav_pvr_textview_padding">13dip</dimen>
+
+    <!-- font size InfoBar content -->
+    <dimen name="nav_infobar_textsize">23sp</dimen>
+
+    <!-- nav cec -->
+    <dimen name="nav_cec_marRight">5dp</dimen>
+    <dimen name="nav_cec_paddingTop">10dip</dimen>
+    <dimen name="nav_cec_width">300dip</dimen>
+    
+    <!-- nav sundry textview  -->
+    <dimen name="nav_sundry_textview_width">411dip</dimen>
+    <dimen name="nav_sundry_textview_height">90dip</dimen>
+    <dimen name="nav_sundry_textview_margnleft">150dip</dimen>
+    <!-- nav sundry dialog -->
+    <dimen name="nav_sundry_dialog_list_padtop">20dip</dimen>
+	<!-- common msg dialog -->
+	<dimen name="nav_common_dialog_content_text">20sp</dimen>
+	<dimen name="nav_common_dialog_button_margin">80dip</dimen>
+	<dimen name="nav_common_dialog_button_width">152dip</dimen>
+	<dimen name="nav_common_dialog_button_height">55dip</dimen>
+	<dimen name="setup_password_padding">1px</dimen>
+	<!-- nav ews dialog -->
+	<dimen name="nav_ews_dialog_margin_top">25dp</dimen>
+	<dimen name="nav_ews_dialog_margin_left">30dp</dimen>
+	<dimen name="nav_ews_textsize_large">20dp</dimen>
+	<dimen name="nav_ews_textsize_normal">18dp</dimen>
+</resources>

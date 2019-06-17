@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/turnkey_comm_dialog"
+    android:layout_width="487dp"
+    android:layout_height="318dp"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_bg">
+
+    <ImageView
+        android:id="@+id/ic_tv"
+        android:layout_width="51dp"
+        android:layout_height="61dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:src="@drawable/ic_tv_blue" />
+
+    <TextView
+        android:id="@+id/tw_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ic_tv"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="No channel"
+        android:textColor="#000"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/no_channel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tw_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/no_channel_content"
+        android:textColor="@color/epg_text_color"
+        android:textSize="15dp" />
+
+    <RelativeLayout
+        android:layout_marginTop="33dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/no_channel">
+
+        <Button
+            android:layout_marginLeft="62dp"
+            android:id="@+id/scan_button"
+            android:layout_width="173dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn_cell"
+            android:text="@string/scan_now"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/scan_cancel"
+            android:layout_width="173dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/scan_button"
+            android:background="@drawable/bg_btn_cell"
+            android:text="cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

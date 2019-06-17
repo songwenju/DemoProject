@@ -1,0 +1,1061 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+	<string name="setup_ini">Initial Setup</string>
+	<string name="setup_back">Back</string>
+	<string name="setup_select">Select</string>
+	<string name="setup_next">Next</string>
+	<string name="setup_exit">Exit</string>
+	<string name="setup_welcome">Welcome</string>
+	<string name="setup_welcome_set">Welcome to use the Wizard for Initial
+		Setup!!\nPlease press [ENTER] to start the wizard.</string>
+	<string name="setup_language">Language</string>
+	<string name="setup_select_language">Please select your language:</string>
+	<string name="setup_select_one_op">You can select only one operator from the following list:</string>
+	<string name="setup_tunner">Tuner Mode</string>
+	<string name="setup_select_tuner">Please select your tuner mode：</string>
+	<string name="setup_channelscan">Channel Scan</string>
+	<string name="setup_set_setps">First,please connect antenna.\nStart channel scan
+		now?\nIf you skip this step,the channel scan could be performed in
+		Menu.</string>
+	<string name="setup_set_setps_us">First, please connect cable or antenna.\n\nStart channel scan now ?\n\nIf you skip this step, the channel scan could be performed in Menu.</string>
+	<string name="setup_language_english">English</string>
+	<string name="setup_language_chinese">简体中文</string>
+	<string name="setup_tuner_antenna">Antenna</string>
+	<string name="setup_tuner_cable">Cable</string>
+    <string name="setup_tuner_satellite">Satellite</string>
+    <string name="satellites">Satellites</string>
+	<string name="setup_scan">Scan</string>
+	<string name="setup_skip_scan">Skip Scan</string>
+	<string name="setup_complete">Complete</string>
+	<string name="setup_congratulations">Congratulations!\nCompleted Initial Setup.\nPlease
+		press [ENTER] to exit this wizard.</string>
+	<string name="setup_channel_scan_note">The channel scan may take a while to complete.</string>
+	<string name="setup_channel_scan_status">Status:Scanning</string>
+	<string name="setup_channel_scan_analog">Analog Channels:</string>
+	<string name="setup_channel_scan_digital">Digital Channels:</string>
+	<string name="setup_cancel">Cancel</string>
+	<string name="setup_cancel_scan">Status:Scan Cancel</string>
+	<string name="setup_scan_error">Status: Scan Error</string>
+	<string name="setup_channel_scan_status_complete">Status:Scan Complete</string>
+	<string name="dvbs_operator_perferred_satellite">perferred satellite</string>
+	<string name="dvbs_operator_general_satellite">general satellite</string>
+
+	<string name="table">Table of page</string>
+	<!-- char of simulation main view -->
+	<string name="nav_test_user_help">
+		[0-9]\t(0-9) To change channel.\n
+		[SOURCE]\t(A) To
+		display the input source list.\n
+		[TIMER]\t(B) To display the time.\n
+		[SLEEP]\t(C) To set the sleep time.\n
+		[ZOOM]\t(D) To select the zoom.\n
+		[PEFFECT]\t(E) To select the screen effect.\n
+		[SEFFECT]\t(F) To select
+		the sound effect.\n
+		[ASPECT]\t(G) To change the aspect ratio.\n
+		[CHUP]\t(O) To turn up the channel.\n
+		[CHDN]\t(Q) To turn down the
+		channel.\n
+		[MUTE]\t(R) To mute or un-mute the sound.\n
+		[VOLUME_UP]\t(M)
+		To turn up the volume.\n
+		[VOLUME_DOWN]\t(N) To turn down the volume.\n
+		[DPAD_CENTER]\t (ENTER) To display the channel list.\n
+		[INFO]\t(S) To
+		display the channel info.\n
+		[EJECT]\t(U) To display the channel info.\n
+		[PLAYPAUSE]\t(V) To display the favorite list.\n
+		[YELLOW]\t(K) To
+		select the type of the channel list.\n
+	</string>
+	<string name="nav_test_tv">TV</string>
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!-- ++++++++++ char of input source view++++++ -->
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++ -->
+	<string name="nav_source_main_title">Main</string>
+	<string name="nav_source_sub_title">Sub</string>
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!-- ++++++++++ char of channel sources list view ++++++ -->
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++ -->
+	<string name="nav_channel_sources_title_string">Channel Sources</string>
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!-- ++++++++++ char of channel list view ++++++ -->
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++ -->
+	<string name="nav_please_scan_channels">Please Scan Channels!</string>
+	<string name="nav_no_function">
+		No Function</string>
+	<string name="nav_select_list">Select List</string>
+	<string name="nav_select_more">Select More</string>
+	<string name="nav_select_list_cn">Select</string>
+	<string name="nav_select_sort">Sort</string>
+	<string name="nav_select_sort_default">Default</string>
+	<string name="nav_select_sort_nameup">Name Up</string>
+	<string name="nav_select_sort_namedown">Name Down</string>
+	<string name="nav_select_sort_encrypted">Encrypted</string>
+	<string name="nav_select_sort_ddra">DTV/DATA/RADIO/ATV</string>
+	<string name="nav_select_sort_hs">HD/SD</string>
+	<string name="nav_select_find">Find</string>
+	<string name="nav_select_find_text">Please input channel number or channel name</string>
+	<string name="nav_select_type_broadcast">Broadcast</string>
+    <string name="nav_select_type_categories">Categories</string>
+    <string name="nav_select_type_packs">Packs</string>
+	<string name="nav_select_type_digital">Digital</string>
+    <string name="nav_select_type_radio">Radio</string>
+    <string name="nav_select_type_analogue">Analogue</string>
+    <string name="nav_select_type_free">Free</string>
+	<string name="nav_select_type_encrypted">Encrypted</string>
+    <string name="nav_select_type_network">Network</string>
+	<string name="nav_select_type">Select Type</string>
+	<string name="nav_page_up">Page Up</string>
+	<string name="nav_page_down">Page Down</string>
+	<string name="nav_fav_move_up">Move Up</string>
+	<string name="nav_fav_move_down">Move Down</string>
+	<string name="nav_exit">Exit</string>
+	<string name="nav_delete">Delete</string>
+	<string name="nav_list_satellite">List Satellite</string>
+	<string name="nav_satellite_list">Select Satellite</string>
+	<!-- <string name="nav_channel_list">Channel List - All</string> -->
+	<string name="nav_channel_list">Channel List</string>
+
+	<string name="nav_channel_list_title_str">Channel List - </string>
+	<string name="nav_channel_list_title_categories">Categories - </string>
+    <string name="nav_channel_list_title_packs">Packs - </string>
+	<string name="nav_faourite_list_title_str">Favourite List - </string>
+	<string name="nav_channel_selection">Channel List Selection</string>
+	<string name="nav_favourite_selection">Favourite List Selection</string>
+	<string name="nav_channel_details">Channel Details</string>
+	<string name="nav_volume_main">Master Volume</string>
+	<string name="nav_parent_psw">Enter your Password</string>
+	<string name="nav_parent_dvbs_hint">Password had been mistaken three times!\nPlease wait about 15 minutes...</string>
+	<string name="nav_parent_wrong_psw">Password incorrect. Please enter again! </string>
+
+	<string name="nav_channel_antenna">Antenna</string>
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!-- ++++++++++ char of favorite list view ++++++ -->
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++ -->
+	<string name="nav_favorite_list">Favorite List</string>
+	<string name="nav_favorite_select">Select</string>
+
+	<string name="nav_channel_infoNum">815</string>
+	<string name="nav_channel_infoName">Jade</string>
+	<string name="nav_channel_infoFormat">640X480@60Hz</string>
+	<string name="nav_channel_infoType">Antenna</string>
+	<string name="nav_channel_infoTime">19:19</string>
+	<string name="nav_channel_infoMiddle_special">Retrieving Data...</string>
+	<string name="nav_channel_infoTitle">(No program Title.)</string>
+	<string name="nav_channel_infoDuration">3:35 - 3:40</string>
+	<string name="nav_channel_infoNextDuration">Insite the Stock ExChange</string>
+	<string name="nav_channel_infoAudioLanguage">1/2 Chinese</string>
+	<string name="nav_channel_infoFormatField">Stereo</string>
+	<string name="nav_channel_infoNoProgram">(No Program Details.)</string>
+	<string name="nav_channel_infoNoChannelDetail">(No Channel Details.)</string>
+	<string name="nav_channel_infoSubtitle">Chi</string>
+	<string name="nav_channel_infoInfoField">576i SD</string>
+
+	<string name="nav_no_signal">No Signal!</string>
+	<string name="nav_no_support">No Support!</string>
+	<string name="nav_channel_has_locked">Channel Locked!</string>
+	<string name="nav_input_has_locked">Input Locked!</string>
+	<string name="nav_program_has_locked">Program Locked!</string>
+	<string name="nav_hidden_channel">Hidden Channel!</string>
+	<string name="nav_channel_audio_scrambled">Scrambled Audio</string>
+	<string name="nav_channel_video_scrambled">Scrambled Video</string>
+	<string name="nav_sleep_label">Sleep:</string>
+	<string name="nav_sleep_off"> Off</string>
+	<string name="nav_sleep_minutes"> Minutes</string>
+	<string name="nav_resolution_null">No Video</string>
+	<string name="nav_channel_retrieving">Retrieving Data...</string>
+	<string name="nav_unknown_audio">unknown audio</string>
+	<string name="nav_unknown_stereo">unknown stereo</string>
+	<string name="nav_unknown_audio_sundry">Unknown</string>
+	<string name="nav_channel_no_audio">No Audio</string>
+
+	<!--  for epg -->
+	<string name="nav_epg_type">Type</string>
+	<string name="nav_epg_sub_type">Sub Type</string>
+	<string name="nav_epg_zero_tip">Booked list</string>
+	<string name="nav_epg_book_list">Booked Event List</string>
+	<string name="nav_epg_book_program_tip">\nBook this program?</string>
+	<string name="nav_epg_unbook_program_tip">\nAlready booked this program, unbook it?</string>
+	<string name="nav_epg_book_program_coming_tip"> is coming, change to the channel?</string>
+	<string name="nav_epg_not_rated">Not Rated</string>
+	<string name="nav_epg_no_program_detail">(No Program Detail.)</string>
+	<string name="nav_epg_no_program_data">( No program data.)</string>
+	<string name="nav_epg_no_program_title">(No program title.)</string>
+	<string name="nav_epg_no_title">(No title)</string>
+	<string name="nav_epg_unlock">Unlock</string>
+	<string name="nav_epg_unschedule">Unschedule</string>
+	<string name="nav_epg_schedule">Schedule</string>
+	<string name="nav_epg_unclassified">Unclassified</string>
+	<string name="nav_epg_not_support">NOT SUPPORT</string>
+
+	<!-- for capture logo (YELLOW KEY) -->
+	<string name="cplogo_title">Capture Logo</string>
+	<string name="cplogo_bt_ok">Ok</string>
+	<string name="cplogo_bt_cancel">Cancel</string>
+	<string name="cplogo_bt_full_screen">Full Screen</string>
+	<string name="cplogo_bt_special_area">Special Area</string>
+	<string name="cplogo_bt_no">No</string>
+	<string name="cplogo_bt_adjust">Adjust</string>
+	<string name="cplogo_msg_which_screen">Do you want to capture full screen or special area?
+	</string>
+	<string name="cplogo_msg_this_screen">Do you want to capture this screen?</string>
+	<string name="cplogo_msg_select_position">Please select a position to save the logo</string>
+	<string name="cplogo_msg_capturing">Capturing ...</string>
+	<string name="cplogo_msg_adjust_position">Do you want to adjust the position of the special
+		area?</string>
+	<string name="cplogo_msg_res_success">Capture successfully</string>
+	<string name="cplogo_msg_res_fail">Capture failed, please try again</string>
+	<string name="cplogo_capture_res_cancel">This operation has been canceled</string>
+
+	<string name="vga_no_sinal_info">No signal. The power will be turned off.</string>
+
+	<!-- for epg -->
+	<string name="epg_bottom_prev_day">Prev day</string>
+	<string name="epg_bottom_next_day">Next day</string>
+	<string name="epg_bottom_view_detail">View detail</string>
+	<string name="epg_bottom_type_filter">Type filter</string>
+	<string name="epg_bottom_prev_page">Page up</string>
+	<string name="epg_bottom_next_page">Page down</string>
+	<string name="epg_bottom_ENTER">ENTER</string>
+	<string name="epg_bottom_0">0</string>
+	<string name="epg_rating_unclassified">Unclassified</string>
+
+	<string name="epg_info_program_type">None</string>
+	<string name="epg_password">Password</string>
+	<string name="epg_password_message">password is wrong</string>
+	<string name="epg_retrieving_show">Retrieving Data...</string>
+
+	<string name="nav_epg_January">January</string>
+	<string name="nav_epg_February">February</string>
+	<string name="nav_epg_March">March</string>
+	<string name="nav_epg_April">April</string>
+	<string name="nav_epg_May">May</string>
+	<string name="nav_epg_June">June</string>
+	<string name="nav_epg_July">July</string>
+	<string name="nav_epg_August">August</string>
+	<string name="nav_epg_September">September</string>
+	<string name="nav_epg_October">October</string>
+	<string name="nav_epg_November">November</string>
+	<string name="nav_epg_December">December</string>
+
+	<string name="nav_epg_Jan">Jan</string>
+	<string name="nav_epg_Feb">Feb</string>
+	<string name="nav_epg_Mar">Mar</string>
+	<string name="nav_epg_Apr">Apr</string>
+	<string name="nav_epg_may">May</string>
+	<string name="nav_epg_Jun">Jun</string>
+	<string name="nav_epg_Jul">Jul</string>
+	<string name="nav_epg_Aug">Aug</string>
+	<string name="nav_epg_Sep">Sep</string>
+	<string name="nav_epg_Oct">Oct</string>
+	<string name="nav_epg_Nov">Nov</string>
+	<string name="nav_epg_Dec">Dec</string>
+
+	<string name="nav_epg_Sunday">Sunday</string>
+	<string name="nav_epg_Monday">Monday</string>
+	<string name="nav_epg_Tuesday">Tuesday</string>
+	<string name="nav_epg_Wednesday">Wednesday</string>
+	<string name="nav_epg_Thursday">Thursday</string>
+	<string name="nav_epg_Friday">Friday</string>
+	<string name="nav_epg_Saturday">Saturday</string>
+
+	<string name="nav_epg_Sun">Sun</string>
+	<string name="nav_epg_Mon">Mon</string>
+	<string name="nav_epg_Tue">Tue</string>
+	<string name="nav_epg_Wed">Wed</string>
+	<string name="nav_epg_Thur">Thur</string>
+	<string name="nav_epg_Fri">Fri</string>
+	<string name="nav_epg_Sat">Sat</string>
+
+	<!-- for ginga tv -->
+	<string name="nav_ginga_tv_title">Application list</string>
+	<string name="nav_select">Select</string>
+	<string name="nav_ginga_tv_message">There is no application!</string>
+	<string name="nav_ginga_tv_for_infobar">Ginga Application loading...</string>
+	<string name="nav_ginga_tv_for_tips">Do you want to stop CC and start Ginga application?</string>
+
+	<!-- for upgrader -->
+	<string name="nav_upgrader_title">Updating Wizard</string>
+	<string name="nav_upgrader_MoreInfo">More Info</string>
+	<string name="nav_upgrader_invalid">Invalid Firmware Image File!!</string>
+	<string name="nav_upgrader_updating">Updating…</string>
+	<string name="nav_upgrader_warnning">Please DO NOT unplug the USB dongle and turn off the TV set during firmware updating!!</string>
+	<string name="nav_upgrader_validate">Validating firmware…</string>
+	<string name="nav_upgrader_confirm">Are you sure to update the firmware ?</string>
+	<string name="nav_upgrader_completed">The firmware is successfully updated.\nPlease restart the TV set to activate the new firmware.</string>
+	<string name="nav_upgrader_failed">Failed to update.\nPlease restart the TV set to download the firmware again.</string>
+	<string name="nav_upgrader_retry">Failed to update.\nWould you like to retry?</string>
+	<string name="nav_upgrader_retry2">Failed to update, please insert the USB.\nWould you like to retry?</string>
+	<string name="nav_upgrader_usb_space_not_enough">Available space of your USB dongle is not enough.</string>
+	<string name="nav_upgrader_usb_not_ready">USB dongle is not ready, please plug it and try again.</string>
+	<string name="nav_upgrader_internal_err">Internal error.</string>
+	<string name="nav_upgrader_not_avail_firmware">No available firmware version.</string>
+	<string name="nav_upgrader_decry_fail">Decryption failed.</string>
+	<string name="nav_upgrader_firmware_invalid">Firmware is invalid.</string>
+	<string name="nav_upgrader_no_update">No available firmware to update.</string>
+	<string name="nav_upgrader_check_fail">Check new firmware failed.</string>
+	<string name="nav_upgrader_download_fail">Can not download firmware from network.</string>
+	<string name="nav_upgrader_usb_problem">There is some problem of the USB dongle.</string>
+	<string name="nav_upgrader_power">Power</string>
+	<string name="nav_upgrader_yes">Yes</string>
+	<string name="nav_upgrader_no">No</string>
+	<string name="nav_upgrader_network_tip">Start to download new firmware from server</string>
+	<string name="nav_mheg5_tips">SUBTITLE must be closed before enabling digital TEXT. OK to proceed?</string>
+	<string name="hbbtv_show_confict_dialog_tips">Current ci mheg5 is running. Do you want to stop ci mheg5 and start hbbtv?</string>
+	<string name="mheg5_show_confict_dialog_tips1">Current hbbtv is running. Do you want to stop hbbtv and start ci mheg5?</string>
+	<string name="mheg5_show_confict_dialog_tips2">Current broadcast mheg5 is running. Do you want to stop broadcast mheg5 and start ci mheg5?</string>
+	<string name="mheg5_show_confict_dialog_tips3">Current ci mheg5 is running. Do you want to stop ci mheg5 and start broadcast mheg5?</string>
+
+	<string name="common_dialog_msg_yes">YES</string>
+	<string name="common_dialog_msg_no">NO</string>
+	<string name="common_dialog_ews_service_content">Do you want to switch to the EWS service?</string>
+	<string name="common_dialog_special_service_content">Do you want to switch to the special service?</string>
+	<string name="commmon_dialog_book_reminder_content">is coming, Do you want to switch to it?</string>
+	<string name="common_dialog_start_cc_stop_ginga">Do you want to stop Ginga application and open CC?</string>
+
+	<string name="nav_ttx_top_block">BLOCK</string>
+  <string name="nav_ttx_top_group">GROUP</string>
+  <string name="nav_ttx_top_page">PAGE</string>
+    <string name="nav_ttx_no_top">No Top</string>
+	<string name="nav_ttx_favorite_list">Favorite Page List</string>
+
+	<string name="nav_banner_not_rating">not rating</string>
+	<!-- For Nav CI -->
+	<string name="cam_scan_warning">CI Plus Network change,you may search to update network!</string>
+	<string name="cam_scan_urgent">CI Plus Network unavailable,you must search to update network!</string>
+	<string name="cam_scan_not_init">CI Plus Network not init,you must search to update network!</string>
+	<string name="cam_scan_schedule">CI Plus Network search schedule time reached,you may search to update network!</string>
+
+	<string name="setup_select_country">Please select your country:</string>
+	<string name="setup_country">Country</string>
+	<string name="setup_dvbc_setting">Please configure the cable info</string>
+	<string name="setup_timezone">Time Zone</string>
+	<string name="setup_language_spanish">Español</string>
+	<string name="setup_language_french">Français</string>
+	<string name="setup_language_portuguese">Português</string>
+
+	<string name="setup_language_Vasco">Vasco</string>
+	<string name="setup_language_Catalan">Catalan</string>
+	<string name="setup_language_hrvatski">hrvatski</string>
+	<string name="setup_language_Cesky">Cesky</string>
+	<string name="setup_language_Dansk">Dansk</string>
+	<string name="setup_language_Nederlands">Nederlands</string>
+	<string name="setup_language_Suomi">Suomi</string>
+	<string name="setup_language_Gaelic">Gaelic</string>
+	<string name="setup_language_Gallego">Gallego</string>
+	<string name="setup_language_Deutsch">Deutsch</string>
+	<string name="setup_language_Magyar">Magyar</string>
+	<string name="setup_language_Italiano">Italiano</string>
+	<string name="setup_language_Norsk">Norsk</string>
+	<string name="setup_language_Polski">Polski</string>
+	<string name="setup_language_Romana">Romana</string>
+	<string name="setup_language_Srpski">Srpski</string>
+	<string name="setup_language_Slovensky">Slovensky</string>
+	<string name="setup_language_Slovenscina">Slovenscina</string>
+	<string name="setup_language_Svenska">Svenska</string>
+	<string name="setup_language_Turkce">Turkce</string>
+	<string name="setup_language_Welsh">Welsh</string>
+	<string name="setup_language_Eesti">Eesti</string>
+	<string name="setup_language_Pyccknn">Pyccknn</string>
+
+	<!-- for eu -->
+	<string name="setup_language_spanish_eu">Español</string>
+	<string name="setup_language_french_eu">Français</string>
+	<string name="setup_language_portuguese_eu">Português</string>
+	<string name="setup_language_english_eu">English</string>
+	<string name="setup_language_Vasco_eu">Vasco</string>
+	<string name="setup_language_Catalan_eu">Catalan</string>
+	<string name="setup_language_hrvatski_eu">Hrvatska</string>
+	<string name="setup_language_Cesky_eu">Čeština</string>
+	<string name="setup_language_Dansk_eu">Dansk</string>
+	<string name="setup_language_Nederlands_eu">Nederlands</string>
+	<string name="setup_language_Suomi_eu">Suomi</string>
+	<string name="setup_language_Gaelic_eu">Gaelic</string>
+	<string name="setup_language_Gallego_eu">Gallego</string>
+	<string name="setup_language_Deutsch_eu">Deutsch</string>
+	<string name="setup_language_Magyar_eu">Magyar</string>
+	<string name="setup_language_Italiano_eu">Italiano</string>
+	<string name="setup_language_Norsk_eu">Norsk</string>
+	<string name="setup_language_Polski_eu">Polski</string>
+	<string name="setup_language_Romana_eu">Română</string>
+	<string name="setup_language_Srpski_eu">Srpski</string>
+	<string name="setup_language_Slovensky_eu">Slovenčina</string>
+	<string name="setup_language_Slovenscina_eu">Slovenščina</string>
+	<string name="setup_language_Svenska_eu">Svenska</string>
+	<string name="setup_language_Turkce_eu">Türkçe</string>
+	<string name="setup_language_Welsh_eu">Welsh</string>
+	<string name="setup_language_Eesti_eu">Eesti</string>
+	<string name="setup_language_Pyccknn_eu">Русский</string>
+
+	<string name="setup_dvbc_config_scanmode">Scan Mode</string>
+	<string name="setup_dvbc_config_frequency">Frequency (KHZ)</string>
+	<string name="setup_dvbc_config_modulation">Modulation</string>
+	<string name="setup_dvbc_config_symbolrate">Symbol Rate(Ksym/s)</string>
+	<string name="setup_dvbc_config_networkid">Network ID</string>
+
+	<string name="setup_default_postal_code">00000</string>
+	<string name="setup_set_postal_code_editview">Postal Code</string>
+
+	<string name="setup_set_password_titile1">New Password</string>
+	<string name="setup_set_password_titile2">Confirm Password</string>
+	<string name="setup_set_password_default_pwd">0000</string>
+
+	<string name="setup_cable_select_operation">Select Operator</string>
+
+	<string name="setup_dvbs_statellite_type">Statellite Type</string>
+	<string name="setup_dvbs_statellite_type_title">Please select satellite type.</string>
+
+	<string name="setup_dvbs_statellite_select_operator">Select Operator</string>
+	<string name="setup_dvbs_statellite_select_operator_title">You can select only one operator from the following list.</string>
+
+	<string name="setup_cable_setting_title">Please configure the cable info.</string>
+
+	<string name="setup_dvbs_config_info_title">Please configure the scan info.</string>
+
+	<string name="setup_dvbs_satellite_list">Select Satellite</string>
+	<string name="setup_dvbs_satellite_list_title">Please select satellites to scan or edit the selected satellite.</string>
+
+	<string name="setup_dvbs_config_setting_title">Please set antenna type config.</string>
+
+	<string name="setup_dvbs_satellite_config">Antenna Setup</string>
+	<string name="setup_dvbs_satellite_config_title">Please set the satellite\'s parameters.</string>
+    <string name="setup_dvbs_satellite_config_tp_title">Please set the transponder\'s parameters.</string>
+    <string name="setup_dvbs_satellite_config_diseqc_title">Please set DiSEqC\'s parameters.</string>
+    <string name="setup_dvbs_satellite_config_diseqc12_motor_title">Please set DiSEqC 1.2 motor\'s parameters.</string>
+    <string name="setup_dvbs_satellite_config_diseqc12_movementcontrol_title">Please set DiSEqC 1.2 movement control\'s parameters.</string>
+	<string name="setup_select_set">Set</string>
+	<string name="nav_oad_dialog_title">Over Air Download</string>
+	<string name="nav_oad_scanning">Scanning</string>
+	<string name="nav_oad_scanning_result_fail">Can not find new software on the air.</string>
+
+	<string name="nav_oad_programming">Programming</string>
+	<string name="nav_oad_downloading">Downloading</string>
+	<string name="nav_oad_downloading_info">This process may take up to 25 minutes</string>
+	<string name="nav_oad_flash_confirm">Download the software successfully.Do you want to start flashing?</string>
+	<string name="nav_oad_flash_fail">Programming fail. Retry it again?\n\nPlease Call Service Center.</string>
+	<string name="nav_oad_restart_confirm">Software download successfully! Restart the TV now?</string>
+
+	<string name="nav_oad_warning_msg_str">Warning: During the process.Please do not unplug the TV Set power code as this will lead to defective TV Set.</string>
+
+	<string name="nav_oad_manual_download_confirm">Software update.A new recommended software update is avaiable.The update might take some time and the screen might go black.Do not turn of the receiver off during
+	    the update.Do you want to update now?</string>
+	<string name="nav_oad_manual_download_fail">Unable to download the software. Do you want to retry?</string>
+
+	<string name="nav_oad_auto_download_confirm">Software update.A new recommended software update is avaiable.The update might take some time and the screen might go black.Do not turn of the receiver off during
+	    the update.Do you want to update now?It will start automatically in %s second(s)</string>
+
+	<string name="nav_oad_schedule_oad_accept_schedule_confirm">Software update. A new recommended software will be available at %s. The update might take some time and the screen might go black. Do not turn of the receiver during the update. If accepting this update, please leave the receiver on or in standby mode at the scheduled time. Do you want to receive this update?</string>
+	<string name="nav_oad_schedule_oad_change_channel_confirm">Software update. A new recommended software update may exist in another channel. If you accept to download it, it may change to the channel automatically. Would you like to do it right now? It will start automatically in %s second(s)</string>
+	<string name="nav_oad_atuo_download_with_bgm">New software is detected!\nWould you accept to auto download the software when the TV set is at the standby?</string>
+
+	<string name="setup_language_english_value">Programming</string>
+	<string name="setup_language_chinese_value">Programming</string>
+	<string name="setup_language_spanish_value">Programming</string>
+	<string name="setup_language_french_value">Programming</string>
+	<string name="setup_language_portuguese_value">Programming</string>
+
+    <string name="setup_country_cty_1">Austria</string>
+    <string name="setup_country_cty_2">Belgium</string>
+    <string name="setup_country_cty_3">Switzerland</string>
+    <string name="setup_country_cty_4">Czech Republic</string>
+    <string name="setup_country_cty_5">Germany</string>
+    <string name="setup_country_cty_6">Denmark</string>
+    <string name="setup_country_cty_7">Spain</string>
+    <string name="setup_country_cty_8">Finland</string>
+    <string name="setup_country_cty_9">France</string>
+    <string name="setup_country_cty_10">United Kingdom</string>
+    <string name="setup_country_cty_11">Italy</string>
+    <string name="setup_country_cty_12">Luxembourg</string>
+    <string name="setup_country_cty_13">Netherlands</string>
+    <string name="setup_country_cty_14">Norway</string>
+    <string name="setup_country_cty_15">Sweden</string>
+    <string name="setup_country_cty_16">Bulgaria</string>
+    <string name="setup_country_cty_17">Croatia</string>
+    <string name="setup_country_cty_18">Greece</string>
+    <string name="setup_country_cty_19">Hungary</string>
+    <string name="setup_country_cty_20">Ireland</string>
+    <string name="setup_country_cty_21">Poland</string>
+    <string name="setup_country_cty_22">Portugal</string>
+    <string name="setup_country_cty_23">Romania</string>
+    <string name="setup_country_cty_24">Russia</string>
+    <string name="setup_country_cty_25">Serbia</string>
+    <string name="setup_country_cty_26">Slovakia</string>
+    <string name="setup_country_cty_27">Slovenia</string>
+    <string name="setup_country_cty_28">Turkey</string>
+    <string name="setup_country_cty_29">Estonia</string>
+    <string name="setup_country_cty_30">Australia</string>
+    <string name="setup_country_cty_31">New Zealand</string>
+    <string name="setup_country_cty_32">Indonesia</string>
+	<string name="setup_set_timezone">Please select your time zone:</string>
+	<string name="setup_set_password_title">Please set password."0000" is not a valid password</string>
+	<string name="setup_set_postalcode">Please enter postal code.</string>
+	<string name="setup_set_password_success_msg">Password set successfully!</string>
+
+	<string name="dvbc_operator_others">Others</string>
+	<string name="dvbc_operator_upc">UPC</string>
+	<string name="dvbc_operator_virgin_media">Virgin Media</string>
+	<string name="dvbc_operator_comhem">Comhem</string>
+	<string name="dvbc_operator_canal_digital">Canal Digital</string>
+	<string name="dvbc_operator_tele2">Tele2</string>
+	<string name="dvbc_operator_stofa">Stofa</string>
+	<string name="dvbc_operator_yousee">Yousee</string>
+	<string name="dvbc_operator_ziggo">Ziggo</string>
+	<string name="dvbc_operator_unitymedia">Unitymedia</string>
+	<string name="dvbc_operator_numericable">Numericable</string>
+	<string name="dvbc_operator_volia">Volia</string>
+	<string name="dvbc_operator_telemach">Telemach</string>
+	<string name="dvbc_operator_onlime">Onlime</string>
+	<string name="dvbc_operator_akado">Akado</string>
+	<string name="dvbc_operator_tkt">TKT</string>
+	<string name="dvbc_operator_divan_tv">Divan TV</string>
+	<string name="dvbc_operator_net1">Net1</string>
+	<string name="dvbc_operator_kdg">KDG</string>
+	<string name="dvbc_operator_kbw">KBW</string>
+	<string name="dvbc_operator_blizoo">Blizoo</string>
+	<string name="dvbc_operator_telent">Telent</string>
+	<string name="dvbc_operator_telent_eu">Telenet</string>
+	<string name="dvbc_operator_voo">VOO</string>
+	<string name="dvbc_operator_kdg_hd">KDG HD</string>
+    <string name="dvbc_operator_krs">KRS</string>
+    <string name="dvbc_operator_teleing">Teleing</string>
+    <string name="dvbc_operator_mts">MTS</string>
+    <string name="dvbc_operator_tvoe_stp">Rostelecom(SPB)</string>
+    <string name="dvbc_operator_tvoe_eka">Tvoe EKA</string>
+    <string name="dvbc_operator_telekom">Telekom</string>
+
+	<string name="dvbc_operator_glenten">Glenten</string>
+	<string name="dvbc_operator_tele_columbus">Tele Columbus</string>
+	<string name="dvbc_operator_digi">DIGI</string>
+
+	<string name="dvbt_inactivechannel_nw_chg">Some channels become inactive due to network change. Do you want to remove them now?</string>
+	<string name="tnt_hd_nw_chg">The network data changed. Do you want to perform update scan?</string>
+    <!-- DVBS operators -->
+    <string name="dvbs_operator_astra_hd_plus">Astra HD+</string>
+    <string name="dvbs_operator_sky_deutschland">Sky Deutschland</string>
+    <string name="dvbs_operator_astra_international_lcn">Astra International Lcn</string>
+    <string name="dvbs_operator_ors">ORS</string>
+    <string name="dvbs_operator_austriasat">HD Austria</string>
+    <string name="dvbs_operator_cannal_digital">Cannal Digital</string>
+    <string name="dvbs_operator_tv_vlaanderen">TV VLAANDEREN</string>
+    <string name="dvbs_operator_tv_vlaanderen_sd">TV VLAANDEREN SD</string>
+    <string name="dvbs_operator_telesat">TELESAT</string>
+    <string name="dvbs_operator_telesat_luxembourg">TELESAT Luxembourg</string>
+    <string name="dvbs_operator_seznam_kanalu_pro_cesko">Skylink Czech</string>
+    <string name="dvbs_operator_seznam_kanalu_pro_slovensko">Syklink Slovak</string>
+    <string name="dvbs_operator_cannaldigitaal">Canal Digitaal</string>
+    <string name="dvbs_operator_cannaldigitaal_sd">CannalDigital SD</string>
+    <string name="dvbs_operator_n_na_karte">n na karte</string>
+    <string name="dvbs_operator_digiturk_eutelsat">Digiturk Eutelsat</string>
+    <string name="dvbs_operator_digiturk_turksat">Digiturk Turksat</string>
+    <string name="dvbs_operator_fransat">Fransat</string>
+    <string name="dvbs_operator_cyfraplus">Cyfra+</string>
+    <string name="dvbs_operator_cyfrowy_polsat">Cyfrowy Polsat</string>
+    <string name="dvbs_operator_dsmart">D-Smart</string>
+    <string name="dvbs_operator_ntvplus">NTV+</string>
+    <string name="dvbs_operator_others">others</string>
+    <string name="dvbs_operator_name_nc_plus">NC+/CYFRA+</string>
+    <string name="dvbs_operator_name_smart_hd_plus">smart HD+</string>
+    <string name="dvbs_operator_name_tivusat">tivùsat</string>
+    <string name="dvbs_operator_name_tkgs">TKGS</string>
+    <string name="dvbs_operator_name_turksat_hello">AustriaSat Magyarország</string>
+    <string name="dvbs_operator_name_freeview">FreeView Sat</string>
+    <!-- <string name="dvbs_operator_name_austriaSat_Mag">AustriaSat Magyarország</string> -->
+    <string name="dvbs_operator_name_diveo">Diveo</string>
+    <string name="dvbs_operator_name_digi">DIGI</string>
+    <string name="dvbs_operator_name_tivibu">Tivibu</string>
+    <string name="dvbs_operator_name_tricolor">Tricolor</string>
+    <string name="dvbs_operator_name_simpliTV">SimpliTV</string>
+    <string name="dvbs_operator_name_mts">MTS</string>
+    <string name="dvbs_operator_name_telekarta">Telekarta</string>
+    <string name="dvbs_operator_name_white_label_platform_lcn">White Label Platform LCN</string>
+    <string name="dvbs_operator_name_digi_tv_cze">DIGI CZ</string>
+    <string name="dvbs_operator_name_digi_tv_svk">DIGI SK</string>
+
+    <string name="dvbs_antenna_type_name_universal">Universal</string>
+    <string name="dvbs_antenna_type_name_singlecable">SingleCable</string>
+    <string name="dvbs_antenna_setup">Antenna setup</string>
+    <string name="dvbs_satellite_setting">Satellite</string>
+    <string name="dvbs_satellite_name">Satellite name</string>
+    <string name="dvbs_satellite_orbit">Orbit position</string>
+    <string name="dvbs_dis_eqc">DiSEqC set</string>
+    <string name="dvbs_lnb_freq">LNB frequency</string>
+    <string name="dvbs_diseqc_set">DiSEqC set</string>
+    <string name="dvbs_diseqc12_motor_movementcontrol">Movement Control</string>
+    <string name="dvbs_diseqc12_motor_disablelimits">Disable limits</string>
+    <string name="dvbs_diseqc12_motor_limiteast">Limit east</string>
+    <string name="dvbs_diseqc12_motor_limitwest">Limit west</string>
+    <string name="dvbs_diseqc12_motor_storeposition">Store position</string>
+    <string name="dvbs_diseqc12_motor_gotoposition">Goto position</string>
+    <string name="dvbs_diseqc12_motor_gotoreference">Goto reference</string>
+    <string name="dvbs_diseqc12_movement_stepsize">Step size</string>
+    <string name="dvbs_diseqc12_movement_timeout">Timeout(s)</string>
+    <string name="dvbs_diseqc12_movement_moveeast">Move east</string>
+    <string name="dvbs_diseqc12_movement_movewest">Move west</string>
+    <string name="dvbs_diseqc12_movement_stopmovement">Stop movement</string>
+    <string name="dvbs_diseqc10_port">DiSEqC 1.0 port</string>
+    <string name="dvbs_diseqc11_port">DiSEqC 1.1 port</string>
+    <string name="dvbs_diseqc_motor">DiSEqC motor</string>
+    <string name="dvbs_diseqc_motor_12">DiSEqC 1.2</string>
+    <string name="dvbs_diseqc_input">Diseqc input</string>
+    <string name="dvbs_diseqc_input_0">Disable</string>
+    <string name="dvbs_diseqc_input_1">Diseqc A</string>
+    <string name="dvbs_diseqc_input_2">Diseqc B</string>
+    <string name="dvbs_diseqc_input_3">Diseqc C</string>
+    <string name="dvbs_diseqc_input_4">Diseqc D</string>
+    <string name="dvbs_tone_22khz">Tone 22KHz</string>
+    <string name="dvbs_tone_22khz_off">Off</string>
+    <string name="dvbs_tone_22khz_on">On</string>
+    <string name="dvbs_tone_22khz_auto">Auto</string>
+    <string name="dvbs_trasponder">Transponder</string>
+    <string name="dvbs_tp_fre">Frequency</string>
+    <string name="dvbs_tp_sys_rate">Symbol Rate (Ksym/s)</string>
+    <string name="dvbs_tp_pol">Polarization</string>
+
+    <string name="dvbs_tp_pol_0_unknown">Unknown</string>
+    <string name="dvbs_tp_pol_1_HORIZONTAL">Horizontal</string>
+    <string name="dvbs_tp_pol_2_VERTICAL">Vertical</string>
+    <string name="dvbs_tp_pol_3_LEFT">Left</string>
+    <string name="dvbs_tp_pol_4_RIGHT">Right</string>
+
+    <string name="dvbs_add_new_satl">Add new satellite</string>
+    <string name="dvbs_add_new_tp">Add new transponder</string>
+    <string name="dvbs_satellite_tuning">Satellite Tuning</string>
+    <string name="dvbs_satellite_channel">Scan Type</string>
+    <string name="dvbs_satellite_channel_store_type">Store Type</string>
+    <string name="dvbs_scan_mode">Scan Mode</string>
+    <string name="dvbs_network_search">Network Search</string>
+    <string name="dvbs_satellite_search">Search</string>
+    <string name="dvbs_scan_mode_auto">Auto</string>
+    <string name="dvbs_scan_mode_preset">Preset</string>
+    <string name="dvbs_channel_encrypted">Only Encrypted Channels</string>
+    <string name="dvbs_channel_free">Only Free Channels</string>
+    <string name="dvbs_channel_all">All</string>
+    <string name="dvbs_channel_story_type_digital">Only Digital Channels</string>
+    <string name="dvbs_channel_story_type_radio">Only Radio Channels</string>
+    <string name="dvbs_sat_no_satl">(No Satellite.)</string>
+    <string name="dvbs_manual_tuning">Satellite Manual Tuning</string>
+    <string name="dvbs_sat_no_tp">(No Transponder.)</string>
+    <string name="dvbs_sat_name_empty_alarm">Satellite name is empty.\nPlease enter it!</string>
+    <string name="dvbs_satellite_rescan">Satellite Re-scan</string>
+    <string name="dvbs_satellite_add">Satellite Add</string>
+    <string name="dvbs_satellite_update">Satellite Update</string>
+    <string name="dvbs_satellite_status">Satellite status</string>
+    <string name="dvbs_scan_mode_network">Network</string>
+    <string name="dvbs_scan_mode_full">Full</string>
+    <string name="dvbs_scan_satellites">Satellites</string>
+    <string name="dvbs_scan_positon">Position</string>
+    <string name="dvbs_lnb_power">LNB power</string>
+    <string name="dvbs_antenna_type">Antenna type</string>
+    <string name="dvbs_antenna_type_universal">Universal</string>
+    <string name="dvbs_antenna_type_singlecable">SingleCable</string>
+    <string name="dvbs_user_band">Tuner</string>
+    <string name="dvbs_sub_user_band">Sub Tuner</string>
+    <string name="dvbs_user_band_1">User band 1</string>
+    <string name="dvbs_user_band_2">User band 2</string>
+    <string name="dvbs_user_band_3">User band 3</string>
+    <string name="dvbs_user_band_4">User band 4</string>
+    <string name="dvbs_user_band_5">User band 5</string>
+    <string name="dvbs_user_band_6">User band 6</string>
+    <string name="dvbs_user_band_7">User band 7</string>
+    <string name="dvbs_user_band_8">User band 8</string>
+    <string name="dvbs_user_band_9">User band 9</string>
+    <string name="dvbs_user_band_10">User band 10</string>
+    <string name="dvbs_user_band_11">User band 11</string>
+    <string name="dvbs_user_band_12">User band 12</string>
+    <string name="dvbs_user_band_13">User band 13</string>
+    <string name="dvbs_user_band_14">User band 14</string>
+    <string name="dvbs_user_band_15">User band 15</string>
+    <string name="dvbs_user_band_16">User band 16</string>
+    <string name="dvbs_user_band_17">User band 17</string>
+    <string name="dvbs_user_band_18">User band 18</string>
+    <string name="dvbs_user_band_19">User band 19</string>
+    <string name="dvbs_user_band_20">User band 20</string>
+    <string name="dvbs_user_band_21">User band 21</string>
+    <string name="dvbs_user_band_22">User band 22</string>
+    <string name="dvbs_user_band_23">User band 23</string>
+    <string name="dvbs_user_band_24">User band 24</string>
+    <string name="dvbs_user_band_25">User band 25</string>
+    <string name="dvbs_user_band_26">User band 26</string>
+    <string name="dvbs_user_band_27">User band 27</string>
+    <string name="dvbs_user_band_28">User band 28</string>
+    <string name="dvbs_user_band_29">User band 29</string>
+    <string name="dvbs_user_band_30">User band 30</string>
+    <string name="dvbs_user_band_31">User band 31</string>
+    <string name="dvbs_user_band_32">User band 32</string>
+    <string name="dvbs_band_freq">Band frequency</string>
+    <string name="dvbs_band_freq_user_define">User define</string>
+    <string name="dvbs_band_freq_sub_user_define">User define</string>
+    <string name="dvbs_position">Position</string>
+    <string name="dvbs_position_a">A</string>
+    <string name="dvbs_position_b">B</string>
+    <string name="dvbs_position_c">C</string>
+    <string name="dvbs_position_d">D</string>
+    <string name="dvbs_position_e">E</string>
+    <string name="dvbs_position_f">F</string>
+    <string name="dvbs_position_g">G</string>
+    <string name="dvbs_position_h">H</string>
+    <string name="dvbs_air">Antenna</string>
+    <string name="dvbs_cable">Cable</string>
+    <string name="dvbs_preferred_satellite">Preferred Satellite</string>
+    <string name="dvbs_general_satellite">General Satellite</string>
+    <string name="sys_info_lnb">LNB</string>
+    <string name="lnb_universal">Universal</string>
+    <string name="lnb_mdu1">MDU1</string>
+    <string name="lnb_mdu2">MDU2</string>
+    <string name="lnb_mdu3">MDU3</string>
+    <string name="lnb_mdu4">MDU4</string>
+    <string name="lnb_mdu5">MDU5</string>
+    <string name="dvbs_tone_burst">Tone Burst</string>
+    <string name="dvbs_tone_burst_disable">Disable</string>
+    <string name="dvbs_tone_burst_a">Tone Burst A </string>
+    <string name="dvbs_tone_burst_b">Tone Burst B</string>
+
+    <string name="dvbs_sat_on">On</string>
+    <string name="dvbs_sat_off">Off</string>
+    <string name="dvbs_sat_TUNER_LNB_POWER_13V_18V">13V_18V</string>
+    <string name="dvbs_sat_TUNER_LNB_POWER_14V_19V">14V_19V</string>
+
+    <string name="nav_conflict_source_toast">The source conflict with the %s source!</string>
+    <string name="font" translatable="false">sans-serif</string>
+    <string name="light_font" translatable="false">sans-serif-light</string>
+    <string name="thin_font" translatable="false">sans-serif-thin</string>
+    <string name="condensed_font" translatable="false">sans-serif-condensed</string>
+    <string name="ews_bencana">BENCANA</string>
+    <string name="ews_tanggal">TANGGAL</string>
+    <string name="ews_posisi">POSISI</string>
+    <string name="ews_karakter">KARAKTER</string>
+    <string name="ews_pesan">PESAN</string>
+    <string name="ews_status">STATUS <xliff:g id="ews_status">%1$s</xliff:g></string>
+
+    <string name="google">Google</string>
+    <string name="source_setup">Source Setup</string>
+
+    <string name="automatic_Channel_ordering">Automatic Channel Ordering</string>
+    <string name="mediaset_premium_ordering">Mediaset Premium Ordering</string>
+
+    <string name="n_first_start">n_first_start</string>
+
+     <string name="banner_no_program_title">(No program title.)</string>
+     <string name="msg_no_setup_activity">The input doesn\'t support auto-scan</string>
+     <string name="msg_unable_to_start_setup_activity">Unable to start auto-scan for \'<xliff:g id="tv_input" example="Built-in Tuner">%s</xliff:g>\'</string>
+
+     <string name="str_1">1</string>
+     <string name="str_2">2</string>
+     <string name="str_3">3</string>
+     <string name="str_4">4</string>
+     <string name="nav_channel_All">All</string>
+     <string name="nav_channel_Radio">Radio</string>
+     <string name="nav_sleep__off">Sleep:Off</string>
+     <string name="nav_sleep_15min">Sleep:15 Minutes</string>
+     <string name="nav_sleep_30min">Sleep:30 Minutes</string>
+     <string name="nav_sleep_45min">Sleep:45 Minutes</string>
+     <string name="nav_sleep_60min">Sleep:60 Minutes</string>
+     <string name="nav_sleep_90min">Sleep:90 Minutes</string>
+     <string name="nav_sleep_120min">Sleep:120 Minutes</string>     
+     <string name="nav_zoom_x1">Zoom X 1</string>
+     <string name="nav_zoom_x2">Zoom X 2</string>
+     <string name="nav_zoom_x1_2">Zoom X 1/2</string>
+     <string name="nav_Freeze_On">Freeze: On</string>
+    <string name="nav_Freeze_Off">Freeze: Off</string>
+    <string name="nav_MOVIE">MOVIE</string>
+    <string name="nav_NEWS">NEWS</string>
+    <string name="nav_SHOW">SHOW</string>
+    <string name="nav_SPORTS">SPORTS</string>
+    <string name="nav_Sports">Sports</string>
+    <string name="nav_CHILDRENS">CHILDREN\'S</string>
+    <string name="nav_MUSIC">MUSIC</string>
+    <string name="nav_ARTS">ARTS</string>
+    <string name="nav_SOCIAL">SOCIAL</string>
+    <string name="nav_EDUCATION">EDUCATION</string>
+    <string name="nav_LEISURE">LEISURE</string>
+    <string name="nav_SPECIAL">SPECIAL</string>
+    <string name="nav_CHILDREN">CHILDREN</string>
+    <string name="nav_EROTIC">EROTIC</string>
+    <string name="nav_RA_TE_SA_PR">RA_TE_SA_PR</string>
+    <string name="nav_DEBATE_INTERVIEW">DEBATE_INTERVIEW</string>
+    <string name="nav_OTHER">OTHER</string>
+    <string name="nav_ENTERTAINMENT">ENTERTAINMENT</string>
+    <string name="nav_CURRENT_AFFAIRS">CURRENT AFFAIRS</string>
+    <string name="nav_INFOTAINMENT">INFOTAINMENT</string>
+    <string name="nav_COMEDY">COMEDY</string>
+    <string name="nav_DRAMA">DRAMA</string>
+    <string name="nav_DOCUMENTARY">DOCUMENTARY</string>
+    <string name="nav_NEWS_AND_FACTUAL">NEWS AND FACTUAL</string>
+    <string name="nav_SPORT">SPORT</string>
+    <string name="nav_LIFESTYLE">LIFESTYLE</string>
+    <string name="nav_SOAP_OPERA">SOAP_OPERA</string>
+    <string name="nav_MINI_SERIES">MINI_SERIES</string>
+    <string name="nav_SERIES">SERIES</string>
+    <string name="nav_VARIETY">VARIETY</string>
+    <string name="nav_REALITY_SHOW">REALITY_SHOW</string>
+    <string name="nav_INFORMATION">INFORMATION</string>
+    <string name="nav_COMICAL">COMICAL</string>
+    <string name="nav_Drama">Drama</string>
+    <string name="nav_Detective">Detective</string>
+    <string name="nav_Adventure">Adventure</string>
+    <string name="nav_Science_Fiction">Science Fiction</string>
+    <string name="nav_Comedy">Comedy</string>
+    <string name="nav_Soap">Soap</string>
+    <string name="nav_Romance">Romance</string>
+    <string name="nav_Serious">Serious</string>
+    <string name="nav_Adult_Movie">Adult Movie</string>
+    <string name="nav_Current_Affairs">Current Affairs</string>
+    <string name="nav_Weather_Report">Weather Report</string>
+    <string name="nav_News_Magazine">News Magazine</string>
+    <string name="nav_Documentary">Documentary</string>
+    <string name="nav_Discussion">Discussion</string>
+    <string name="nav_News">News</string>
+    <string name="nav_Report">Report</string>
+    <string name="nav_Biography">Biography</string>
+    <string name="nav_Show">Show</string>
+    <string name="nav_Game_Show">Game Show</string>
+    <string name="nav_Variety_Show">Variety Show</string>
+    <string name="nav_Talk_Show">Talk Show</string>
+    <string name="nav_Special_Events">Special Events</string>
+    <string name="nav_Sports_Magazines">Sports Magazines</string>
+    <string name="nav_Football">Football</string>
+    <string name="nav_Tennis">Tennis</string>
+    <string name="nav_Team_Sports">Team Sports</string>
+    <string name="nav_Athletics">Athletics</string>
+    <string name="nav_Motor_Sport">Motor Sport</string>
+    <string name="nav_Water_Sport">Water Sport</string>
+    <string name="nav_Winter_Sport">Winter Sport</string>
+    <string name="nav_Equestrian">Equestrian</string>
+    <string name="nav_Martial_Sports">Martial Sports</string>
+    <string name="nav_Children">Children\'s</string>
+    <string name="nav_Pre_school_children">Pre-school children\'s</string>
+    <string name="nav_Entertainment_for_6_to_14">Entertainment for 6 to 14</string>
+    <string name="nav_Entertainment_for_10_to_16">Entertainment for 10 to 16</string>
+    <string name="nav_Informational">Informational</string>
+    <string name="nav_Cartoons">Cartoons</string>
+    <string name="nav_Music">Music</string>
+    <string name="nav_Rock">Rock</string>
+    <string name="nav_Folk">Folk</string>
+    <string name="nav_Jazz">Jazz</string>
+    <string name="nav_Musical">Musical</string>
+    <string name="nav_Ballet">Ballet</string>
+    <string name="nav_Arts">Arts</string>
+    <string name="nav_Performing_Arts">Performing Arts</string>
+    <string name="nav_Fine_Arts">Fine Arts</string>
+    <string name="nav_Religion">Religion</string>
+    <string name="nav_Popular_culture">Popular culture</string>
+    <string name="nav_Literature">Literature</string>
+    <string name="nav_Film">Film</string>
+    <string name="nav_Experimental">Experimental</string>
+    <string name="nav_Broadcasting">Broadcasting</string>
+    <string name="nav_Live_Broadcast">Live Broadcast</string>
+    <string name="nav_New_Media">New Media</string>
+    <string name="nav_Arts_magazines">Arts magazines</string>
+    <string name="nav_Fashion">Fashion</string>
+    <string name="nav_Reject">Reject</string>
+    <string name="nav_Social">Social</string>
+    <string name="nav_Magazines">Magazines</string>
+    <string name="nav_Economics">Economics</string>
+    <string name="nav_Remarkable_people">Remarkable people</string>
+    <string name="nav_Education">Education</string>
+    <string name="nav_Nature">Nature</string>
+    <string name="nav_Technology">Technology</string>
+    <string name="nav_Medicine">Medicine</string>
+    <string name="nav_Foreign_Countries">Foreign Countries</string>
+    <string name="nav_Social_sciences">Social sciences</string>
+    <string name="nav_Further_Education">Further Education</string>
+    <string name="nav_Languages">Languages</string>
+    <string name="nav_Educative">Educative</string>
+    <string name="nav_Soap_opera">Soap opera</string>
+    <string name="nav_Mini_series">Mini-series</string>
+    <string name="nav_Series">Series</string>
+    <string name="nav_Auditorium">Auditorium</string>
+    <string name="nav_Making_of">Making of</string>
+    <string name="nav_Feminine">Feminine</string>
+    <string name="nav_Game_show">Game show</string>
+    <string name="nav_Reality_show">Reality show</string>
+    <string name="nav_Cooking">Cooking</string>
+    <string name="nav_Country">Country</string>
+    <string name="nav_Health">Health</string>
+    <string name="nav_Travel">Travel</string>
+    <string name="nav_Comical">Comical</string>
+    <string name="nav_Erotic">Erotic</string>
+    <string name="nav_Movie">Movie</string>
+    <string name="nav_Raffle">Raffle</string>
+    <string name="nav_Television_sales">Television sales</string>
+    <string name="nav_Prizing">Prizing</string>
+    <string name="nav_Interview">Interview</string>
+    <string name="nav_Adult_cartoon">Adult cartoon</string>
+    <string name="nav_Interactive">Interactive</string>
+    <string name="nav_Policy">Policy</string>
+    <string name="nav_Leisure_Hobbies">Leisure Hobbies</string>
+    <string name="nav_Tourism">Tourism</string>
+    <string name="nav_Handicraft">Handicraft</string>
+    <string name="nav_Motoring">Motoring</string>
+    <string name="nav_Fitness_and_Health">Fitness and Health</string>
+    <string name="nav_Advertisement">Advertisement</string>
+    <string name="nav_Gardening">Gardening</string>
+    <string name="nav_Original_language">Original language</string>
+    <string name="nav_Black_and_White">Black and White</string>
+    <string name="nav_Unpublished">Unpublished</string>
+    <string name="nav_Martial_Sport">Martial Sport</string>
+    <string name="nav_Entertainment_for_10_to">Entertainment for 10 to ...</string>
+    <string name="nav_UNKNOW">UNKNOW</string >
+    <string name="nav_MONO">MONO</string>
+    <string name="nav_STEREO">STEREO</string>
+    <string name="nav_SAP">SAP</string>
+    <string name="nav_DUAL1">DUAL1</string>
+    <string name="nav_DUAL2">DUAL2</string>
+    <string name="nav_NICAM_MONO">NICAM MONO</string>
+    <string name="nav_NICAM_STEREO">NICAM STEREO</string>
+    <string name="nav_NICAM_DUAL1">NICAM DUAL1</string>
+    <string name="nav_NICAM_DUAL2">NICAM DUAL2</string>
+    <string name="nav_FM_MONO">FM MONO</string>
+    <string name="nav_FM_STEREO">FM STEREO</string>
+    <string name="nav_Mono">Mono</string>
+    <string name="nav_Dual_Mono">Dual Mono</string>
+    <string name="nav_Stereo">Stereo</string>
+    <string name="nav_Surround_2CH">Surround 2CH</string>
+    <string name="nav_Surround">Surround</string>
+    <string name="nav_3CH">3CH</string>
+    <string name="nav_4CH">4CH</string>
+    <string name="nav_5_1CH">5.1CH</string>
+    <string name="nav_7_1CH">7.1CH</string>
+    <string name="nav_Dual__Mono">Dual_Mono</string>
+    <string name="nav_Surround__2CH">Surround_2CH</string>
+    <string name="nav_Sunday">Sunday</string>
+    <string name="nav_Monday">Monday</string>
+    <string name="nav_Tuesday">Tuesday</string>
+    <string name="nav_Wednesday">Wednesday</string>
+    <string name="nav_Thursday">Thursday</string>
+    <string name="nav_Friday">Friday</string>
+    <string name="nav_Saturday">Saturday</string>
+    <string name="nav_Cancel">Cancel</string>
+    <string name="nav_Accept">Accept</string>
+    <string name="nav_Remind_me_Later">Remind me Later</string>
+    <string name="nav_Yes">Yes</string>
+    <string name="nav_No">No</string>
+    <string name="nav_No_Signal">No Signal!</string>
+    <string name="nav_Please_Scan_Channels">Please Scan Channels!</string>
+    <string name="nav_Retrieving_Data">Retrieving Data...</string>
+    <string name="nav_Childrens">Children\'S</string>
+    <string name="nav_Channel_Locked">Channel Locked!</string>
+    <string name="nav_Program_Locked">Program Locked!</string>
+    <string name="nav_Input_Locked">Input Locked!</string>
+    <string name="nav_No_program_title">(No program title.)</string>
+    <string name="nav_Hidden_Channel">Hidden Channel!</string>
+    <string name="nav_Audio_Program">Audio Program</string>
+    <string name="nav_No_Audio_and_Video">No Audio and Video</string>
+    <string name="nav_No_program_details">(No program details.)</string>
+    <string name="nav_No_channel_details">(No channel details.)</string>
+    <string name="nav_No_Audio_Stream">♪ No Audio Stream ♪</string>
+    <string name="nav_No_Video_Stream">No Video Stream</string >
+    <string name="nav_Please_Wait">Please Wait...</string>
+    <string name="nav_Video_not_Support">Video not Support</string>
+    <string name="nav_HD_Service">HD Service</string>
+    <string name="nav_Non_Broadcasting">Non-Broadcasting</string>
+    <string name="nav_No_Channel">No Channel</string>
+    <string name="nav_This_content_is_blocked">This content is blocked by your service provider</string>
+    <string name="nav_Scrambled">Scrambled</string>
+    <string name="nav_Moving_Positioner">Moving Positioner...</string>
+    <string name="nav_Disable">Disable</string>
+    <string name="nav_Uncommit_1">Uncommit 1</string>
+    <string name="nav_Uncommit_2">Uncommit 2</string>
+    <string name="nav_Uncommit_3">Uncommit 3</string>
+    <string name="nav_Uncommit_4">Uncommit 4</string>
+    <string name="nav_Uncommit_5">Uncommit 5</string>
+    <string name="nav_Uncommit_6">Uncommit 6</string>
+    <string name="nav_Uncommit_7">Uncommit 7</string>
+    <string name="nav_Uncommit_8">Uncommit 8</string>
+    <string name="nav_Uncommit_9">Uncommit 9</string>
+    <string name="nav_Uncommit_10">Uncommit 10</string>
+    <string name="nav_Uncommit_11">Uncommit 11</string>
+    <string name="nav_Uncommit_12">Uncommit 12</string>
+    <string name="nav_Uncommit_13">Uncommit 13</string>
+    <string name="nav_Uncommit_14">Uncommit 14</string>
+    <string name="nav_Uncommit_15">Uncommit 15</string>
+    <string name="nav_Uncommit_16">Uncommit 16</string>
+    <string name="nav_1">1</string>
+    <string name="nav_2">2</string>
+    <string name="nav_3">3</string>
+    <string name="nav_4">4</string>
+    <string name="nav_5">5</string>
+    <string name="nav_6">6</string>
+    <string name="nav_7">7</string>
+    <string name="nav_8">8</string>
+    <string name="nav_9">9</string>
+    <string name="nav_10">10</string>
+    <string name="nav_11">11</string>
+    <string name="nav_12">12</string>
+    <string name="nav_13">13</string>
+    <string name="nav_14">14</string>
+    <string name="nav_15">15</string>
+    <string name="nav_16">16</string>
+    <string name="nav_Nonstop">Nonstop</string>
+    <string name="nav_Step">Step</string>
+    <string name="nav_Timeout">Timeout</string>
+    <string name="nav_9750_10700">9750,10700</string>
+    <string name="nav_9750_10750">9750,10750</string>
+    <string name="nav_5150">5150</string>
+    <string name="nav_5750">5750</string>
+    <string name="nav_9750">9750</string>
+    <string name="nav_10600">10600</string>
+    <string name="nav_10750">10750</string>
+    <string name="nav_11250">11250</string>
+    <string name="nav_11300">11300</string>
+    <string name="nav_11475">11475</string>
+    <string name="nav_Menu">Menu</string>
+    <string name="nav_CI_Card">CI Card</string>
+    <string name="nav_Unknown">Unknown</string>
+    <string name="nav_Normal">Normal</string>
+    <string name="nav_Letterbox">Letterbox</string>
+    <string name="nav_Pan_Scan">Pan Scan</string>
+    <string name="nav_User_Defined">User Defined</string>
+    <string name="nav_Non_Linear">Non Linear</string>
+    <string name="nav_Dot_by_Dot">Dot by Dot</string>
+    <string name="nav_Auto">Auto</string>
+    <string name="nav_Custom_Def_1">Custom Def 1</string>
+    <string name="nav_Custom_Def_2">Custom Def 2</string>
+    <string name="nav_Custom_Def_3">Custom Def 3</string>
+    <string name="nav_Custom_Def_4">Custom Def 4</string>
+    <string name="nav_Custom_Def_5">Custom Def 5</string>
+    <string name="nav_Custom_Def_6">Custom Def 6</string>
+    <string name="nav_Custom_Def_7">Custom Def 7</string>
+    <string name="nav_NLZ_Custom_Def_0">NLZ Custom Def 0</string>
+    <string name="nav_NLZ_Custom_Def_1">NLZ Custom Def 1</string>
+    <string name="nav_NLZ_Custom_Def_2">NLZ Custom Def 2</string>
+    <string name="nav_NLZ_Custom_Def_3">NLZ Custom Def 3</string>
+    <string name="nav_Zoom">Zoom</string>
+    <string name="nav_Panorama">Panorama</string>
+    <string name="nav_Bright">Bright</string>
+    <string name="nav_Dark">Dark</string>
+    <string name="nav_Movies">Movies</string>
+    <string name="nav_reset">reset</string>
+    <string name="nav_Off">Off</string>
+    <string name="nav_On">On</string>
+    <string name="nav_User">User</string>
+    <string name="nav_Cinema">Cinema</string>
+    <string name="nav_Sport">Sport</string>
+    <string name="nav_Vivid">Vivid</string>
+    <string name="nav_Hi_Bright">Hi-Bright</string>
+    <string name="nav_Dolby_Vision_Bright">Dolby Vision Bright</string>
+    <string name="nav_Dolby_Vision_Dark">Dolby Vision Dark</string>
+    <string name="nav_Custom1">Custom1</string>
+    <string name="nav_Custom2">Custom2</string>
+    <string name="nav_Custom3">Custom3</string>
+    <string name="nav_Eastern_Time">Eastern Time</string>
+    <string name="nav_Indiana">Indiana</string>
+    <string name="nav_Central_Time">Central Time</string>
+    <string name="nav_Mountain_Time">Mountain Time</string>
+    <string name="nav_Arizona">Arizona</string>
+    <string name="nav_Pacific_Time">Pacific Time</string>
+    <string name="nav_Alaska">Alaska</string>
+    <string name="nav_Hawaii">Hawaii</string>
+    <string name="nav_America_New_York">America/New_York</string>
+    <string name="nav_America_Chicago">America/Chicago</string>
+    <string name="nav_America_Denver">America/Denver</string>
+    <string name="nav_America_Phoenix">America/Phoenix</string>
+    <string name="nav_America_Los_Angeles">America/Los_Angeles</string>
+    <string name="nav_America_Anchorage">America/Anchorage</string>
+    <string name="nav_Pacific_Honolulu">Pacific/Honolulu</string>
+
+</resources>

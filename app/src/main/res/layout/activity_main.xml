@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="325dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="click"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="@dimen/pin_dialog_title_width"
+            android:layout_height="@dimen/pin_dialog_title_height"
+            android:layout_gravity="center"
+            android:layout_marginTop="51dp"
+            android:text="Enter your PIN"
+            android:textColor="@color/pin_dialog_text_color"
+            android:textSize="@dimen/pin_dialog_title_text_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/num1"
+                style="@style/EditTextStyle" />
+
+            <EditText
+                android:id="@+id/num2"
+                style="@style/EditTextStyle" />
+
+            <EditText
+                android:id="@+id/num3"
+                style="@style/EditTextStyle" />
+
+            <EditText
+                android:id="@+id/num4"
+                style="@style/EditTextStyle" />
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/key_recycler"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"></android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="130dp"
+        android:background="@drawable/circle_react"
+        android:paddingHorizontal="20dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_gravity="center"
+            android:src="@drawable/guid_confirm_icon" />
+
+        <TextView
+            android:id="@+id/confirm_guid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/right_left_guid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/circle_react"
+        android:paddingHorizontal="20dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_gravity="center"
+            android:src="@drawable/guid_right_left_icon" />
+
+        <TextView
+            android:id="@+id/right_left_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:text="@string/left_right_guid"
+            android:textColor="#000"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/java"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/program_title_bg"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:text="Java"
+        android:textColor="@color/epg_channel_text_color_selector"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="100dp"
+        android:layout_toRightOf="@id/java"
+        android:background="@drawable/program_title_bg"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:text="C++"
+        android:textColor="@color/epg_channel_text_color_selector"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/info_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="73dp"
+        android:text="Alita:Battle Angel"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/info_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_title"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="13dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/banner_channel_lock_icon_eu"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/nav_banner_lock_icon"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="| 12:40 - 14:25"
+            android:textColor="@color/white" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="60dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:progressDrawable="@drawable/progressbar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="| 16+ | 93 Foxtel Movies |"
+            android:textColor="@color/white" />
+
+
+        <ImageView
+            android:id="@+id/banner_simple_receiver_type"
+            android:layout_width="52dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_horizontal"
+            android:src="@drawable/type_antenna"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/banner_video_format_eu"
+            android:layout_width="57dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="576i"
+            android:textColor=" #37383D"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/banner_audio_language_eu"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:singleLine="true"
+            android:text="| Stereo Unknow |"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/nav_banner_lock_icon"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_detail"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="16dp"
+        android:maxWidth="550dp"
+        android:text="Arthur Curry learns that he is the heir to the underwater kingdom of Atlantis, and must step forward to lead his people and be a hero to the world.Arthur Curry learns that he is the heir to the underwater kingdom of Atlantis, and must step forward to lead his people and be a hero to the world."
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:visibility="gone" />
+
+
+    <Button
+        android:id="@+id/btn_dialog"
+        android:layout_width="200dp"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/bg_fusion_cell"
+        android:drawableLeft="@drawable/ic_dialog_alarm"
+        android:focusable="true"
+        android:gravity="center"
+
+        android:paddingLeft="40dp"
+        android:stateListAnimator="@animator/animator_fusion_cell"
+        android:text="Schedule play"
+        android:textColor="@color/white"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="50dp"
+        android:background="@color/epg_text_color"
+        android:indeterminateTint="@color/fusion_list_cell_focused"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/loading_bg"
+                android:layout_width="121dp"
+                android:layout_height="125dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_tv_bg" />
+
+            <ImageView
+                android:id="@+id/tv"
+                android:layout_width="51dp"
+                android:layout_height="61dp"
+                android:layout_marginTop="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_tv" />
+
+            <TextView
+                android:id="@+id/tw_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="28dp"
+                android:text="No Channels"
+                android:textColor="@color/white"
+                android:textSize="24dp" />
+
+            <TextView
+                android:id="@+id/no_channel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tw_view"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="No channels found, Please scan for channels first."
+                android:textColor="@color/white_dark"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/scan_button"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/no_channel"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/bg_fusion_cell"
+                android:text="Scan Now"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/button_channel_edit"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/bg_fusion_cell"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal"
+        android:stateListAnimator="@animator/animator_fusion_cell"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:src="@drawable/ic_menu_channel_edit" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="14dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="Channel\nEdit"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

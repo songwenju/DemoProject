@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">#7E7E81</item>
+    </style>
+
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/key_back</item>
+        <item name="colorControlActivated">@color/key_back</item>
+    </style>
+
+    <style name="EditTextStyle">
+        <item name="android:theme">@style/MyEditText</item>
+        <item name="android:layout_width">44dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">number</item>
+        <item name="android:focusable">false</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:textColor">#FFF</item>
+    </style>
+
+
+
+</resources>
