@@ -17,14 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecycleDemoActivity extends AppCompatActivity {
-	private List<Integer> mAllList = new ArrayList<>();
+	private List<Integer> mAllChannelList = new ArrayList<>();
 	private List<Integer> mChannelList = new ArrayList<>();
 	private Context mContext;
-	private ArrayObjectAdapter mAdapter;
+	private ArrayObjectAdapter mChannelArrayAdapter;
 	private int mPageNum = 0;
-	public static final int PAGE_NUM = 5;
+	public static final int EPG_CHANNEL_NUM = 5;
 	public int currentIndex = 15;
-	private VerticalGridView mRecyclerView;
+	private VerticalGridView mChannelRecyclerView;
 	private int qHead = 0;
 	private int qTail = 0;
 	public static final int INIT_CHANNEL = 0;
@@ -37,7 +37,6 @@ public class RecycleDemoActivity extends AppCompatActivity {
 	private RelativeLayout mBaseLayout;
 	private ArrayList<Integer> mLoadedPageList = new ArrayList<>();
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,130 +48,113 @@ public class RecycleDemoActivity extends AppCompatActivity {
 	private void initView() {
 		mContext = this;
 		mBaseLayout = findViewById(R.id.base_layout);
-		mRecyclerView = findViewById(R.id.recycler);
+		mChannelRecyclerView = findViewById(R.id.recycler);
 		mPresenter = new RecyclerPresenter(mContext);
-		mAdapter = new ArrayObjectAdapter(mPresenter);
-		ItemBridgeAdapter bridgeAdapter = new ItemBridgeAdapter(mAdapter);
-		mRecyclerView.setAdapter(bridgeAdapter);
+		mChannelArrayAdapter = new ArrayObjectAdapter(mPresenter);
+		ItemBridgeAdapter bridgeAdapter = new ItemBridgeAdapter(mChannelArrayAdapter);
+		mChannelRecyclerView.setAdapter(bridgeAdapter);
 	}
 
 	private void initData() {
-
 		for (int i = 0; i < ALL; i++) {
-			mAllList.add(i);
+			mAllChannelList.add(i);
 		}
 
-		mMaxPage = ALL / PAGE_NUM;
+		mMaxPage = ALL / EPG_CHANNEL_NUM;
 		//在第几页
-		mPageNum = currentIndex / PAGE_NUM;
+		mPageNum = currentIndex / EPG_CHANNEL_NUM;
 		LogUtil.d(this, "RecycleDemoActivity.initData.pageNum:" + mPageNum + ",maxPage:" + mMaxPage);
 		getChannel(mPageNum, INIT_CHANNEL);
 	}
 
 	private void getChannel(int pageNum, int getType) {
-		int startPosition = 0;
-		int endPosition = 0;
+		int startPosition;
+		int endPosition;
 		LogUtil.i(this, "RecycleDemoActivity.getChannel,qHead:" + qHead + ",qTail:" + qTail);
 
 		switch (getType) {
 			case INIT_CHANNEL:
 				//队尾添加list
 				if (pageNum == 0) {
-					startPosition = pageNum * PAGE_NUM;
-					endPosition = (pageNum + 3) * PAGE_NUM;
+					startPosition = pageNum * EPG_CHANNEL_NUM;
+					endPosition = (pageNum + 3) * EPG_CHANNEL_NUM;
 					mLoadedPageList.add(0);
 					mLoadedPageList.add(1);
 					mLoadedPageList.add(2);
 				} else if (pageNum == mMaxPage) {
-					startPosition = (pageNum - 2) * PAGE_NUM;
-					endPosition = (pageNum + 1) * PAGE_NUM;
+					startPosition = (pageNum - 2) * EPG_CHANNEL_NUM;
+					endPosition = (pageNum + 1) * EPG_CHANNEL_NUM;
 					mLoadedPageList.add(pageNum - 2);
 					mLoadedPageList.add(pageNum - 1);
 					mLoadedPageList.add(pageNum);
 				} else {
-					startPosition = (pageNum - 1) * PAGE_NUM;
-					endPosition = (pageNum + 2) * PAGE_NUM;
+					startPosition = (pageNum - 1) * EPG_CHANNEL_NUM;
+					endPosition = (pageNum + 2) * EPG_CHANNEL_NUM;
 					mLoadedPageList.add(pageNum - 1);
 					mLoadedPageList.add(pageNum);
 					mLoadedPageList.add(pageNum + 1);
 				}
 				startPosition = Math.max(0, startPosition);
 				endPosition = Math.min(endPosition, ALL);
-				mChildCount = PAGE_NUM * 3;
-				mChannelList.addAll(0, mAllList.subList(startPosition, endPosition));
-				LogUtil.i(this,"RecycleDemoActivity.getChannel.mAllList:"+mAllList);
-				mAdapter.addAll(qTail, mAllList.subList(startPosition, endPosition));
-//				setTag(mAllList.subList(startPosition, endPosition));
-				LogUtil.i(this, "RecycleDemoActivity.initChannel.startPosition:" + startPosition + ",endPosition:" + endPosition);
-				if (pageNum == 0) {
-					mRecyclerView.setSelectedPosition(currentIndex);
-				} else if (pageNum == mMaxPage) {
-					mRecyclerView.setSelectedPosition(currentIndex - (mPageNum - 2) * PAGE_NUM);
+				mChildCount = EPG_CHANNEL_NUM * 3;
+				mChannelList.addAll(0, mAllChannelList.subList(startPosition, endPosition));
+
+				int relativeIndex;
+				mChannelArrayAdapter.addAll(0, mChannelList);
+				if (pageNum == 0 || mMaxPage < 3) {
+					relativeIndex = currentIndex;
 				} else {
-					mRecyclerView.setSelectedPosition(currentIndex - (mPageNum - 1) * PAGE_NUM);
+					if (pageNum == mMaxPage) {
+						relativeIndex = currentIndex - (mPageNum - 2) * EPG_CHANNEL_NUM;
+					} else {
+						relativeIndex = currentIndex - (mPageNum - 1) * EPG_CHANNEL_NUM;
+					}
 				}
+
+				mChannelRecyclerView.setSelectedPosition(relativeIndex);
 				LogUtil.d(this, "RecycleDemoActivity.getChannel.mChannelList.init:" + mChannelList);
 				LogUtil.d(this, "RecycleDemoActivity.getChannel.mLoadedPageList:" + mLoadedPageList);
 				break;
 			case DOWN_CHANNEL:
 				//队头删除一页，队尾添加一页
 				//方案1
-				startPosition = pageNum * PAGE_NUM;
-				endPosition = (pageNum + 1) * PAGE_NUM;
-				startPosition = Math.min(startPosition, ALL);
-				endPosition = Math.min(endPosition, ALL);
-				mAdapter.addAll(qTail, mAllList.subList(startPosition, endPosition));
-				mAdapter.removeItems(qHead, PAGE_NUM);
-
-				mChannelList.addAll(qTail, mAllList.subList(startPosition, endPosition));
-				LogUtil.i(this, "RecycleDemoActivity.getChannel.subList:" + mChannelList.subList(0, PAGE_NUM));
-				mChannelList.removeAll(mChannelList.subList(0, PAGE_NUM));
-
+				startPosition = pageNum * EPG_CHANNEL_NUM;
+				endPosition = (pageNum + 1) * EPG_CHANNEL_NUM;
+				startPosition = Math.min(startPosition, mAllChannelList.size());
+				endPosition = Math.min(endPosition, mAllChannelList.size());
 				mLoadedPageList.remove(Integer.valueOf(pageNum - 3));
 				mLoadedPageList.add(pageNum);
+				mChannelList.removeAll(mChannelList.subList(0,EPG_CHANNEL_NUM));
+				mChannelList.addAll(mChannelList.size(), mAllChannelList.subList(startPosition, endPosition));
 
+				mChannelArrayAdapter.addAll(mChildCount, mAllChannelList.subList(startPosition, endPosition));
+				mChannelArrayAdapter.removeItems(0, EPG_CHANNEL_NUM);
 				LogUtil.d(this, "RecycleDemoActivity.getChannel.mChannelList.down:" + mChannelList);
-
-				//方案2
-//				startPosition = (pageNum - 1) * PAGE_NUM;
-//				endPosition = (pageNum + 2) * PAGE_NUM;
-//				startPosition = Math.min(startPosition, ALL);
-//				endPosition = Math.min(endPosition, ALL);
-//				mAdapter.setItems(mAllList.subList(startPosition, endPosition), null);
-//				mRecyclerView.setSelectedPosition(3);
-//				mPresenter.setFocusPosition(true,3);
 				LogUtil.d(this, "RecycleDemoActivity.getChannel.down.mLoadedPageList:" + mLoadedPageList);
 				LogUtil.i(this, "RecycleDemoActivity.down.startPosition:" + startPosition + ",endPosition:" + endPosition);
 				break;
 			case UP_CHANNEL:
 				//队头添加一页，队尾删除一页
-				startPosition = pageNum * PAGE_NUM;
+				startPosition = pageNum * EPG_CHANNEL_NUM;
 				//方案1
-				endPosition = (pageNum + 1) * PAGE_NUM;
+				endPosition = (pageNum + 1) * EPG_CHANNEL_NUM;
 				startPosition = Math.max(startPosition, 0);
 				endPosition = Math.max(endPosition, 0);
-				LogUtil.i(this, "RecycleDemoActivity.down.startPosition:" + startPosition + ",endPosition:" + endPosition);
-				mAdapter.addAll(qHead, mAllList.subList(startPosition, endPosition));
-				mAdapter.removeItems(qTail, PAGE_NUM);
-
-
-
-				//最后一页一共有多少数据
-				int temp = Math.min(qTail + (pageNum + 4) * PAGE_NUM, mAllList.size())- (pageNum + 3) * PAGE_NUM;
-				mChannelList.removeAll(mChannelList.subList(qTail, qTail + temp));
-				mChannelList.addAll(qHead, mAllList.subList(startPosition, endPosition));
-				LogUtil.d(this, "RecycleDemoActivity.getChannel.mChannelList.up:" + mChannelList);
-
-
 				mLoadedPageList.add(pageNum);
 				mLoadedPageList.remove(Integer.valueOf(pageNum + 3));
-
-				//方案2
-//				endPosition = (pageNum + 2) * PAGE_NUM;
-//				mAdapter.setItems(mAllList.subList(startPosition,endPosition), null);
-//				mRecyclerView.setSelectedPosition(11);
 				LogUtil.d(this, "RecycleDemoActivity.getChannel.up.mLoadedPageList:" + mLoadedPageList);
+				mChannelList.addAll(0, mAllChannelList.subList(startPosition, endPosition));
 
+				LogUtil.i(this, "RecycleDemoActivity.down.startPosition:" + startPosition + ",endPosition:" + endPosition);
+				int temp = Math.min((pageNum + 4) * EPG_CHANNEL_NUM, mAllChannelList.size())- (pageNum + 3) * EPG_CHANNEL_NUM;
+				mChannelList.removeAll(mChannelList.subList(mChildCount, mChildCount + temp));
+
+				mChannelArrayAdapter.addAll(0, new ArrayList<>(mAllChannelList.subList(startPosition, endPosition)));
+				mChannelArrayAdapter.removeItems(mChildCount, EPG_CHANNEL_NUM);
+
+				//最后一页一共有多少数据
+
+				LogUtil.d(this, "RecycleDemoActivity.getChannel.mChannelList.up:" + mChannelList);
 				break;
 		}
 
@@ -184,7 +166,7 @@ public class RecycleDemoActivity extends AppCompatActivity {
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
 		View focusView;
-		int focusIndex = mRecyclerView.getSelectedPosition();
+		int focusIndex = mChannelRecyclerView.getSelectedPosition();
 		switch (event.getKeyCode()) {
 			case KeyEvent.KEYCODE_DPAD_DOWN:
 				if (event.getAction() == KeyEvent.ACTION_UP) {
