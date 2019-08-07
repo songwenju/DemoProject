@@ -46,20 +46,21 @@
     <color name="nav_button_normal">#9B9B9B</color>
     <color name="nav_button_select">#006DFF</color>
 
-
     <!--EPG color-->
-    <color name="epg_bg">#99000000</color>
+    <color name="epg_bg">#F2C0C5CA</color>
     <color name="epg_text_color">#99000000</color>
     <color name="epg_bg_focused">#0084FF</color>
     <color name="epg_bg_pressed">#86B9FF</color>
+    <color name="divide_gray_color">#33000000</color>
+    <color name="epg_info_bg">#99000000</color>
     <color name="epg_bg_program_title">#CCC0C5CA</color>
 
+    <!--epg channel-->
+    <color name="epg_channel_bg">#33FFFFFF</color>
     <color name="epg_channel_title_color">#000000</color>
     <color name="epg_channel_text_color_normal">#99000000</color>
     <color name="epg_channel_text_color_focus">#FFF</color>
-
     <color name="fusion_list_cell_focused">#E60084FF</color>
-
 
     <!-- Program guide -->
     <color name="program_guide_scrim">#99000000</color>

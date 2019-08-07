@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/item_text"
+        android:id="@+id/program_item_text"
         android:layout_width="200dp"
         android:layout_height="58dp"
         android:background="@drawable/bg_fusion_cell"
@@ -15,20 +15,5 @@
         android:text="1"
         android:textColor="@color/colorAccent"
         android:textSize="28sp" />
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="58dp"
-        android:background="@color/colorPrimary" />
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/program_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:layout_toRightOf="@id/item_text"
-        android:background="@color/pin_dialog_text_color" />
 
 </RelativeLayout>

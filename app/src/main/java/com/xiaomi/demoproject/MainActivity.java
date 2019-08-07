@@ -17,6 +17,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.method.ScrollingMovementMethod;
 import android.text.style.StyleSpan;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
@@ -32,7 +33,9 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,11 +71,31 @@ public class MainActivity extends AppCompatActivity {
 //        getFormatTime(1413432000L);
 //        getFormatTime(1423726500L);
 		LogUtil.i(this,"MainActivity.onCreate:"+dip2px(mContext,638));
-        Intent intent = new Intent(MainActivity.this, RecycleDemoActivity.class);
-        startActivity(intent);
+		LogUtil.i(this,"MainActivity.onCreate.data:"+ getDate2String(System.currentTimeMillis(),"MMMM dd HH:mm:ss"));
+		LogUtil.i(this,"MainActivity.onCreate.CurrentHour:"+ getCurrentHour());
+		Intent intent = new Intent(MainActivity.this, RecycleDemoActivity.class);
+		startActivity(intent);
 //		initView();
 //		initData();
 //		setAdapter();
+	}
+
+
+	public static int getCurrentHour() {
+		Date date = new Date(System.currentTimeMillis());
+		SimpleDateFormat format = new SimpleDateFormat("HH", Locale.getDefault());
+		return Integer.parseInt(format.format(date));
+	}
+
+	/**
+	 *
+	 * @param time  1541569323155
+	 * @param pattern DD-MM-YY HH:mm:ss
+	 */
+	public  String getDate2String(long time, String pattern) {
+		Date date = new Date(time);
+		SimpleDateFormat format = new SimpleDateFormat(pattern, Locale.getDefault());
+		return format.format(date);
 	}
 
 	public static int px2dp(Context context, float pxValue) {
@@ -197,8 +220,11 @@ public class MainActivity extends AppCompatActivity {
 		Drawable image = getDrawable(R.drawable.ic_epg_play);
 		image.setBounds(1, 1, 26, 33);
 		button.setCompoundDrawables(image,null,null,null);
-
-
+		TextView tv_title = findViewById(R.id.tv_title);
+		tv_title.setMovementMethod(ScrollingMovementMethod.getInstance());
+		ObjectAnimator.ofFloat(tv_title, "translationX", -200, 0).setDuration(1).start();
+//		startTranslationAnimation(tv_title);
+//		tv_title.scrollTo(-100,0);
 		ImageView imageView = findViewById(R.id.loading_bg);
 		startAlphaBreathAnimation(imageView);
 
@@ -241,6 +267,14 @@ public class MainActivity extends AppCompatActivity {
 
 	}
 
+	/**
+	 * 开启平移动画
+	 */
+	private void startTranslationAnimation(View view) {
+		mAlphaAnimator = ObjectAnimator.ofFloat(view, "translationX", -100, 0);
+		mAlphaAnimator.setDuration(500);
+		mAlphaAnimator.start();
+	}
 	/**
 	 * 开启透明度渐变呼吸动画
 	 */

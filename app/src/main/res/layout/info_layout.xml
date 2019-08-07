@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/epg_info_layout"
+    android:layout_width="match_parent"
+    android:background="@color/epg_info_bg"
+    android:layout_height="220dp">
+    <TextView
+        android:id="@+id/info_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="73dp"
+        android:text="Alita:Battle Angel"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:id="@+id/info_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_title"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="13dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/banner_channel_lock_icon_eu"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/nav_banner_lock_icon"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="| 12:40 - 14:25"
+            android:textColor="@color/white" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="60dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:progressDrawable="@drawable/progressbar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="| 16+ | 93 Foxtel Movies |"
+            android:textColor="@color/white" />
+
+
+        <ImageView
+            android:id="@+id/banner_simple_receiver_type"
+            android:layout_width="52dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_horizontal"
+            android:src="@drawable/type_antenna"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/banner_video_format_eu"
+            android:layout_width="57dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="576i"
+            android:textColor=" #37383D"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/banner_audio_language_eu"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:singleLine="true"
+            android:text="| Stereo Unknow |"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/nav_banner_lock_icon"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_detail"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="16dp"
+        android:maxWidth="550dp"
+        android:text="Arthur Curry learns that he is the heir to the underwater kingdom of Atlantis, and must step forward to lead his people and be a hero to the world.Arthur Curry learns that he is the heir to the underwater kingdom of Atlantis, and must step forward to lead his people and be a hero to the world."
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+</RelativeLayout>

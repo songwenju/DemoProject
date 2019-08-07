@@ -12,18 +12,21 @@ import android.view.FocusFinder;
 import android.widget.RelativeLayout;
 
 import com.xiaomi.demoproject.Adapter.RecyclerPresenter;
+import com.xiaomi.demoproject.EPG.Channel;
+import com.xiaomi.demoproject.EPG.Program;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecycleDemoActivity extends AppCompatActivity {
-	private List<Integer> mAllChannelList = new ArrayList<>();
-	private List<Integer> mChannelList = new ArrayList<>();
+	private List<Channel> mAllChannelList = new ArrayList<>();
+	private List<Channel> mChannelList = new ArrayList<>();
 	private Context mContext;
 	private ArrayObjectAdapter mChannelArrayAdapter;
 	private int mPageNum = 0;
-	public static final int EPG_CHANNEL_NUM = 5;
-	public int currentIndex = 15;
+	//每页几个内容
+	public static final int EPG_CHANNEL_NUM = 4;
+	public int currentIndex = 1;
 	private VerticalGridView mChannelRecyclerView;
 	private int qHead = 0;
 	private int qTail = 0;
@@ -48,7 +51,7 @@ public class RecycleDemoActivity extends AppCompatActivity {
 	private void initView() {
 		mContext = this;
 		mBaseLayout = findViewById(R.id.base_layout);
-		mChannelRecyclerView = findViewById(R.id.recycler);
+		mChannelRecyclerView = findViewById(R.id.channel_name_view);
 		mPresenter = new RecyclerPresenter(mContext);
 		mChannelArrayAdapter = new ArrayObjectAdapter(mPresenter);
 		ItemBridgeAdapter bridgeAdapter = new ItemBridgeAdapter(mChannelArrayAdapter);
@@ -57,8 +60,16 @@ public class RecycleDemoActivity extends AppCompatActivity {
 
 	private void initData() {
 		for (int i = 0; i < ALL; i++) {
-			mAllChannelList.add(i);
-		}
+		    Channel channel = new Channel("channel:"+i);
+			List<Program> programList = new ArrayList<>();
+            for (int j = 0; j < 20;j++){
+                Program program = new Program("program:"+j);
+                programList.add(program);
+            }
+
+            channel.setProgramList(programList);
+            mAllChannelList.add(channel);
+        }
 
 		mMaxPage = ALL / EPG_CHANNEL_NUM;
 		//在第几页

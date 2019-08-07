@@ -4,8 +4,134 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v17.leanback.widget.VerticalGridView
-        android:id="@+id/recycler"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="250dp"
+        android:background="@color/epg_info_bg">
+
+        <include
+            layout="@layout/info_layout"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/epg_top_date_info_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="11dp"
+        android:textColor="@color/white"
+        android:text="17:00"
+        android:textSize="15sp" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="501dp"
+        android:layout_marginTop="250dp"
+        android:background="@color/epg_bg"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false">
+
+        <RelativeLayout
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:focusable="false">
+
+            <LinearLayout
+                android:id="@+id/epg_title_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:orientation="horizontal">
+                <!-- selected date -->
+                <TextView
+                    android:id="@+id/epg_title_date_selected_tv"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/epg_channel_bg"
+                    android:gravity="bottom|left"
+                    android:paddingLeft="16dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/nav_channel_list"
+                    android:textColor="@color/epg_channel_title_color"
+                    android:textSize="24sp" />
+
+                <com.xiaomi.demoproject.EPG.TimelineRow
+                    android:id="@+id/time_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ff0000"
+                    android:fadingEdgeLength="@dimen/program_guide_table_header_row_fade_length"
+                    android:requiresFadingEdge="horizontal" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/epg_top_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:gravity="end"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/epg_retrieving_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:text="@string/epg_retrieving_show"
+                    android:textColor="@color/epg_text_color"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/title_view"
+            android:background="@color/divide_gray_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_view">
+
+            <!--<ProgressBar-->
+                <!--android:id="@+id/progress"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_centerInParent="true" />-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/tv_guide_mask"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="22dp"-->
+                <!--android:src="@drawable/tv_guide_mask"-->
+                <!--android:visibility="gone" />-->
+
+            <android.support.v17.leanback.widget.VerticalGridView
+                android:id="@+id/channel_name_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="afterDescendants"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+
+        </RelativeLayout>
+    </RelativeLayout>
 </RelativeLayout>

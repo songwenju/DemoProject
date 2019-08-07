@@ -7,6 +7,15 @@
     android:background="#000"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:padding="15px"
+        android:background="@drawable/bg_btn_cell"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        />
 
     <LinearLayout
         android:layout_width="325dp"
