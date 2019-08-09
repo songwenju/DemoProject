@@ -16,6 +16,9 @@
 
 package com.xiaomi.demoproject.util;
 
+import android.text.format.DateUtils;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -71,4 +74,31 @@ public class Utils {
         sWidthPerHour = widthPerHour;
     }
 
+
+    /** Converts time in milliseconds to a String. */
+    public static String toTimeString(long timeMillis) {
+        return toTimeString(timeMillis, true);
+    }
+
+    /**
+     * Converts time in milliseconds to a String.
+     *
+     * @param fullFormat {@code true} for returning date string with a full format (e.g., Mon Aug 15
+     *     20:08:35 GMT 2016). {@code false} for a short format, {e.g., 8/15/16 or 8:08 AM}, in
+     *     which only the time is shown if the time is on the same day as now, and only the date is
+     *     shown if it's a different day.
+     */
+    public static String toTimeString(long timeMillis, boolean fullFormat) {
+        if (fullFormat) {
+            return new Date(timeMillis).toString();
+        } else {
+            long currentTime = System.currentTimeMillis();
+            return (String)
+                    DateUtils.formatSameDayTime(
+                            timeMillis,
+                            System.currentTimeMillis(),
+                            SimpleDateFormat.SHORT,
+                            SimpleDateFormat.SHORT);
+        }
+    }
 }

@@ -31,7 +31,7 @@ public class RecyclerPresenter extends Presenter {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
-        return new RecyclerViewHolder(LayoutInflater.from(mContext).inflate(R.layout.recycler_item, null));
+        return new RecyclerViewHolder(LayoutInflater.from(mContext).inflate(R.layout.program_guide_table_row, null));
     }
 
     @Override
@@ -69,8 +69,8 @@ public class RecyclerPresenter extends Presenter {
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
-            mText = itemView.findViewById(R.id.item_text);
-            programRecyclerView = itemView.findViewById(R.id.program_recycler);
+            mText = itemView.findViewById(R.id.channel_name);
+            programRecyclerView = itemView.findViewById(R.id.row);
         }
     }
 
@@ -94,8 +94,8 @@ public class RecyclerPresenter extends Presenter {
 
             if (viewHolder instanceof  ProgramViewHolder){
                 ProgramViewHolder programViewHolder = (ProgramViewHolder) viewHolder;
-                LogUtil.i(this,"ProgramAdapter.onBindViewHolder.name:"+mProgramList.get(i).getName());
-                programViewHolder.mTextView.setText(mProgramList.get(i).getName());
+                LogUtil.i(this,"ProgramAdapter.onBindViewHolder.name:"+mProgramList.get(i).getTitle());
+                programViewHolder.mTextView.setText(mProgramList.get(i).getTitle());
             }
 
         }

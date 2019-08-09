@@ -141,4 +141,10 @@
     <integer name="program_guide_selection_row">2</integer>
 
 
+    <!-- Max recycle view pool size -->
+    <integer name="max_recycled_view_pool_epg_table_item">50</integer>
+    <integer name="max_recycled_view_pool_epg_table_row">15</integer>
+    <integer name="max_recycled_view_pool_epg_header_row_item">7</integer>
+    <integer name="max_recycled_view_pool_epg_side_panel_row">12</integer>
+
 </resources>

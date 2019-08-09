@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * table.
  */
-class TimeListAdapter extends RecyclerView.Adapter<TimeListAdapter.TimeViewHolder> {
+public class TimeListAdapter extends RecyclerView.Adapter<TimeListAdapter.TimeViewHolder> {
     private static final long TIME_UNIT_MS = TimeUnit.MINUTES.toMillis(30);
 
     // Ex. 3:00 AM
@@ -51,7 +51,7 @@ class TimeListAdapter extends RecyclerView.Adapter<TimeListAdapter.TimeViewHolde
     private final String mTimePatternSameDay;
     private final String mTimePatternDifferentDay;
 
-    TimeListAdapter(Resources res) {
+    public TimeListAdapter(Resources res) {
         if (sRowHeaderOverlapping == 0) {
             sRowHeaderOverlapping =
                     Math.abs(
@@ -72,7 +72,7 @@ class TimeListAdapter extends RecyclerView.Adapter<TimeListAdapter.TimeViewHolde
 
     @Override
     public int getItemCount() {
-        return Integer.MAX_VALUE;
+        return 4;
     }
 
     @Override

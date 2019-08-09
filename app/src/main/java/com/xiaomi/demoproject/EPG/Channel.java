@@ -3,9 +3,29 @@ package com.xiaomi.demoproject.EPG;
 import java.util.List;
 
 public class Channel {
+    long id;
     String name;
     List<Program> mProgramList;
-    public Channel( String name) {
+    boolean isLocked;
+
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Channel(String name) {
         this.name = name;
     }
 

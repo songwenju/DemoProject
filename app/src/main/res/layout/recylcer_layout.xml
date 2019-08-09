@@ -124,7 +124,7 @@
                 <!--android:src="@drawable/tv_guide_mask"-->
                 <!--android:visibility="gone" />-->
 
-            <android.support.v17.leanback.widget.VerticalGridView
+            <com.xiaomi.demoproject.EPG.ProgramGridView
                 android:id="@+id/channel_name_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
