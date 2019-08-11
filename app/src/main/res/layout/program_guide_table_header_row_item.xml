@@ -2,9 +2,9 @@
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/time"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/program_guide_table_header_row_height"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
     android:gravity="center"
     android:fontFamily="@string/condensed_font"
     android:textSize="@dimen/program_guide_table_header_row_font_size"
-    android:textColor="@color/program_guide_table_header_row_time_text_color" />
+    />

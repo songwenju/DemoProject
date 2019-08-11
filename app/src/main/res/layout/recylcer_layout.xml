@@ -67,7 +67,6 @@
                     android:id="@+id/time_row"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#ff0000"
                     android:fadingEdgeLength="@dimen/program_guide_table_header_row_fade_length"
                     android:requiresFadingEdge="horizontal" />
 

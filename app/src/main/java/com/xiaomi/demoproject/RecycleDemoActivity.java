@@ -8,6 +8,7 @@ import android.support.v17.leanback.widget.ItemBridgeAdapter;
 import android.support.v17.leanback.widget.OnChildSelectedListener;
 import android.support.v17.leanback.widget.VerticalGridView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
@@ -23,9 +24,12 @@ import com.xiaomi.demoproject.EPG.ProgramManager;
 import com.xiaomi.demoproject.EPG.ProgramTableAdapter;
 import com.xiaomi.demoproject.EPG.TimeListAdapter;
 import com.xiaomi.demoproject.EPG.TimelineRow;
+import com.xiaomi.demoproject.EPG.TvClock;
+import com.xiaomi.demoproject.util.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class RecycleDemoActivity extends AppCompatActivity {
     private List<Channel> mAllChannelList = new ArrayList<>();
@@ -36,7 +40,7 @@ public class RecycleDemoActivity extends AppCompatActivity {
     //每页几个内容
     public static final int EPG_CHANNEL_NUM = 4;
     public int currentIndex = 1;
-//    private VerticalGridView mGrid;
+    //    private VerticalGridView mGrid;
     private int qHead = 0;
     private int qTail = 0;
     public static final int INIT_CHANNEL = 0;
@@ -54,6 +58,14 @@ public class RecycleDemoActivity extends AppCompatActivity {
     private TimeListAdapter mTimeListAdapter;
     private ProgramGridView mGrid;
     private ProgramManager mProgramManager;
+    private long mStartUtcTime;
+    private TvClock mClock;
+    private int mWidthPerHour;
+
+    private static final long HOUR_IN_MILLIS = TimeUnit.HOURS.toMillis(1);
+    private static final long HALF_HOUR_IN_MILLIS = HOUR_IN_MILLIS / 2;
+    private static final long MIN_DURATION_FROM_START_TIME_TO_CURRENT_TIME =
+            ProgramManager.FIRST_ENTRY_MIN_DURATION;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +94,18 @@ public class RecycleDemoActivity extends AppCompatActivity {
                         R.layout.program_guide_table_header_row_item,
                         res.getInteger(R.integer.max_recycled_view_pool_epg_header_row_item));
         mTimelineRow.setAdapter(mTimeListAdapter);
-
+        mClock = new TvClock(mContext);
+        mStartUtcTime =
+                Utils.floorTime(
+                        mClock.currentTimeMillis() - MIN_DURATION_FROM_START_TIME_TO_CURRENT_TIME,
+                        HALF_HOUR_IN_MILLIS);
+        mTimeListAdapter.update(mStartUtcTime);
+        mTimelineRow.resetScroll();
         mProgramManager = new ProgramManager();
+
+        //设置宽度
+        mWidthPerHour = res.getDimensionPixelSize(R.dimen.program_guide_table_width_per_hour);
+        Utils.setWidthPerHour(mWidthPerHour);
 
         //init grid
         mGrid = findViewById(R.id.channel_name_view);
@@ -92,7 +114,7 @@ public class RecycleDemoActivity extends AppCompatActivity {
                 .setMaxRecycledViews(
                         R.layout.program_guide_table_row,
                         res.getInteger(R.integer.max_recycled_view_pool_epg_table_row));
-        ProgramTableAdapter programTableAdapter = new ProgramTableAdapter(mContext,mProgramManager);
+        ProgramTableAdapter programTableAdapter = new ProgramTableAdapter(mContext, mProgramManager);
         mGrid.setAdapter(programTableAdapter);
 //        mGrid.setChildFocusListener(this);
         mGrid.setOnChildSelectedListener(

@@ -18,6 +18,8 @@ package com.xiaomi.demoproject.util;
 
 import android.text.format.DateUtils;
 
+import com.xiaomi.demoproject.LogUtil;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -29,6 +31,7 @@ public class Utils {
     private static final long RECORDING_FAILED_REASON_NONE = 0;
     private static final long HALF_MINUTE_MS = TimeUnit.SECONDS.toMillis(30);
     private static final long ONE_DAY_MS = TimeUnit.DAYS.toMillis(1);
+    private static final String TAG = "Utils";
     private static int sWidthPerHour = 0;
     /**
      * Checks if two given time (in milliseconds) are in the same day with regard to the locale
@@ -55,6 +58,7 @@ public class Utils {
     /** Gets the number of pixels in program guide table that corresponds to the given range. */
     public static int convertMillisToPixel(long startMillis, long endMillis) {
         // Convert to pixels first to avoid accumulation of rounding errors.
+        LogUtil.i(TAG,"Utils.convertMillisToPixel.startTime:"+startMillis+",endTime:"+endMillis);
         return convertMillisToPixel(endMillis)
                 - convertMillisToPixel(startMillis);
     }
@@ -70,7 +74,7 @@ public class Utils {
      * Sets the width in pixels that corresponds to an hour in program guide. Assume that this is
      * called from main thread only, so, no synchronization.
      */
-    static void setWidthPerHour(int widthPerHour) {
+    public static void setWidthPerHour(int widthPerHour) {
         sWidthPerHour = widthPerHour;
     }
 

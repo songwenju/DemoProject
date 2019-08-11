@@ -58,6 +58,7 @@ public class TimeListAdapter extends RecyclerView.Adapter<TimeListAdapter.TimeVi
                             res.getDimensionPixelOffset(
                                     R.dimen.program_guide_table_header_row_overlap));
         }
+        LogUtil.i(this,"TimeListAdapter.TimeListAdapter.sRowHeaderOverlapping:"+sRowHeaderOverlapping);
         Locale locale = res.getConfiguration().locale;
         mTimePatternSameDay = DateFormat.getBestDateTimePattern(locale, TIME_PATTERN_SAME_DAY);
         mTimePatternDifferentDay =
@@ -65,14 +66,14 @@ public class TimeListAdapter extends RecyclerView.Adapter<TimeListAdapter.TimeVi
     }
 
     public void update(long startTimeMs) {
-        LogUtil.i(this,"TimeListAdapter.update");
+        LogUtil.i(this,"TimeListAdapter.update.startTimeMs:"+Utils.toTimeString(startTimeMs));
         mStartUtcMs = startTimeMs;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return Integer.MAX_VALUE;
     }
 
     @Override
@@ -88,6 +89,7 @@ public class TimeListAdapter extends RecyclerView.Adapter<TimeListAdapter.TimeVi
         long endTime = startTime + TIME_UNIT_MS;
 
         View itemView = holder.itemView;
+        LogUtil.i(this,"TimeListAdapter.onBindViewHolder.itemView:"+itemView);
         Date timeDate = new Date(startTime);
         String timeString;
         if (Utils.isInGivenDay(System.currentTimeMillis(), startTime)) {
@@ -95,10 +97,14 @@ public class TimeListAdapter extends RecyclerView.Adapter<TimeListAdapter.TimeVi
         } else {
             timeString = DateFormat.format(mTimePatternDifferentDay, timeDate).toString();
         }
+
+        LogUtil.i(this,"TimeListAdapter.onBindViewHolder.timeString:"+timeString);
         ((TextView) itemView.findViewById(R.id.time)).setText(timeString);
 
         RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) itemView.getLayoutParams();
+
         lp.width = Utils.convertMillisToPixel(startTime, endTime);
+        LogUtil.i(this,"TimeListAdapter.onBindViewHolder.width:"+lp.width);
         if (position == 0) {
             // Adjust width for the first entry to make the item starts from the fading edge.
             lp.setMarginStart(sRowHeaderOverlapping - lp.width / 2);

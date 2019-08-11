@@ -45,7 +45,7 @@ public class ProgramManager {
      * Note: If this value is larger than 1 min, it could cause mismatches between the entry's
      * position and detailed view's time range.
      */
-    static final long FIRST_ENTRY_MIN_DURATION = TimeUnit.MINUTES.toMillis(1);
+   public static final long FIRST_ENTRY_MIN_DURATION = TimeUnit.MINUTES.toMillis(1);
 
     private static final long INVALID_ID = -1;
 

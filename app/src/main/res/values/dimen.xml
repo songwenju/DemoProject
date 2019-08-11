@@ -91,7 +91,7 @@
     <dimen name="program_guide_table_header_row_height">40dp</dimen>
     <dimen name="program_guide_table_header_row_font_size">16sp</dimen>
     <dimen name="program_guide_table_header_row_fade_length">24dp</dimen>
-    <dimen name="program_guide_table_header_row_overlap">-72dp</dimen>
+    <dimen name="program_guide_table_header_row_overlap">-42dp</dimen>
     <dimen name="program_guide_table_item_row_height">64dp</dimen>
     <dimen name="program_guide_table_item_padding">16dp</dimen>
     <dimen name="program_guide_table_item_compound_drawable_padding">8dp</dimen>
@@ -129,7 +129,7 @@
     <dimen name="program_guide_table_critic_score_score_text_size">12dp</dimen>
     <dimen name="program_guide_table_detail_desc_margin_top">46dp</dimen>
     <dimen name="program_guide_table_detail_desc_text_size">12sp</dimen>
-    <dimen name="program_guide_table_width_per_hour">384dp</dimen>
+    <dimen name="program_guide_table_width_per_hour">450dp</dimen>
     <dimen name="program_guide_table_exit_x">368dp</dimen>
 
     <integer name="program_guide_anim_duration">250</integer>
