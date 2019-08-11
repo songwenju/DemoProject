@@ -285,7 +285,6 @@ public class ProgramItemView extends TextView {
     public void setValues(
 //            ProgramGuide programGuide,
             TableEntry entry,
-            int selectedGenreId,
             long fromUtcMillis,
             long toUtcMillis,
             String gapTitle) {
@@ -299,68 +298,15 @@ public class ProgramItemView extends TextView {
             setLayoutParams(layoutParams);
         }
         String title = mTableEntry.program != null ? mTableEntry.program.getTitle() : null;
-        if (mTableEntry.isGap()) {
-            title = gapTitle;
-        }
         if (TextUtils.isEmpty(title)) {
             title = getResources().getString(R.string.program_title_for_no_information);
         }
-        updateText(selectedGenreId, title);
         updateContentDescription(title);
         measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
         mTextWidth = getMeasuredWidth() - getPaddingStart() - getPaddingEnd();
         // Maximum width for us to use a ripple
         mMaxWidthForRipple = GuideUtils.convertMillisToPixel(fromUtcMillis, toUtcMillis);
     }
-
-    private boolean isEntryWideEnough() {
-        return mTableEntry != null && mTableEntry.getWidth() >= sVisibleThreshold;
-    }
-
-    private void updateText(int selectedGenreId, String title) {
-        if (!isEntryWideEnough()) {
-            setText(null);
-            return;
-        }
-
-        String episode =
-                mTableEntry.program != null
-                        ? mTableEntry.program.getEpisodeDisplayTitle(getContext())
-                        : null;
-
-        TextAppearanceSpan titleStyle = sGrayedOutProgramTitleStyle;
-        TextAppearanceSpan episodeStyle = sGrayedOutEpisodeTitleStyle;
-        if (mTableEntry.isGap()) {
-
-            episode = null;
-        } else if (mTableEntry.hasGenre(selectedGenreId)) {
-            titleStyle = sProgramTitleStyle;
-            episodeStyle = sEpisodeTitleStyle;
-        }
-        SpannableStringBuilder description = new SpannableStringBuilder();
-        description.append(title);
-        if (!TextUtils.isEmpty(episode)) {
-            description.append('\n');
-
-            // Add a 'zero-width joiner'/ZWJ in order to ensure we have the same line height for
-            // all lines. This is a non-printing character so it will not change the horizontal
-            // spacing however it will affect the line height. As we ensure the ZWJ has the same
-            // text style as the title it will make sure the line height is consistent.
-            description.append('\u200D');
-
-            int middle = description.length();
-            description.append(episode);
-
-            description.setSpan(titleStyle, 0, middle, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            description.setSpan(
-                    episodeStyle, middle, description.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        } else {
-            description.setSpan(
-                    titleStyle, 0, description.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-        setText(description);
-    }
-
 
 
     private void updateContentDescription(String title) {

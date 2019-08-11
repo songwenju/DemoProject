@@ -36,7 +36,6 @@ public class ProgramListAdapter extends RecyclerView.Adapter<ProgramListAdapter.
     private static final String TAG = "ProgramListAdapter";
     private static final boolean DEBUG = true;
 
-//    private final ProgramGuide mProgramGuide;
     private final ProgramManager mProgramManager;
     private final int mChannelIndex;
     private final String mNoInfoProgramTitle;
@@ -44,9 +43,8 @@ public class ProgramListAdapter extends RecyclerView.Adapter<ProgramListAdapter.
 
     private long mChannelId;
 
-    ProgramListAdapter(Resources res,ProgramManager programManager, int channelIndex) {
+    ProgramListAdapter(Resources res, ProgramManager programManager, int channelIndex) {
         setHasStableIds(true);
-//        mProgramGuide = programGuide;
         mProgramManager = programManager;
         mChannelIndex = channelIndex;
         mNoInfoProgramTitle = res.getString(R.string.program_title_for_no_information);
@@ -85,7 +83,7 @@ public class ProgramListAdapter extends RecyclerView.Adapter<ProgramListAdapter.
     public void onBindViewHolder(ProgramItemViewHolder holder, int position) {
         TableEntry tableEntry = mProgramManager.getTableEntry(mChannelId, position);
         String gapTitle = tableEntry.isBlocked() ? mBlockedProgramTitle : mNoInfoProgramTitle;
-        holder.onBind(tableEntry,mProgramManager, gapTitle);
+        holder.onBind(tableEntry, mProgramManager, gapTitle);
     }
 
     @Override
@@ -113,7 +111,6 @@ public class ProgramListAdapter extends RecyclerView.Adapter<ProgramListAdapter.
             ((ProgramItemView) itemView)
                     .setValues(
                             entry,
-                            programManager.getSelectedGenreId(),
                             programManager.getFromUtcMillis(),
                             programManager.getToUtcMillis(),
                             gapTitle);

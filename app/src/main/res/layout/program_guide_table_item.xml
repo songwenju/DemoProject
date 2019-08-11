@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.android.tv.guide.ProgramItemView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.xiaomi.demoproject.EPG.ProgramItemView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="0dp"
     android:layout_height="@dimen/program_guide_table_item_row_height"
     android:gravity="start|center_vertical"

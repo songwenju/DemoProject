@@ -17,8 +17,6 @@
 package com.xiaomi.demoproject.EPG;
 
 import android.support.annotation.MainThread;
-import android.support.annotation.Nullable;
-import android.support.annotation.VisibleForTesting;
 import android.util.ArraySet;
 
 import com.xiaomi.demoproject.LogUtil;
@@ -49,9 +47,7 @@ public class ProgramManager {
 
     private static final long INVALID_ID = -1;
 
-    private TvInputManagerHelper mTvInputManagerHelper;
-    private ChannelDataManager mChannelDataManager;
-    private ProgramDataManager mProgramDataManager;
+
 
     private long mStartUtcMillis;
     private long mEndUtcMillis;
@@ -60,15 +56,7 @@ public class ProgramManager {
 
     private List<Channel> mChannels = new ArrayList<>();
     private final Map<Long, List<TableEntry>> mChannelIdEntriesMap = new HashMap<>();
-    private final List<List<Channel>> mGenreChannelList = new ArrayList<>();
-    private final List<Integer> mFilteredGenreIds = new ArrayList<>();
 
-    // Position of selected genre to filter channel list.
-    private int mSelectedGenreId = GenreItems.ID_ALL_CHANNELS;
-    // Channel list after applying genre filter.
-    // Should be matched with mSelectedGenreId always.
-    private List<Channel> mFilteredChannels = mChannels;
-    private boolean mChannelDataLoaded;
 
     private final Set<Listener> mListeners = new ArraySet<>();
     private final Set<TableEntriesUpdatedListener> mTableEntriesUpdatedListeners = new ArraySet<>();
@@ -80,7 +68,6 @@ public class ProgramManager {
             new ChannelDataManager.Listener() {
                 @Override
                 public void onLoadFinished() {
-                    mChannelDataLoaded = true;
                     updateChannels(false);
                 }
 
@@ -95,23 +82,8 @@ public class ProgramManager {
                 }
             };
 
-    private final ProgramDataManager.Listener mProgramDataManagerListener =
-            new ProgramDataManager.Listener() {
-                @Override
-                public void onProgramUpdated() {
-                    updateTableEntries(true);
-                }
-            };
+    private List<Program> mPrograms;
 
-
-    public ProgramManager(
-            TvInputManagerHelper tvInputManagerHelper,
-            ChannelDataManager channelDataManager,
-            ProgramDataManager programDataManager) {
-        mTvInputManagerHelper = tvInputManagerHelper;
-        mChannelDataManager = channelDataManager;
-        mProgramDataManager = programDataManager;
-    }
 
     public ProgramManager() {
     }
@@ -120,22 +92,8 @@ public class ProgramManager {
     /**
      * Adds a {@link Listener}.
      */
-    void addListener(Listener listener) {
+    public void addListener(Listener listener) {
         mListeners.add(listener);
-    }
-
-    /**
-     * Registers a listener to be invoked when table entries are updated.
-     */
-    void addTableEntriesUpdatedListener(TableEntriesUpdatedListener listener) {
-        mTableEntriesUpdatedListeners.add(listener);
-    }
-
-    /**
-     * Registers a listener to be invoked when a table entry is changed.
-     */
-    void addTableEntryChangedListener(TableEntryChangedListener listener) {
-        mTableEntryChangedListeners.add(listener);
     }
 
     /**
@@ -145,47 +103,19 @@ public class ProgramManager {
         mListeners.remove(listener);
     }
 
-    /**
-     * Removes a previously installed table entries update listener.
-     */
-    void removeTableEntriesUpdatedListener(TableEntriesUpdatedListener listener) {
-        mTableEntriesUpdatedListeners.remove(listener);
-    }
 
-    /**
-     * Removes a previously installed table entry changed listener.
-     */
-    void removeTableEntryChangedListener(TableEntryChangedListener listener) {
-        mTableEntryChangedListeners.remove(listener);
-    }
-
-    /**
-     * Resets channel list with given genre. Caller should call {@link #buildGenreFilters()} prior
-     * to call this API to make This notifies channel updates to listeners.
-     */
-    void resetChannelListWithGenre(int genreId) {
-        if (genreId == mSelectedGenreId) {
-            return;
+    /** Update the initial time range to manage. It updates program entries. */
+   public void updateInitialTimeRange(long startUtcMillis, long endUtcMillis) {
+        LogUtil.i(this,"ProgramManager.updateInitialTimeRange");
+        mStartUtcMillis = startUtcMillis;
+        if (endUtcMillis > mEndUtcMillis) {
+            mEndUtcMillis = endUtcMillis;
         }
-        mFilteredChannels = mGenreChannelList.get(genreId);
-        mSelectedGenreId = genreId;
-        if (DEBUG) {
-            LogUtil.d(
-                    TAG,
-                    "resetChannelListWithGenre: "
-                            + GenreItems.getCanonicalGenre(genreId)
-                            + " has "
-                            + mFilteredChannels.size()
-                            + " channels out of "
-                            + mChannels.size());
-        }
-        if (mGenreChannelList.get(mSelectedGenreId) == null) {
-            throw new IllegalStateException("Genre filter isn't ready.");
-        }
-        notifyChannelsUpdated();
+
+//        mProgramDataManager.setPrefetchTimeRange(mStartUtcMillis);
+        updateChannels(true);
+        setTimeRange(startUtcMillis, endUtcMillis);
     }
-
-
     /**
      * Shifts the time range by the given time. Also makes ProgramGuide scroll the views.
      */
@@ -204,9 +134,26 @@ public class ProgramManager {
     }
 
     /**
+     * Sets program data prefetch time range. Any program data that ends before the start time will
+     * be removed from the cache later. Note that there's no limit for end time.
+     *
+     * <p>Prefetch should be enabled to call it.
+     */
+    public void setPrefetchTimeRange(long startTimeMs) {
+//        SoftPreconditions.checkState(mPrefetchEnabled, TAG, "Prefetch is disabled.");
+//        if (mPrefetchTimeRangeStartMs > startTimeMs) {
+//            // Fetch the programs immediately to re-create the cache.
+//            if (!mHandler.hasMessages(MSG_UPDATE_PREFETCH_PROGRAM)) {
+//                mHandler.sendEmptyMessage(MSG_UPDATE_PREFETCH_PROGRAM);
+//            }
+//        }
+//        mPrefetchTimeRangeStartMs = startTimeMs;
+    }
+
+    /**
      * Returned the scrolled(shifted) time in milliseconds.
      */
-    long getShiftedTime() {
+    public long getShiftedTime() {
         return mFromUtcMillis - mStartUtcMillis;
     }
 
@@ -215,21 +162,6 @@ public class ProgramManager {
      */
     long getStartTime() {
         return mStartUtcMillis;
-    }
-
-    /**
-     * Returns the program index of the program with {@code entryId} or -1 if not found.
-     */
-    int getProgramIdIndex(long channelId, long entryId) {
-        List<TableEntry> entries = mChannelIdEntriesMap.get(channelId);
-        if (entries != null) {
-            for (int i = 0; i < entries.size(); i++) {
-                if (entries.get(i).getId() == entryId) {
-                    return i;
-                }
-            }
-        }
-        return -1;
     }
 
     /**
@@ -264,7 +196,7 @@ public class ProgramManager {
      * Returns the number of the currently managed channels.
      */
     int getChannelCount() {
-        return mFilteredChannels.size();
+        return mChannels.size();
     }
 
     /**
@@ -275,23 +207,7 @@ public class ProgramManager {
         if (channelIndex < 0 || channelIndex >= getChannelCount()) {
             return null;
         }
-        return mFilteredChannels.get(channelIndex);
-    }
-
-    /**
-     * Returns the index of provided {@link Channel} within the currently managed channels. Returns
-     * -1 if such a channel is not found.
-     */
-    int getChannelIndex(Channel channel) {
-        return mFilteredChannels.indexOf(channel);
-    }
-
-    /**
-     * Returns the index of channel with {@code channelId} within the currently managed channels.
-     * Returns -1 if such a channel is not found.
-     */
-    int getChannelIndex(long channelId) {
-        return getChannelIndex(mChannelDataManager.getChannel(channelId));
+        return mChannels.get(channelIndex);
     }
 
     /**
@@ -311,36 +227,29 @@ public class ProgramManager {
         return mChannelIdEntriesMap.get(channelId).get(index);
     }
 
-    /**
-     * Returns list genre ID's which has a channel.
-     */
-    List<Integer> getFilteredGenreIds() {
-        return mFilteredGenreIds;
-    }
 
-    int getSelectedGenreId() {
-        return mSelectedGenreId;
-    }
 
-    // Note that This can be happens only if program guide isn't shown
-    // because an user has to select channels as browsable through UI.
+
     private void updateChannels(boolean clearPreviousTableEntries) {
         if (DEBUG) LogUtil.d(TAG, "updateChannels");
-        mChannels = mChannelDataManager.getBrowsableChannelList();
-        mSelectedGenreId = GenreItems.ID_ALL_CHANNELS;
-        mFilteredChannels = mChannels;
+        int ALL = 50;
+        for (int i = 0; i < ALL; i++) {
+            Channel channel = new Channel("channel:" + i);
+            mPrograms = new ArrayList<>();
+            for (int j = 0; j < 20; j++) {
+                Program program = new Program();
+                program.setTitle("program:"+j);
+                mPrograms.add(program);
+            }
+
+            channel.setProgramList(mPrograms);
+            mChannels.add(channel);
+        }
         updateTableEntriesWithoutNotification(clearPreviousTableEntries);
         // Channel update notification should be called after updating table entries, so that
         // the listener can get the entries.
         notifyChannelsUpdated();
         notifyTableEntriesUpdated();
-        buildGenreFilters();
-    }
-
-    private void updateTableEntries(boolean clear) {
-        updateTableEntriesWithoutNotification(clear);
-        notifyTableEntriesUpdated();
-        buildGenreFilters();
     }
 
     /**
@@ -404,59 +313,9 @@ public class ProgramManager {
         }
     }
 
-    /**
-     * Build genre filters based on the current programs. This categories channels by its current
-     * program's canonical genres and subsequent @{link resetChannelListWithGenre(int)} calls will
-     * reset channel list with built channel list. This is expected to be called whenever program
-     * guide is shown.
-     */
-    private void buildGenreFilters() {
-        if (DEBUG) LogUtil.d(TAG, "buildGenreFilters");
 
-        mGenreChannelList.clear();
-        for (int i = 0; i < GenreItems.getGenreCount(); i++) {
-            mGenreChannelList.add(new ArrayList<>());
-        }
-        for (Channel channel : mChannels) {
-            Program currentProgram = mProgramDataManager.getCurrentProgram(channel.getId());
-            if (currentProgram != null && currentProgram.getCanonicalGenres() != null) {
-                for (String genre : currentProgram.getCanonicalGenres()) {
-                    mGenreChannelList.get(GenreItems.getId(genre)).add(channel);
-                }
-            }
-        }
-        mGenreChannelList.set(GenreItems.ID_ALL_CHANNELS, mChannels);
-        mFilteredGenreIds.clear();
-        mFilteredGenreIds.add(0);
-        for (int i = 1; i < GenreItems.getGenreCount(); i++) {
-            if (mGenreChannelList.get(i).size() > 0) {
-                mFilteredGenreIds.add(i);
-            }
-        }
-        mSelectedGenreId = GenreItems.ID_ALL_CHANNELS;
-        mFilteredChannels = mChannels;
-        notifyGenresUpdated();
-    }
-
-
-    @Nullable
-    private TableEntry getTableEntry(long channelId, long entryId) {
-        List<TableEntry> entries = mChannelIdEntriesMap.get(channelId);
-        if (entries != null) {
-            for (TableEntry entry : entries) {
-                if (entry.getId() == entryId) {
-                    return entry;
-                }
-            }
-        }
-        return null;
-    }
-
-    private void updateEntry(TableEntry old, TableEntry newEntry) {
-        List<TableEntry> entries = mChannelIdEntriesMap.get(old.channelId);
-        int index = entries.indexOf(old);
-        entries.set(index, newEntry);
-        notifyTableEntryUpdated(newEntry);
+    public List<Channel> getChannels() {
+        return mChannels;
     }
 
     private void setTimeRange(long fromUtcMillis, long toUtcMillis) {
@@ -479,14 +338,13 @@ public class ProgramManager {
     private List<TableEntry> createProgramEntries(long channelId, boolean parentalControlsEnabled) {
         LogUtil.i(this, "ProgramManager.createProgramEntries");
         List<TableEntry> entries = new ArrayList<>();
-        boolean channelLocked =
-                parentalControlsEnabled && mChannelDataManager.getChannel(channelId).isLocked();
+        boolean channelLocked = false;
         if (channelLocked) {
             entries.add(new TableEntry(channelId, mStartUtcMillis, Long.MAX_VALUE, true));
         } else {
             long lastProgramEndTime = mStartUtcMillis;
-            List<Program> programs = mProgramDataManager.getPrograms(channelId, mStartUtcMillis);
-            for (Program program : programs) {
+//            mPrograms = mProgramDataManager.getPrograms(channelId, mStartUtcMillis);
+            for (Program program : mPrograms) {
                 if (program.getChannelId() == INVALID_ID) {
                     // Dummy program.
                     continue;
@@ -530,11 +388,6 @@ public class ProgramManager {
         return entries;
     }
 
-    private void notifyGenresUpdated() {
-        for (Listener listener : mListeners) {
-            listener.onGenresUpdated();
-        }
-    }
 
     private void notifyChannelsUpdated() {
         LogUtil.i(this, "ProgramManager.notifyChannelsUpdated");
@@ -552,12 +405,6 @@ public class ProgramManager {
     private void notifyTableEntriesUpdated() {
         for (TableEntriesUpdatedListener listener : mTableEntriesUpdatedListeners) {
             listener.onTableEntriesUpdated();
-        }
-    }
-
-    private void notifyTableEntryUpdated(TableEntry entry) {
-        for (TableEntryChangedListener listener : mTableEntryChangedListeners) {
-            listener.onTableEntryChanged(entry);
         }
     }
 
@@ -620,12 +467,7 @@ public class ProgramManager {
             return program != null ? program.getId() : -entryEndUtcMillis;
         }
 
-        /**
-         * Returns true if this is a gap.
-         */
-        boolean isGap() {
-            return !Program.isProgramValid(program);
-        }
+
 
         /**
          * Returns true if this channel is blocked.
@@ -642,12 +484,6 @@ public class ProgramManager {
             return entryStartUtcMillis <= current && entryEndUtcMillis > current;
         }
 
-        /**
-         * Returns if this program has the genre.
-         */
-        boolean hasGenre(int genreId) {
-            return !isGap() && program.hasGenre(genreId);
-        }
 
         /**
          * Returns the width of table entry, in pixels.
@@ -673,23 +509,7 @@ public class ProgramManager {
         }
     }
 
-    @VisibleForTesting
-    public static TableEntry createTableEntryForTest(
-            long channelId,
-            Program program,
-            long entryStartUtcMillis,
-            long entryEndUtcMillis,
-            boolean isBlocked) {
-        return new TableEntry(
-                channelId,
-                program,
-                entryStartUtcMillis,
-                entryEndUtcMillis,
-                isBlocked);
-    }
-
     interface Listener {
-        void onGenresUpdated();
 
         void onChannelsUpdated();
 
@@ -704,10 +524,7 @@ public class ProgramManager {
         void onTableEntryChanged(TableEntry entry);
     }
 
-    static class ListenerAdapter implements Listener {
-        @Override
-        public void onGenresUpdated() {
-        }
+    public static class ListenerAdapter implements Listener {
 
         @Override
         public void onChannelsUpdated() {

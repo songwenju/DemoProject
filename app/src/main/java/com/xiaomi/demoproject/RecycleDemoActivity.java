@@ -2,13 +2,11 @@ package com.xiaomi.demoproject;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v17.leanback.widget.ArrayObjectAdapter;
-import android.support.v17.leanback.widget.ItemBridgeAdapter;
 import android.support.v17.leanback.widget.OnChildSelectedListener;
-import android.support.v17.leanback.widget.VerticalGridView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
@@ -40,7 +38,7 @@ public class RecycleDemoActivity extends AppCompatActivity {
     //每页几个内容
     public static final int EPG_CHANNEL_NUM = 4;
     public int currentIndex = 1;
-    //    private VerticalGridView mGrid;
+    //    private VerticalGridView mProgramGridView;
     private int qHead = 0;
     private int qTail = 0;
     public static final int INIT_CHANNEL = 0;
@@ -56,7 +54,7 @@ public class RecycleDemoActivity extends AppCompatActivity {
 
     private TimelineRow mTimelineRow;
     private TimeListAdapter mTimeListAdapter;
-    private ProgramGridView mGrid;
+    private ProgramGridView mProgramGridView;
     private ProgramManager mProgramManager;
     private long mStartUtcTime;
     private TvClock mClock;
@@ -67,22 +65,45 @@ public class RecycleDemoActivity extends AppCompatActivity {
     private static final long MIN_DURATION_FROM_START_TIME_TO_CURRENT_TIME =
             ProgramManager.FIRST_ENTRY_MIN_DURATION;
 
+    private long mViewPortMillis;
+    private boolean mTimelineAnimation = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recylcer_layout);
         initView();
         initData();
+        show();
+
+    }
+
+    private final ProgramManagerListener mProgramManagerListener = new ProgramManagerListener();
+
+    private class ProgramManagerListener extends ProgramManager.ListenerAdapter {
+        @Override
+        public void onTimeRangeUpdated() {
+            int scrollOffset =
+                    (int) (mWidthPerHour * mProgramManager.getShiftedTime() / HOUR_IN_MILLIS);
+
+            LogUtil.d(this, "Horizontal scroll to "
+                            + scrollOffset
+                            + " pixels ("
+                            + mProgramManager.getShiftedTime()
+                            + " millis)");
+
+            mTimelineRow.scrollTo(scrollOffset, mTimelineAnimation);
+        }
+    }
+
+    private void show() {
+
     }
 
     private void initView() {
         mContext = this;
         mBaseLayout = findViewById(R.id.base_layout);
-//        mGrid = findViewById(R.id.channel_name_view);
-//        mPresenter = new RecyclerPresenter(mContext);
         mChannelArrayAdapter = new ArrayObjectAdapter(mPresenter);
-//        ItemBridgeAdapter bridgeAdapter = new ItemBridgeAdapter(mChannelArrayAdapter);
-//        mGrid.setAdapter(bridgeAdapter);
 
         Resources res = mContext.getResources();
         mTimelineRow = (TimelineRow) findViewById(R.id.time_row);
@@ -95,29 +116,30 @@ public class RecycleDemoActivity extends AppCompatActivity {
                         res.getInteger(R.integer.max_recycled_view_pool_epg_header_row_item));
         mTimelineRow.setAdapter(mTimeListAdapter);
         mClock = new TvClock(mContext);
-        mStartUtcTime =
-                Utils.floorTime(
-                        mClock.currentTimeMillis() - MIN_DURATION_FROM_START_TIME_TO_CURRENT_TIME,
-                        HALF_HOUR_IN_MILLIS);
-        mTimeListAdapter.update(mStartUtcTime);
-        mTimelineRow.resetScroll();
+
         mProgramManager = new ProgramManager();
 
-        //设置宽度
+        //设置每小时宽度
         mWidthPerHour = res.getDimensionPixelSize(R.dimen.program_guide_table_width_per_hour);
         Utils.setWidthPerHour(mWidthPerHour);
 
         //init grid
-        mGrid = findViewById(R.id.channel_name_view);
-        mGrid.initialize(mProgramManager);
-        mGrid.getRecycledViewPool()
+        mProgramGridView = findViewById(R.id.channel_name_view);
+        mProgramGridView.initialize(mProgramManager);
+        mProgramGridView.getRecycledViewPool()
                 .setMaxRecycledViews(
                         R.layout.program_guide_table_row,
                         res.getInteger(R.integer.max_recycled_view_pool_epg_table_row));
         ProgramTableAdapter programTableAdapter = new ProgramTableAdapter(mContext, mProgramManager);
-        mGrid.setAdapter(programTableAdapter);
-//        mGrid.setChildFocusListener(this);
-        mGrid.setOnChildSelectedListener(
+
+        mProgramGridView.setAdapter(programTableAdapter);
+        mProgramGridView.setChildFocusListener(new ProgramGridView.ChildFocusListener() {
+            @Override
+            public void onRequestChildFocus(View oldFocus, View newFocus) {
+
+            }
+        });
+        mProgramGridView.setOnChildSelectedListener(
                 new OnChildSelectedListener() {
                     @Override
                     public void onChildSelected(
@@ -125,11 +147,11 @@ public class RecycleDemoActivity extends AppCompatActivity {
 //                        selectRow(view);
                     }
                 });
-        mGrid.setFocusScrollStrategy(ProgramGridView.FOCUS_SCROLL_ALIGNED);
-//        mGrid.setWindowAlignmentOffset(mSelectionRow * mRowHeight);
-//        mGrid.setWindowAlignmentOffsetPercent(ProgramGrid.WINDOW_ALIGN_OFFSET_PERCENT_DISABLED);
-        mGrid.setItemAlignmentOffset(0);
-        mGrid.setItemAlignmentOffsetPercent(ProgramGridView.ITEM_ALIGN_OFFSET_PERCENT_DISABLED);
+        mProgramGridView.setFocusScrollStrategy(ProgramGridView.FOCUS_SCROLL_ALIGNED);
+//        mProgramGridView.setWindowAlignmentOffset(mSelectionRow * mRowHeight);
+//        mProgramGridView.setWindowAlignmentOffsetPercent(ProgramGrid.WINDOW_ALIGN_OFFSET_PERCENT_DISABLED);
+        mProgramGridView.setItemAlignmentOffset(0);
+        mProgramGridView.setItemAlignmentOffsetPercent(ProgramGridView.ITEM_ALIGN_OFFSET_PERCENT_DISABLED);
 
         RecyclerView.OnScrollListener onScrollListener =
                 new RecyclerView.OnScrollListener() {
@@ -139,35 +161,48 @@ public class RecycleDemoActivity extends AppCompatActivity {
                     }
                 };
         mTimelineRow.addOnScrollListener(onScrollListener);
+
+
+        mStartUtcTime =
+                Utils.floorTime(
+                        mClock.currentTimeMillis() - MIN_DURATION_FROM_START_TIME_TO_CURRENT_TIME,
+                        HALF_HOUR_IN_MILLIS);
+        mProgramManager.updateInitialTimeRange(mStartUtcTime, mStartUtcTime + mViewPortMillis);
+        mProgramManager.addListener(mProgramManagerListener);
+
+        mTimeListAdapter.update(mStartUtcTime);
+        mTimelineRow.resetScroll();
     }
 
 
     private void onHorizontalScrolled(int dx) {
         LogUtil.d(this, "onHorizontalScrolled(dx=" + dx + ")");
 //		positionCurrentTimeIndicator();
-        for (int i = 0, n = mGrid.getChildCount(); i < n; ++i) {
-            mGrid.getChildAt(i).findViewById(R.id.row).scrollBy(dx, 0);
+        for (int i = 0, n = mProgramGridView.getChildCount(); i < n; ++i) {
+            mProgramGridView.getChildAt(i).findViewById(R.id.row).scrollBy(dx, 0);
         }
     }
 
     private void initData() {
-        for (int i = 0; i < ALL; i++) {
-            Channel channel = new Channel("channel:" + i);
-            List<Program> programList = new ArrayList<>();
-            for (int j = 0; j < 20; j++) {
-                Program program = new Program("program:" + j);
-                programList.add(program);
-            }
-
-            channel.setProgramList(programList);
-            mAllChannelList.add(channel);
-        }
+        mAllChannelList.clear();
+        mAllChannelList.addAll(mProgramManager.getChannels());
 
         mMaxPage = ALL / EPG_CHANNEL_NUM;
         //在第几页
         mPageNum = currentIndex / EPG_CHANNEL_NUM;
         LogUtil.d(this, "RecycleDemoActivity.initData.pageNum:" + mPageNum + ",maxPage:" + mMaxPage);
         getChannel(mPageNum, INIT_CHANNEL);
+
+        Resources res = getResources();
+        Point displaySize = new Point();
+        getWindowManager().getDefaultDisplay().getSize(displaySize);
+        int gridWidth =
+                displaySize.x
+                        - res.getDimensionPixelOffset(R.dimen.program_guide_table_margin_start)
+                        - res.getDimensionPixelSize(
+                        R.dimen.program_guide_table_header_column_width);
+        mViewPortMillis = (gridWidth * HOUR_IN_MILLIS) / mWidthPerHour;
+
     }
 
     private void getChannel(int pageNum, int getType) {
@@ -214,7 +249,7 @@ public class RecycleDemoActivity extends AppCompatActivity {
                     }
                 }
 
-                mGrid.setSelectedPosition(relativeIndex);
+                mProgramGridView.setSelectedPosition(relativeIndex);
                 LogUtil.d(this, "RecycleDemoActivity.getChannel.mChannelList.init:" + mChannelList);
                 LogUtil.d(this, "RecycleDemoActivity.getChannel.mLoadedPageList:" + mLoadedPageList);
                 break;
@@ -269,7 +304,7 @@ public class RecycleDemoActivity extends AppCompatActivity {
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         View focusView;
-        int focusIndex = mGrid.getSelectedPosition();
+        int focusIndex = mProgramGridView.getSelectedPosition();
         switch (event.getKeyCode()) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 if (event.getAction() == KeyEvent.ACTION_UP) {

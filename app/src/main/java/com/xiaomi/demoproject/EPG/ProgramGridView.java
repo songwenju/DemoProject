@@ -95,7 +95,7 @@ public class ProgramGridView extends VerticalGridView {
     private ChildFocusListener mChildFocusListener;
     private final OnRepeatedKeyInterceptListener mOnRepeatedKeyInterceptListener;
 
-    interface ChildFocusListener {
+    public interface ChildFocusListener {
         /**
          * Is called before focus is moved. Only children to {@code ProgramGrid} will be passed. See
          * {@code ProgramGrid#setChildFocusListener(ChildFocusListener)}.
@@ -164,17 +164,18 @@ public class ProgramGridView extends VerticalGridView {
 
     @Override
     public View focusSearch(View focused, int direction) {
-        mNextFocusByUpDown = null;
-        if (focused == null || (focused != this && !GuideUtils.isDescendant(this, focused))) {
-            return super.focusSearch(focused, direction);
-        }
-        if (direction == View.FOCUS_UP || direction == View.FOCUS_DOWN) {
-            updateUpDownFocusState(focused, direction);
-            View nextFocus = focusFind(focused, direction);
-            if (nextFocus != null) {
-                return nextFocus;
-            }
-        }
+        LogUtil.i(this,"ProgramGridView.focusSearch");
+//        mNextFocusByUpDown = null;
+//        if (focused == null || (focused != this && !GuideUtils.isDescendant(this, focused))) {
+//            return super.focusSearch(focused, direction);
+//        }
+//        if (direction == View.FOCUS_UP || direction == View.FOCUS_DOWN) {
+//            updateUpDownFocusState(focused, direction);
+//            View nextFocus = focusFind(focused, direction);
+//            if (nextFocus != null) {
+//                return nextFocus;
+//            }
+//        }
         return super.focusSearch(focused, direction);
     }
 
