@@ -21,10 +21,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import com.xiaomi.demoproject.LogUtil;
+
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class GuideUtils {
+    private static final String TAG = "GuideUtils";
     private static final int INVALID_INDEX = -1;
     private static int sWidthPerHour = 0;
 
@@ -32,7 +35,7 @@ public class GuideUtils {
      * Sets the width in pixels that corresponds to an hour in program guide. Assume that this is
      * called from main thread only, so, no synchronization.
      */
-    static void setWidthPerHour(int widthPerHour) {
+    public static void setWidthPerHour(int widthPerHour) {
         sWidthPerHour = widthPerHour;
     }
 
@@ -45,8 +48,10 @@ public class GuideUtils {
 
     /** Gets the number of pixels in program guide table that corresponds to the given range. */
    public static int convertMillisToPixel(long startMillis, long endMillis) {
+       LogUtil.i(TAG,"GuideUtils.convertMillisToPixel.startMills:"+startMillis+",endMillis:"+endMillis);
         // Convert to pixels first to avoid accumulation of rounding errors.
-        return GuideUtils.convertMillisToPixel(endMillis)
+
+       return GuideUtils.convertMillisToPixel(endMillis)
                 - GuideUtils.convertMillisToPixel(startMillis);
     }
 

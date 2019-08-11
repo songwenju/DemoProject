@@ -26,8 +26,7 @@
         <item>Zoom</item>
     </string-array>
 
-    <!-- The category strings to be displayed in the channel guide.
-         This list should be synced the data in src/com/android/tv/data/GenreItems.java -->
+
     <eat-comment />
     <!-- Genre list [CHAR LIMIT=20] -->
     <string-array name="genre_labels" translatable="true">

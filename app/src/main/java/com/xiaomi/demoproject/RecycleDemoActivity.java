@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 
 import com.xiaomi.demoproject.Adapter.RecyclerPresenter;
 import com.xiaomi.demoproject.EPG.Channel;
+import com.xiaomi.demoproject.EPG.GuideUtils;
 import com.xiaomi.demoproject.EPG.Program;
 import com.xiaomi.demoproject.EPG.ProgramGridView;
 import com.xiaomi.demoproject.EPG.ProgramManager;
@@ -121,6 +122,7 @@ public class RecycleDemoActivity extends AppCompatActivity {
 
         //设置每小时宽度
         mWidthPerHour = res.getDimensionPixelSize(R.dimen.program_guide_table_width_per_hour);
+        GuideUtils.setWidthPerHour(mWidthPerHour);
         Utils.setWidthPerHour(mWidthPerHour);
 
         //init grid
@@ -163,10 +165,12 @@ public class RecycleDemoActivity extends AppCompatActivity {
         mTimelineRow.addOnScrollListener(onScrollListener);
 
 
-        mStartUtcTime =
-                Utils.floorTime(
-                        mClock.currentTimeMillis() - MIN_DURATION_FROM_START_TIME_TO_CURRENT_TIME,
-                        HALF_HOUR_IN_MILLIS);
+//        mStartUtcTime =
+//                Utils.floorTime(
+//                        mClock.currentTimeMillis() - MIN_DURATION_FROM_START_TIME_TO_CURRENT_TIME,
+//                        HALF_HOUR_IN_MILLIS);
+
+        mStartUtcTime = 1561401000000L;
         mProgramManager.updateInitialTimeRange(mStartUtcTime, mStartUtcTime + mViewPortMillis);
         mProgramManager.addListener(mProgramManagerListener);
 

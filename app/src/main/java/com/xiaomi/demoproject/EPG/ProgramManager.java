@@ -43,10 +43,9 @@ public class ProgramManager {
      * Note: If this value is larger than 1 min, it could cause mismatches between the entry's
      * position and detailed view's time range.
      */
-   public static final long FIRST_ENTRY_MIN_DURATION = TimeUnit.MINUTES.toMillis(1);
+    public static final long FIRST_ENTRY_MIN_DURATION = TimeUnit.MINUTES.toMillis(1);
 
     private static final long INVALID_ID = -1;
-
 
 
     private long mStartUtcMillis;
@@ -63,24 +62,6 @@ public class ProgramManager {
 
     private final Set<TableEntryChangedListener> mTableEntryChangedListeners = new ArraySet<>();
 
-
-    private final ChannelDataManager.Listener mChannelDataManagerListener =
-            new ChannelDataManager.Listener() {
-                @Override
-                public void onLoadFinished() {
-                    updateChannels(false);
-                }
-
-                @Override
-                public void onChannelListUpdated() {
-                    updateChannels(false);
-                }
-
-                @Override
-                public void onChannelBrowsableChanged() {
-                    updateChannels(false);
-                }
-            };
 
     private List<Program> mPrograms;
 
@@ -104,9 +85,11 @@ public class ProgramManager {
     }
 
 
-    /** Update the initial time range to manage. It updates program entries. */
-   public void updateInitialTimeRange(long startUtcMillis, long endUtcMillis) {
-        LogUtil.i(this,"ProgramManager.updateInitialTimeRange");
+    /**
+     * Update the initial time range to manage. It updates program entries.
+     */
+    public void updateInitialTimeRange(long startUtcMillis, long endUtcMillis) {
+        LogUtil.i(this, "ProgramManager.updateInitialTimeRange");
         mStartUtcMillis = startUtcMillis;
         if (endUtcMillis > mEndUtcMillis) {
             mEndUtcMillis = endUtcMillis;
@@ -116,6 +99,7 @@ public class ProgramManager {
         updateChannels(true);
         setTimeRange(startUtcMillis, endUtcMillis);
     }
+
     /**
      * Shifts the time range by the given time. Also makes ProgramGuide scroll the views.
      */
@@ -215,6 +199,7 @@ public class ProgramManager {
      * given {@code channelId}.
      */
     int getTableEntryCount(long channelId) {
+        LogUtil.i(this, "ProgramManager.getTableEntryCount.size:" + mChannelIdEntriesMap.get(channelId).size());
         return mChannelIdEntriesMap.get(channelId).size();
     }
 
@@ -228,24 +213,19 @@ public class ProgramManager {
     }
 
 
-
-
     private void updateChannels(boolean clearPreviousTableEntries) {
         if (DEBUG) LogUtil.d(TAG, "updateChannels");
         int ALL = 50;
         for (int i = 0; i < ALL; i++) {
+
             Channel channel = new Channel("channel:" + i);
-            mPrograms = new ArrayList<>();
-            for (int j = 0; j < 20; j++) {
-                Program program = new Program();
-                program.setTitle("program:"+j);
-                mPrograms.add(program);
-            }
+
+
 
             channel.setProgramList(mPrograms);
             mChannels.add(channel);
         }
-        updateTableEntriesWithoutNotification(clearPreviousTableEntries);
+        getTabEntries(clearPreviousTableEntries);
         // Channel update notification should be called after updating table entries, so that
         // the listener can get the entries.
         notifyChannelsUpdated();
@@ -255,8 +235,8 @@ public class ProgramManager {
     /**
      * Updates the table entries without notifying the change.
      */
-    private void updateTableEntriesWithoutNotification(boolean clear) {
-        LogUtil.i(this, "ProgramManager.updateTableEntriesWithoutNotification");
+    private void getTabEntries(boolean clear) {
+        LogUtil.i(this, "ProgramManager.getTabEntries");
         if (clear) {
             mChannelIdEntriesMap.clear();
         }
@@ -266,6 +246,7 @@ public class ProgramManager {
             // Inline the updating of the mChannelIdEntriesMap here so we can only call
             // getParentalControlSettings once.
             List<TableEntry> entries = createProgramEntries(channelId, false);
+            LogUtil.i(this, "ProgramManager.getTabEntries.entries:" + entries);
             mChannelIdEntriesMap.put(channelId, entries);
 
             int size = entries.size();
@@ -338,36 +319,84 @@ public class ProgramManager {
     private List<TableEntry> createProgramEntries(long channelId, boolean parentalControlsEnabled) {
         LogUtil.i(this, "ProgramManager.createProgramEntries");
         List<TableEntry> entries = new ArrayList<>();
-        boolean channelLocked = false;
-        if (channelLocked) {
-            entries.add(new TableEntry(channelId, mStartUtcMillis, Long.MAX_VALUE, true));
-        } else {
-            long lastProgramEndTime = mStartUtcMillis;
-//            mPrograms = mProgramDataManager.getPrograms(channelId, mStartUtcMillis);
-            for (Program program : mPrograms) {
-                if (program.getChannelId() == INVALID_ID) {
-                    // Dummy program.
-                    continue;
-                }
-                long programStartTime = Math.max(program.getStartTimeUtcMillis(), mStartUtcMillis);
-                long programEndTime = program.getEndTimeUtcMillis();
-                if (programStartTime > lastProgramEndTime) {
-                    // Gap since the last program.
-                    entries.add(new TableEntry(channelId, lastProgramEndTime, programStartTime));
-                    lastProgramEndTime = programStartTime;
-                }
-                if (programEndTime > lastProgramEndTime) {
-                    entries.add(
-                            new TableEntry(
-                                    channelId,
-                                    program,
-                                    lastProgramEndTime,
-                                    programEndTime,
-                                    false));
-                    lastProgramEndTime = programEndTime;
-                }
+
+        long lastProgramEndTime = mStartUtcMillis;
+
+        mPrograms = new ArrayList<>();
+
+        Program program0 = new Program();
+        program0.setTitle("Google Play Movies ");
+        program0.setStartTimeUtcMillis(1561401000000L);
+        program0.setEndTimeUtcMillis(1561402800000L);
+
+        Program program1 = new Program();
+        program1.setTitle("Google Play Movies ");
+        program1.setStartTimeUtcMillis(1561402800000L);
+        program1.setEndTimeUtcMillis(1561404600000L);
+
+        Program program2 = new Program();
+        program2.setTitle("Google Play Movies ");
+        program2.setStartTimeUtcMillis(1561404600000L);
+        program2.setEndTimeUtcMillis(1561406400000L);
+
+        Program program3 = new Program();
+        program3.setTitle("Google Play Movies ");
+        program3.setStartTimeUtcMillis(1561406400000L);
+        program3.setEndTimeUtcMillis(1561408200000L);
+
+
+        Program program4 = new Program();
+        program4.setTitle("Google Play Movies ");
+        program4.setStartTimeUtcMillis(1561408200000L);
+        program4.setEndTimeUtcMillis(1561410000000L);
+
+        Program program5 = new Program();
+        program5.setTitle("Google Play Movies ");
+        program5.setStartTimeUtcMillis(1561410000000L);
+        program5.setEndTimeUtcMillis(1561411800000L);
+
+        Program program6 = new Program();
+        program6.setTitle("Google Play Movies ");
+        program6.setStartTimeUtcMillis(1561411800000L);
+        program6.setEndTimeUtcMillis(1561413600000L);
+
+        Program program7 = new Program();
+        program7.setTitle("Google Play Movies ");
+        program7.setStartTimeUtcMillis(1561413600000L);
+        program7.setEndTimeUtcMillis(1561415400000L);
+        mPrograms.add(program0);
+        mPrograms.add(program1);
+        mPrograms.add(program2);
+        mPrograms.add(program3);
+        mPrograms.add(program4);
+        mPrograms.add(program5);
+        mPrograms.add(program6);
+        mPrograms.add(program7);
+        LogUtil.i(this,"ProgramManager.createProgramEntries.mStartUtcMillis:"+mStartUtcMillis);
+        for (Program program : mPrograms) {
+            if (program.getChannelId() == INVALID_ID) {
+                // Dummy program.
+                continue;
+            }
+            long programStartTime = Math.max(program.getStartTimeUtcMillis(), mStartUtcMillis);
+            long programEndTime = program.getEndTimeUtcMillis();
+            if (programStartTime > lastProgramEndTime) {
+                // Gap since the last program.
+                entries.add(new TableEntry(channelId, lastProgramEndTime, programStartTime));
+                lastProgramEndTime = programStartTime;
+            }
+            if (programEndTime > lastProgramEndTime) {
+                entries.add(
+                        new TableEntry(
+                                channelId,
+                                program,
+                                lastProgramEndTime,
+                                programEndTime,
+                                false));
+                lastProgramEndTime = programEndTime;
             }
         }
+
 
         if (entries.size() > 1) {
             TableEntry secondEntry = entries.get(1);
@@ -468,7 +497,6 @@ public class ProgramManager {
         }
 
 
-
         /**
          * Returns true if this channel is blocked.
          */
@@ -489,6 +517,7 @@ public class ProgramManager {
          * Returns the width of table entry, in pixels.
          */
         int getWidth() {
+
             return GuideUtils.convertMillisToPixel(entryStartUtcMillis, entryEndUtcMillis);
         }
 

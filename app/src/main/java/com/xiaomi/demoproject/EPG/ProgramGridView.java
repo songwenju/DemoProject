@@ -191,7 +191,6 @@ public class ProgramGridView extends VerticalGridView {
 
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-        // It is required to properly handle OnRepeatedKeyInterceptListener. If the focused
         // item's are at the almost end of screen, focus change to the next item doesn't work.
         // It restricts that a focus item's position cannot be too far from the desired position.
         View focusedView = findFocus();

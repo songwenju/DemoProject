@@ -153,6 +153,7 @@ public class ProgramTableAdapter extends RecyclerView.Adapter<ProgramTableAdapte
             onBindChannel(mProgramManager.getChannel(position));
 
             mProgramRow.swapAdapter(mProgramListAdapters.get(position), true);
+            mProgramRow.setProgramManager(mProgramManager);
             mProgramRow.setChannel(mProgramManager.getChannel(position));
             mProgramRow.setChildFocusListener(this);
 //            mProgramRow.resetScroll(mProgramGuide.getTimelineRowScrollOffset());

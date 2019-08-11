@@ -37,7 +37,6 @@ public class ProgramRow extends TimelineGridView {
     private static final long ONE_HOUR_MILLIS = TimeUnit.HOURS.toMillis(1);
     private static final long HALF_HOUR_MILLIS = ONE_HOUR_MILLIS / 2;
 
-//    private ProgramGuide mProgramGuide;
     private ProgramManager mProgramManager;
 
     private boolean mKeepFocusToCurrentProgram;
@@ -45,6 +44,10 @@ public class ProgramRow extends TimelineGridView {
 
     //for TvClock
     private TvClock mClock;
+
+    public void setProgramManager(ProgramManager programManager) {
+        mProgramManager = programManager;
+    }
 
     interface ChildFocusListener {
         /**

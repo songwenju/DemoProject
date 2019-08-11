@@ -83,6 +83,7 @@ public class ProgramListAdapter extends RecyclerView.Adapter<ProgramListAdapter.
     public void onBindViewHolder(ProgramItemViewHolder holder, int position) {
         TableEntry tableEntry = mProgramManager.getTableEntry(mChannelId, position);
         String gapTitle = tableEntry.isBlocked() ? mBlockedProgramTitle : mNoInfoProgramTitle;
+
         holder.onBind(tableEntry, mProgramManager, gapTitle);
     }
 

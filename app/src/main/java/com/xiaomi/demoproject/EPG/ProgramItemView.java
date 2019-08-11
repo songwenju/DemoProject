@@ -24,8 +24,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Handler;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
 import android.util.AttributeSet;
@@ -35,6 +33,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.xiaomi.demoproject.EPG.ProgramManager.TableEntry;
+import com.xiaomi.demoproject.LogUtil;
 import com.xiaomi.demoproject.R;
 
 import java.lang.reflect.InvocationTargetException;
@@ -283,12 +282,10 @@ public class ProgramItemView extends TextView {
 
     @SuppressLint("SwitchIntDef")
     public void setValues(
-//            ProgramGuide programGuide,
             TableEntry entry,
             long fromUtcMillis,
             long toUtcMillis,
             String gapTitle) {
-//        mProgramGuide = programGuide;
         mTableEntry = entry;
 
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
@@ -298,18 +295,49 @@ public class ProgramItemView extends TextView {
             setLayoutParams(layoutParams);
         }
         String title = mTableEntry.program != null ? mTableEntry.program.getTitle() : null;
+        LogUtil.i(this,"ProgramItemView.setValues.title:"+title);
         if (TextUtils.isEmpty(title)) {
             title = getResources().getString(R.string.program_title_for_no_information);
+        }
+        LogUtil.i(this,"ProgramItemView.setValues.isEntryWideEnough:"+isEntryWideEnough());
+        if (!isEntryWideEnough()) {
+            setText(null);
+            return;
+        }else {
+
+            setText(title);
         }
         updateContentDescription(title);
         measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
         mTextWidth = getMeasuredWidth() - getPaddingStart() - getPaddingEnd();
+
         // Maximum width for us to use a ripple
         mMaxWidthForRipple = GuideUtils.convertMillisToPixel(fromUtcMillis, toUtcMillis);
+
+    }
+
+    private boolean isEntryWideEnough() {
+        LogUtil.i(this,"ProgramItemView.isEntryWideEnough.mTableEntry.getWidth:"+mTableEntry.getWidth());
+        return mTableEntry != null && mTableEntry.getWidth() >= sVisibleThreshold;
     }
 
 
     private void updateContentDescription(String title) {
+
+        // The content description includes extra information that is displayed on the detail view
+        Resources resources = getResources();
+        String description = title;
+
+        Program program = mTableEntry.program;
+
+        if (program != null) {
+            String programDescription = program.getDescription();
+            if (!TextUtils.isEmpty(programDescription)) {
+                description += " " + programDescription;
+            }
+        }
+        setContentDescription(description);
+
     }
 
     /**
@@ -364,16 +392,6 @@ public class ProgramItemView extends TextView {
 
         setTag(null);
         mTableEntry = null;
-    }
-
-    private static int getProgress(TvClock clock, long start, long end) {
-        long currentTime = mClock.currentTimeMillis();
-        if (currentTime <= start) {
-            return 0;
-        } else if (currentTime >= end) {
-            return MAX_PROGRESS;
-        }
-        return (int) (((currentTime - start) * MAX_PROGRESS) / (end - start));
     }
 
     private static void setProgress(Drawable drawable, int id, int progress) {
