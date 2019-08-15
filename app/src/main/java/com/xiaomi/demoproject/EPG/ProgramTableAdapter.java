@@ -158,12 +158,6 @@ public class ProgramTableAdapter extends RecyclerView.Adapter<ProgramTableAdapte
             mProgramRow.setChildFocusListener(this);
 //            mProgramRow.resetScroll(mProgramGuide.getTimelineRowScrollOffset());
 
-
-//            // The bottom-left of the last channel header view will have a rounded corner.
-//            mChannelHeaderView.setBackgroundResource(
-//                    (position < mProgramListAdapters.size() - 1)
-//                            ? R.drawable.program_guide_table_header_column_item_background
-//                            : R.drawable.program_guide_table_header_column_last_item_background);
         }
 
         private void onBindChannel(Channel channel) {
@@ -180,6 +174,7 @@ public class ProgramTableAdapter extends RecyclerView.Adapter<ProgramTableAdapte
 
         @Override
         public void onChildFocus(View oldFocus, View newFocus) {
+            // TODO: 2019-08-15 child focus 后可以更新信息。
             LogUtil.i(this, "ProgramRowViewHolder.onChildFocus");
             if (newFocus == null) {
                 return;

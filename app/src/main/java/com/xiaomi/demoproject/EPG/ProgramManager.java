@@ -29,6 +29,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import static com.xiaomi.demoproject.EPG.EPGActivity.ALL;
+
 /**
  * Manages the channels and programs for the program guide.
  */
@@ -36,7 +38,6 @@ import java.util.concurrent.TimeUnit;
 public class ProgramManager {
     private static final String TAG = "ProgramManager";
     private static final boolean DEBUG = true;
-    private static final String PROP_SET_EPGUPDATE_ENABLED = "persist.sys.epgupdate.isneed";
 
     /**
      * If the first entry's visible duration is shorter than this value, we clip the entry out.
@@ -46,7 +47,6 @@ public class ProgramManager {
     public static final long FIRST_ENTRY_MIN_DURATION = TimeUnit.MINUTES.toMillis(1);
 
     private static final long INVALID_ID = -1;
-
 
     private long mStartUtcMillis;
     private long mEndUtcMillis;
@@ -59,8 +59,6 @@ public class ProgramManager {
 
     private final Set<Listener> mListeners = new ArraySet<>();
     private final Set<TableEntriesUpdatedListener> mTableEntriesUpdatedListeners = new ArraySet<>();
-
-    private final Set<TableEntryChangedListener> mTableEntryChangedListeners = new ArraySet<>();
 
 
     private List<Program> mPrograms;
@@ -95,7 +93,6 @@ public class ProgramManager {
             mEndUtcMillis = endUtcMillis;
         }
 
-//        mProgramDataManager.setPrefetchTimeRange(mStartUtcMillis);
         updateChannels(true);
         setTimeRange(startUtcMillis, endUtcMillis);
     }
@@ -104,6 +101,7 @@ public class ProgramManager {
      * Shifts the time range by the given time. Also makes ProgramGuide scroll the views.
      */
     void shiftTime(long timeMillisToScroll) {
+        LogUtil.i(this,"ProgramManager.shiftTime.timeMillisToScroll:"+timeMillisToScroll);
         long fromUtcMillis = mFromUtcMillis + timeMillisToScroll;
         long toUtcMillis = mToUtcMillis + timeMillisToScroll;
         if (fromUtcMillis < mStartUtcMillis) {
@@ -117,22 +115,6 @@ public class ProgramManager {
         setTimeRange(fromUtcMillis, toUtcMillis);
     }
 
-    /**
-     * Sets program data prefetch time range. Any program data that ends before the start time will
-     * be removed from the cache later. Note that there's no limit for end time.
-     *
-     * <p>Prefetch should be enabled to call it.
-     */
-    public void setPrefetchTimeRange(long startTimeMs) {
-//        SoftPreconditions.checkState(mPrefetchEnabled, TAG, "Prefetch is disabled.");
-//        if (mPrefetchTimeRangeStartMs > startTimeMs) {
-//            // Fetch the programs immediately to re-create the cache.
-//            if (!mHandler.hasMessages(MSG_UPDATE_PREFETCH_PROGRAM)) {
-//                mHandler.sendEmptyMessage(MSG_UPDATE_PREFETCH_PROGRAM);
-//            }
-//        }
-//        mPrefetchTimeRangeStartMs = startTimeMs;
-    }
 
     /**
      * Returned the scrolled(shifted) time in milliseconds.
@@ -199,7 +181,6 @@ public class ProgramManager {
      * given {@code channelId}.
      */
     int getTableEntryCount(long channelId) {
-        LogUtil.i(this, "ProgramManager.getTableEntryCount.size:" + mChannelIdEntriesMap.get(channelId).size());
         return mChannelIdEntriesMap.get(channelId).size();
     }
 
@@ -215,12 +196,10 @@ public class ProgramManager {
 
     private void updateChannels(boolean clearPreviousTableEntries) {
         if (DEBUG) LogUtil.d(TAG, "updateChannels");
-        int ALL = 50;
+
         for (int i = 0; i < ALL; i++) {
 
             Channel channel = new Channel("channel:" + i);
-
-
 
             channel.setProgramList(mPrograms);
             mChannels.add(channel);
@@ -300,15 +279,7 @@ public class ProgramManager {
     }
 
     private void setTimeRange(long fromUtcMillis, long toUtcMillis) {
-        if (DEBUG) {
-            LogUtil.d(
-                    TAG,
-                    "setTimeRange. {FromTime="
-                            + Utils.toTimeString(fromUtcMillis)
-                            + ", ToTime="
-                            + Utils.toTimeString(toUtcMillis)
-                            + "}");
-        }
+        LogUtil.i(this,"ProgramManager.setTimeRange.fromUtcMillis:"+fromUtcMillis+",toUtcMillis:"+toUtcMillis);
         if (mFromUtcMillis != fromUtcMillis || mToUtcMillis != toUtcMillis) {
             mFromUtcMillis = fromUtcMillis;
             mToUtcMillis = toUtcMillis;
@@ -469,11 +440,6 @@ public class ProgramManager {
             this(channelId, null, startUtcMillis, endUtcMillis, false);
         }
 
-        private TableEntry(
-                long channelId, long startUtcMillis, long endUtcMillis, boolean blocked) {
-            this(channelId, null, startUtcMillis, endUtcMillis, blocked);
-        }
-
 
         private TableEntry(
                 long channelId,
@@ -547,10 +513,6 @@ public class ProgramManager {
 
     interface TableEntriesUpdatedListener {
         void onTableEntriesUpdated();
-    }
-
-    interface TableEntryChangedListener {
-        void onTableEntryChanged(TableEntry entry);
     }
 
     public static class ListenerAdapter implements Listener {

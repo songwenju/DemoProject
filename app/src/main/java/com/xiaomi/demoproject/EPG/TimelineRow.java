@@ -19,8 +19,6 @@ package com.xiaomi.demoproject.EPG;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.xiaomi.demoproject.LogUtil;
-
 
 public class TimelineRow extends TimelineGridView {
     private static final float FADING_EDGE_STRENGTH_START = 1.0f;
@@ -80,7 +78,6 @@ public class TimelineRow extends TimelineGridView {
 
     @Override
     protected float getLeftFadingEdgeStrength() {
-        LogUtil.i(this,"TimelineRow.getLeftFadingEdgeStrength");
         return (getLayoutDirection() == LAYOUT_DIRECTION_LTR) ? FADING_EDGE_STRENGTH_START : 0;
     }
 

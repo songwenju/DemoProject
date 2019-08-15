@@ -22,11 +22,12 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
+import com.xiaomi.demoproject.LogUtil;
+
 
 /** Listener to make focus change faster over time. */
 public class OnRepeatedKeyInterceptListener implements VerticalGridView.OnKeyInterceptListener {
     private static final String TAG = "OnRepeatedKeyListener";
-    private static final boolean DEBUG = false;
 
     private static final int[] THRESHOLD_FAST_FOCUS_CHANGE_TIME_MS = {2000, 5000};
     private static final int[] MAX_SKIPPED_VIEW_COUNT = {1, 4};
@@ -82,7 +83,7 @@ public class OnRepeatedKeyInterceptListener implements VerticalGridView.OnKeyInt
             mHandler.sendEmptyMessageDelayed(
                     MSG_MOVE_FOCUS, mRepeatedKeyInterval * i / (skippedViewCount + 1));
         }
-        if (DEBUG) Log.d(TAG, "onInterceptKeyEvent: focused view " + mView.findFocus());
+       LogUtil.i(TAG, "onInterceptKeyEvent: focused view " + mView.findFocus());
         return false;
     }
 
@@ -95,7 +96,7 @@ public class OnRepeatedKeyInterceptListener implements VerticalGridView.OnKeyInt
         public void handleMessage(Message msg, @NonNull OnRepeatedKeyInterceptListener listener) {
             if (msg.what == MSG_MOVE_FOCUS) {
                 View focused = listener.mView.findFocus();
-                if (DEBUG) Log.d(TAG, "MSG_MOVE_FOCUS: focused view " + focused);
+               LogUtil.i(TAG, "MSG_MOVE_FOCUS: focused view " + focused);
                 if (focused != null) {
                     View v = focused.focusSearch(listener.mDirection);
                     if (v != null && v != focused) {

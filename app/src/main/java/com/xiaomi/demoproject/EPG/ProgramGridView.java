@@ -78,12 +78,10 @@ public class ProgramGridView extends VerticalGridView {
     private ProgramManager mProgramManager;
     private View mNextFocusByUpDown;
 
-    // New focus will be overlapped with [mFocusRangeLeft, mFocusRangeRight].
     private int mFocusRangeLeft;
     private int mFocusRangeRight;
 
     private final int mRowHeight;
-    private final int mDetailHeight;
     private final int mSelectionRow; // Row that is focused
 
     private View mLastFocusedView;
@@ -127,7 +125,6 @@ public class ProgramGridView extends VerticalGridView {
 
         Resources res = context.getResources();
         mRowHeight = res.getDimensionPixelSize(R.dimen.program_guide_table_item_row_height);
-        mDetailHeight = res.getDimensionPixelSize(R.dimen.program_guide_table_detail_height);
         mSelectionRow = res.getInteger(R.integer.program_guide_selection_row);
         mOnRepeatedKeyInterceptListener = new OnRepeatedKeyInterceptListener(this);
         setOnKeyInterceptListener(mOnRepeatedKeyInterceptListener);
@@ -202,17 +199,12 @@ public class ProgramGridView extends VerticalGridView {
             int y = focusedLocation[1] - location[1];
             int minY = (mSelectionRow - 1) * mRowHeight;
             if (y < minY) scrollBy(0, y - minY);
-            int maxY = (mSelectionRow + 1) * mRowHeight + mDetailHeight;
+            int maxY = (mSelectionRow + 1) * mRowHeight;
             if (y > maxY) scrollBy(0, y - maxY);
         }
 
     }
 
-    @Override
-    public void onViewRemoved(View view) {
-        // It is required to ensure input logo showing when the scroll is moved to most bottom.
-
-    }
 
     /**
      * Initializes ProgramGrid. It should be called before the view is actually attached to Window.
@@ -228,15 +220,6 @@ public class ProgramGridView extends VerticalGridView {
 
     void onItemSelectionReset() {
         getViewTreeObserver().addOnPreDrawListener(mPreDrawListener);
-    }
-
-    /**
-     * Resets focus states. If the logic to keep the last focus needs to be cleared, it should be
-     * called.
-     */
-    void resetFocusState() {
-        mLastFocusedView = null;
-        clearUpDownFocusState(null);
     }
 
     /** Returns the currently focused item's horizontal range. */

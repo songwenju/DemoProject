@@ -123,7 +123,6 @@ public class GuideUtils {
 
     /**
      * Returns {@code true} if the program displayed in the give {@link
-     * com.android.tv.guide.ProgramItemView} is a current program.
      */
     static boolean isCurrentProgram(ProgramItemView view, long currentTime) {
         return view.getTableEntry().isCurrentProgram(currentTime);

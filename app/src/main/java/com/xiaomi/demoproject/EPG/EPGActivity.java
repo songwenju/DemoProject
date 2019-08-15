@@ -1,4 +1,4 @@
-package com.xiaomi.demoproject;
+package com.xiaomi.demoproject.EPG;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -8,29 +8,30 @@ import android.support.v17.leanback.widget.ArrayObjectAdapter;
 import android.support.v17.leanback.widget.OnChildSelectedListener;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.view.FocusFinder;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.FocusFinder;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.xiaomi.demoproject.Adapter.RecyclerPresenter;
 import com.xiaomi.demoproject.EPG.Channel;
 import com.xiaomi.demoproject.EPG.GuideUtils;
-import com.xiaomi.demoproject.EPG.Program;
 import com.xiaomi.demoproject.EPG.ProgramGridView;
 import com.xiaomi.demoproject.EPG.ProgramManager;
 import com.xiaomi.demoproject.EPG.ProgramTableAdapter;
 import com.xiaomi.demoproject.EPG.TimeListAdapter;
 import com.xiaomi.demoproject.EPG.TimelineRow;
 import com.xiaomi.demoproject.EPG.TvClock;
+import com.xiaomi.demoproject.LogUtil;
+import com.xiaomi.demoproject.R;
 import com.xiaomi.demoproject.util.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class RecycleDemoActivity extends AppCompatActivity {
+public class EPGActivity extends AppCompatActivity {
     private List<Channel> mAllChannelList = new ArrayList<>();
     private List<Channel> mChannelList = new ArrayList<>();
     private Context mContext;
@@ -39,7 +40,6 @@ public class RecycleDemoActivity extends AppCompatActivity {
     //每页几个内容
     public static final int EPG_CHANNEL_NUM = 4;
     public int currentIndex = 1;
-    //    private VerticalGridView mProgramGridView;
     private int qHead = 0;
     private int qTail = 0;
     public static final int INIT_CHANNEL = 0;
@@ -51,20 +51,15 @@ public class RecycleDemoActivity extends AppCompatActivity {
     private RecyclerPresenter mPresenter;
     private RelativeLayout mBaseLayout;
     private ArrayList<Integer> mLoadedPageList = new ArrayList<>();
-
-
+    
     private TimelineRow mTimelineRow;
     private TimeListAdapter mTimeListAdapter;
     private ProgramGridView mProgramGridView;
     private ProgramManager mProgramManager;
     private long mStartUtcTime;
-    private TvClock mClock;
     private int mWidthPerHour;
 
     private static final long HOUR_IN_MILLIS = TimeUnit.HOURS.toMillis(1);
-    private static final long HALF_HOUR_IN_MILLIS = HOUR_IN_MILLIS / 2;
-    private static final long MIN_DURATION_FROM_START_TIME_TO_CURRENT_TIME =
-            ProgramManager.FIRST_ENTRY_MIN_DURATION;
 
     private long mViewPortMillis;
     private boolean mTimelineAnimation = true;
@@ -75,8 +70,6 @@ public class RecycleDemoActivity extends AppCompatActivity {
         setContentView(R.layout.recylcer_layout);
         initView();
         initData();
-        show();
-
     }
 
     private final ProgramManagerListener mProgramManagerListener = new ProgramManagerListener();
@@ -97,10 +90,6 @@ public class RecycleDemoActivity extends AppCompatActivity {
         }
     }
 
-    private void show() {
-
-    }
-
     private void initView() {
         mContext = this;
         mBaseLayout = findViewById(R.id.base_layout);
@@ -116,7 +105,6 @@ public class RecycleDemoActivity extends AppCompatActivity {
                         R.layout.program_guide_table_header_row_item,
                         res.getInteger(R.integer.max_recycled_view_pool_epg_header_row_item));
         mTimelineRow.setAdapter(mTimeListAdapter);
-        mClock = new TvClock(mContext);
 
         mProgramManager = new ProgramManager();
 
@@ -165,12 +153,24 @@ public class RecycleDemoActivity extends AppCompatActivity {
         mTimelineRow.addOnScrollListener(onScrollListener);
 
 
+        //真正的startTime
 //        mStartUtcTime =
 //                Utils.floorTime(
 //                        mClock.currentTimeMillis() - MIN_DURATION_FROM_START_TIME_TO_CURRENT_TIME,
 //                        HALF_HOUR_IN_MILLIS);
 
         mStartUtcTime = 1561401000000L;
+
+
+        Point displaySize = new Point();
+        getWindowManager().getDefaultDisplay().getSize(displaySize);
+        int gridWidth =
+                displaySize.x
+                        - res.getDimensionPixelOffset(R.dimen.program_guide_table_margin_start)
+                        - res.getDimensionPixelSize(
+                        R.dimen.program_guide_table_header_column_width);
+        mViewPortMillis = (gridWidth * HOUR_IN_MILLIS) / mWidthPerHour;
+
         mProgramManager.updateInitialTimeRange(mStartUtcTime, mStartUtcTime + mViewPortMillis);
         mProgramManager.addListener(mProgramManagerListener);
 
@@ -194,25 +194,17 @@ public class RecycleDemoActivity extends AppCompatActivity {
         mMaxPage = ALL / EPG_CHANNEL_NUM;
         //在第几页
         mPageNum = currentIndex / EPG_CHANNEL_NUM;
-        LogUtil.d(this, "RecycleDemoActivity.initData.pageNum:" + mPageNum + ",maxPage:" + mMaxPage);
+        LogUtil.d(this, "EPGActivity.initData.pageNum:" + mPageNum + ",maxPage:" + mMaxPage);
         getChannel(mPageNum, INIT_CHANNEL);
 
-        Resources res = getResources();
-        Point displaySize = new Point();
-        getWindowManager().getDefaultDisplay().getSize(displaySize);
-        int gridWidth =
-                displaySize.x
-                        - res.getDimensionPixelOffset(R.dimen.program_guide_table_margin_start)
-                        - res.getDimensionPixelSize(
-                        R.dimen.program_guide_table_header_column_width);
-        mViewPortMillis = (gridWidth * HOUR_IN_MILLIS) / mWidthPerHour;
+
 
     }
 
     private void getChannel(int pageNum, int getType) {
         int startPosition;
         int endPosition;
-        LogUtil.i(this, "RecycleDemoActivity.getChannel,qHead:" + qHead + ",qTail:" + qTail);
+        LogUtil.i(this, "EPGActivity.getChannel,qHead:" + qHead + ",qTail:" + qTail);
 
         switch (getType) {
             case INIT_CHANNEL:
@@ -254,8 +246,8 @@ public class RecycleDemoActivity extends AppCompatActivity {
                 }
 
                 mProgramGridView.setSelectedPosition(relativeIndex);
-                LogUtil.d(this, "RecycleDemoActivity.getChannel.mChannelList.init:" + mChannelList);
-                LogUtil.d(this, "RecycleDemoActivity.getChannel.mLoadedPageList:" + mLoadedPageList);
+                LogUtil.d(this, "EPGActivity.getChannel.mChannelList.init:" + mChannelList);
+                LogUtil.d(this, "EPGActivity.getChannel.mLoadedPageList:" + mLoadedPageList);
                 break;
             case DOWN_CHANNEL:
                 //队头删除一页，队尾添加一页
@@ -271,9 +263,9 @@ public class RecycleDemoActivity extends AppCompatActivity {
 
                 mChannelArrayAdapter.addAll(mChildCount, mAllChannelList.subList(startPosition, endPosition));
                 mChannelArrayAdapter.removeItems(0, EPG_CHANNEL_NUM);
-                LogUtil.d(this, "RecycleDemoActivity.getChannel.mChannelList.down:" + mChannelList);
-                LogUtil.d(this, "RecycleDemoActivity.getChannel.down.mLoadedPageList:" + mLoadedPageList);
-                LogUtil.i(this, "RecycleDemoActivity.down.startPosition:" + startPosition + ",endPosition:" + endPosition);
+                LogUtil.d(this, "EPGActivity.getChannel.mChannelList.down:" + mChannelList);
+                LogUtil.d(this, "EPGActivity.getChannel.down.mLoadedPageList:" + mLoadedPageList);
+                LogUtil.i(this, "EPGActivity.down.startPosition:" + startPosition + ",endPosition:" + endPosition);
                 break;
             case UP_CHANNEL:
                 //队头添加一页，队尾删除一页
@@ -284,10 +276,10 @@ public class RecycleDemoActivity extends AppCompatActivity {
                 endPosition = Math.max(endPosition, 0);
                 mLoadedPageList.add(pageNum);
                 mLoadedPageList.remove(Integer.valueOf(pageNum + 3));
-                LogUtil.d(this, "RecycleDemoActivity.getChannel.up.mLoadedPageList:" + mLoadedPageList);
+                LogUtil.d(this, "EPGActivity.getChannel.up.mLoadedPageList:" + mLoadedPageList);
                 mChannelList.addAll(0, mAllChannelList.subList(startPosition, endPosition));
 
-                LogUtil.i(this, "RecycleDemoActivity.down.startPosition:" + startPosition + ",endPosition:" + endPosition);
+                LogUtil.i(this, "EPGActivity.down.startPosition:" + startPosition + ",endPosition:" + endPosition);
                 int temp = Math.min((pageNum + 4) * EPG_CHANNEL_NUM, mAllChannelList.size()) - (pageNum + 3) * EPG_CHANNEL_NUM;
                 mChannelList.removeAll(mChannelList.subList(mChildCount, mChildCount + temp));
 
@@ -296,7 +288,7 @@ public class RecycleDemoActivity extends AppCompatActivity {
 
                 //最后一页一共有多少数据
 
-                LogUtil.d(this, "RecycleDemoActivity.getChannel.mChannelList.up:" + mChannelList);
+                LogUtil.d(this, "EPGActivity.getChannel.mChannelList.up:" + mChannelList);
                 break;
         }
 
@@ -314,8 +306,8 @@ public class RecycleDemoActivity extends AppCompatActivity {
                 if (event.getAction() == KeyEvent.ACTION_UP) {
                     return true;
                 } else {
-                    LogUtil.i(this, "RecycleDemoActivity.dispatchKeyEvent.focusIndex:" + focusIndex);
-                    LogUtil.i(this, "RecycleDemoActivity.dispatchKeyEvent.mChildCount:" + mChildCount);
+                    LogUtil.i(this, "EPGActivity.dispatchKeyEvent.focusIndex:" + focusIndex);
+                    LogUtil.i(this, "EPGActivity.dispatchKeyEvent.mChildCount:" + mChildCount);
                     if (focusIndex >= mChildCount / 2) {
                         if (mPageNum == 0) {
                             mPageNum = mPageNum + 2;
@@ -325,7 +317,7 @@ public class RecycleDemoActivity extends AppCompatActivity {
                         //当前的pageNum，没有load的再load
                         if (mPageNum <= mMaxPage) {
                             if (!mLoadedPageList.contains(mPageNum)) {
-                                LogUtil.d(this, "RecycleDemoActivity.dispatchKeyEvent.down.loadMore.mPageNum:" + mPageNum);
+                                LogUtil.d(this, "EPGActivity.dispatchKeyEvent.down.loadMore.mPageNum:" + mPageNum);
                                 //卡顿了一下，让焦点的view去查找上下view
                                 focusView = getCurrentFocus();
                                 View downView = FocusFinder.getInstance().findNextFocus(mBaseLayout, focusView, View.FOCUS_DOWN);
@@ -348,10 +340,10 @@ public class RecycleDemoActivity extends AppCompatActivity {
                 } else {
                     if (focusIndex <= mChildCount / 2) {
                         --mPageNum;
-                        LogUtil.i(this, "RecycleDemoActivity.dispatchKeyEvent.mPageNum:" + mPageNum);
+                        LogUtil.i(this, "EPGActivity.dispatchKeyEvent.mPageNum:" + mPageNum);
                         if (mPageNum >= 0) {
                             if (!mLoadedPageList.contains(mPageNum)) {
-                                LogUtil.d(this, "RecycleDemoActivity.dispatchKeyEvent.up.loadMore.mPageNum:" + mPageNum);
+                                LogUtil.d(this, "EPGActivity.dispatchKeyEvent.up.loadMore.mPageNum:" + mPageNum);
                                 focusView = getCurrentFocus();
                                 View upView = FocusFinder.getInstance().findNextFocus(mBaseLayout, focusView, View.FOCUS_UP);
                                 if (upView != null) {

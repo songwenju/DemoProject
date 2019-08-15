@@ -31,6 +31,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.xiaomi.demoproject.EPG.EPGActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 		LogUtil.i(this,"MainActivity.onCreate:"+dip2px(mContext,638));
 		LogUtil.i(this,"MainActivity.onCreate.data:"+ getDate2String(System.currentTimeMillis(),"MMMM dd HH:mm:ss"));
 		LogUtil.i(this,"MainActivity.onCreate.CurrentHour:"+ getCurrentHour());
-		Intent intent = new Intent(MainActivity.this, RecycleDemoActivity.class);
+		Intent intent = new Intent(MainActivity.this, EPGActivity.class);
 		startActivity(intent);
 //		initView();
 //		initData();

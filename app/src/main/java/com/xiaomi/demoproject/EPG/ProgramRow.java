@@ -291,11 +291,6 @@ public class ProgramRow extends TimelineGridView {
         mChannel = channel;
     }
 
-//    /** Sets the instance of {@link ProgramGuide} */
-//    public void setProgramGuide(ProgramGuide programGuide) {
-//        mProgramGuide = programGuide;
-//        mProgramManager = programGuide.getProgramManager();
-//    }
 
     /** Resets the scroll with the initial offset {@code scrollOffset}. */
     public void resetScroll(int scrollOffset) {

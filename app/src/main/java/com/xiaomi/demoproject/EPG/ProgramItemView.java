@@ -76,65 +76,7 @@ public class ProgramItemView extends TextView {
             new OnClickListener() {
                 @Override
                 public void onClick(final View view) {
-//                    TableEntry entry = ((ProgramItemView) view).mTableEntry;
-//                    TvClock clock = ((ProgramItemView) view).mClock;
-//                    if (entry == null) {
-//                        // do nothing
-//                        return;
-//                    }
-//                    TvSingletons singletons = TvSingletons.getSingletons(view.getContext());
-//
-//                    final MainActivity tvActivity = (MainActivity) view.getContext();
-//                    final Channel channel =
-//                            tvActivity.getChannelDataManager().getChannel(entry.channelId);
-//                    if (entry.isCurrentProgram(mClock.currentTimeMillis())) {
-//                        view.postDelayed(
-//                                new Runnable() {
-//                                    @Override
-//                                    public void run() {
-//                                        tvActivity.tuneToChannel(channel);
-//                                        tvActivity.hideOverlaysForTune();
-//                                    }
-//                                },
-//                                entry.getWidth() > ((ProgramItemView) view).mMaxWidthForRipple
-//                                        ? 0
-//                                        : view.getResources()
-//                                        .getInteger(
-//                                                R.integer
-//                                                        .program_guide_ripple_anim_duration));
-//                    } else if (entry.program != null
-//                    ) {
-//                        DvrManager dvrManager = singletons.getDvrManager();
-//                        if (entry.entryStartUtcMillis > mClock.currentTimeMillis()
-//                                && dvrManager.isProgramRecordable(entry.program)) {
-//                            if (entry.scheduledRecording == null) {
-//                                DvrUiHelper.checkStorageStatusAndShowErrorMessage(
-//                                        tvActivity,
-//                                        channel.getInputId(),
-//                                        new Runnable() {
-//                                            @Override
-//                                            public void run() {
-//                                                DvrUiHelper.requestRecordingFutureProgram(
-//                                                        tvActivity, entry.program, false);
-//                                            }
-//                                        });
-//                            } else {
-//                                dvrManager.removeScheduledRecording(entry.scheduledRecording);
-//                                String msg =
-//                                        view.getResources()
-//                                                .getString(
-//                                                        R.string.dvr_schedules_deletion_info,
-//                                                        entry.program.getTitle());
-//                                ToastUtils.show(view.getContext(), msg, Toast.LENGTH_SHORT);
-//                            }
-//                        } else {
-//                            ToastUtils.show(
-//                                    view.getContext(),
-//                                    view.getResources()
-//                                            .getString(R.string.dvr_msg_cannot_record_program),
-//                                    Toast.LENGTH_SHORT);
-//                        }
-//                    }
+                    // TODO: 2019-08-15
                 }
             };
 
@@ -197,9 +139,6 @@ public class ProgramItemView extends TextView {
         super(context, attrs, defStyle);
         setOnClickListener(ON_CLICKED);
         setOnFocusChangeListener(ON_FOCUS_CHANGED);
-//        TvSingletons singletons = TvSingletons.getSingletons(getContext());
-//        mChannelDataManager = singletons.getChannelDataManager();
-
         mContext = context;
         mClock = new TvClock(context);
 
@@ -392,23 +331,6 @@ public class ProgramItemView extends TextView {
 
         setTag(null);
         mTableEntry = null;
-    }
-
-    private static void setProgress(Drawable drawable, int id, int progress) {
-        if (drawable instanceof StateListDrawable) {
-            StateListDrawable stateDrawable = (StateListDrawable) drawable;
-            for (int i = 0; i < getStateCount(stateDrawable); ++i) {
-                setProgress(getStateDrawable(stateDrawable, i), id, progress);
-            }
-        } else if (drawable instanceof LayerDrawable) {
-            LayerDrawable layerDrawable = (LayerDrawable) drawable;
-            for (int i = 0; i < layerDrawable.getNumberOfLayers(); ++i) {
-                setProgress(layerDrawable.getDrawable(i), id, progress);
-                if (layerDrawable.getId(i) == id) {
-                    layerDrawable.getDrawable(i).setLevel(progress);
-                }
-            }
-        }
     }
 
     private static int getStateCount(StateListDrawable stateListDrawable) {
