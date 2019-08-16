@@ -200,6 +200,7 @@ public class ProgramManager {
         for (int i = 0; i < ALL; i++) {
 
             Channel channel = new Channel("channel:" + i);
+            channel.setId(i);
 
             channel.setProgramList(mPrograms);
             mChannels.add(channel);
@@ -222,6 +223,7 @@ public class ProgramManager {
 
         for (Channel channel : mChannels) {
             long channelId = channel.getId();
+            LogUtil.i(this,"ProgramManager.getTabEntries.id:"+channel.getId());
             // Inline the updating of the mChannelIdEntriesMap here so we can only call
             // getParentalControlSettings once.
             List<TableEntry> entries = createProgramEntries(channelId, false);
@@ -294,47 +296,84 @@ public class ProgramManager {
         long lastProgramEndTime = mStartUtcMillis;
 
         mPrograms = new ArrayList<>();
-
         Program program0 = new Program();
-        program0.setTitle("Google Play Movies ");
-        program0.setStartTimeUtcMillis(1561401000000L);
-        program0.setEndTimeUtcMillis(1561402800000L);
-
         Program program1 = new Program();
-        program1.setTitle("Google Play Movies ");
-        program1.setStartTimeUtcMillis(1561402800000L);
-        program1.setEndTimeUtcMillis(1561404600000L);
-
         Program program2 = new Program();
-        program2.setTitle("Google Play Movies ");
-        program2.setStartTimeUtcMillis(1561404600000L);
-        program2.setEndTimeUtcMillis(1561406400000L);
-
         Program program3 = new Program();
-        program3.setTitle("Google Play Movies ");
-        program3.setStartTimeUtcMillis(1561406400000L);
-        program3.setEndTimeUtcMillis(1561408200000L);
-
-
         Program program4 = new Program();
-        program4.setTitle("Google Play Movies ");
-        program4.setStartTimeUtcMillis(1561408200000L);
-        program4.setEndTimeUtcMillis(1561410000000L);
-
         Program program5 = new Program();
-        program5.setTitle("Google Play Movies ");
-        program5.setStartTimeUtcMillis(1561410000000L);
-        program5.setEndTimeUtcMillis(1561411800000L);
-
         Program program6 = new Program();
-        program6.setTitle("Google Play Movies ");
-        program6.setStartTimeUtcMillis(1561411800000L);
-        program6.setEndTimeUtcMillis(1561413600000L);
-
         Program program7 = new Program();
-        program7.setTitle("Google Play Movies ");
-        program7.setStartTimeUtcMillis(1561413600000L);
-        program7.setEndTimeUtcMillis(1561415400000L);
+
+        if (channelId % 2 ==0){
+            program0.setTitle("Google Play Movies ");
+            program0.setStartTimeUtcMillis(1561401000000L);
+            program0.setEndTimeUtcMillis(1561402800000L);
+
+            program1.setTitle("Google Play Movies ");
+            program1.setStartTimeUtcMillis(1561402800000L);
+            program1.setEndTimeUtcMillis(1561404600000L);
+
+            program2.setTitle("Google Play Movies ");
+            program2.setStartTimeUtcMillis(1561404600000L);
+            program2.setEndTimeUtcMillis(1561406400000L);
+
+            program3.setTitle("Google Play Movies ");
+            program3.setStartTimeUtcMillis(1561406400000L);
+            program3.setEndTimeUtcMillis(1561408200000L);
+
+
+            program4.setTitle("Google Play Movies ");
+            program4.setStartTimeUtcMillis(1561408200000L);
+            program4.setEndTimeUtcMillis(1561410000000L);
+
+            program5.setTitle("Google Play Movies ");
+            program5.setStartTimeUtcMillis(1561410000000L);
+            program5.setEndTimeUtcMillis(1561411800000L);
+
+
+            program6.setTitle("Google Play Movies ");
+            program6.setStartTimeUtcMillis(1561411800000L);
+            program6.setEndTimeUtcMillis(1561413600000L);
+
+            program7.setTitle("Google Play Movies ");
+            program7.setStartTimeUtcMillis(1561413600000L);
+            program7.setEndTimeUtcMillis(1561415400000L);
+        }else {
+            program0.setTitle("Google Play Movies ");
+            program0.setStartTimeUtcMillis(1561401000000L);
+            program0.setEndTimeUtcMillis(1561401800000L);
+
+            program1.setTitle("Google Play Movies ");
+            program1.setStartTimeUtcMillis(1561401800000L);
+            program1.setEndTimeUtcMillis(1561403600000L);
+
+            program2.setTitle("Google Play Movies ");
+            program2.setStartTimeUtcMillis(1561403600000L);
+            program2.setEndTimeUtcMillis(1561405400000L);
+
+            program3.setTitle("Google Play Movies ");
+            program3.setStartTimeUtcMillis(1561405400000L);
+            program3.setEndTimeUtcMillis(1561408200000L);
+
+            program4.setTitle("Google Play Movies ");
+            program4.setStartTimeUtcMillis(1561408200000L);
+            program4.setEndTimeUtcMillis(1561410000000L);
+
+            program5.setTitle("Google Play Movies ");
+            program5.setStartTimeUtcMillis(1561410000000L);
+            program5.setEndTimeUtcMillis(1561411800000L);
+
+            program6.setTitle("Google Play Movies ");
+            program6.setStartTimeUtcMillis(1561411800000L);
+            program6.setEndTimeUtcMillis(1561413600000L);
+
+            program7.setTitle("Google Play Movies ");
+            program7.setStartTimeUtcMillis(1561413600000L);
+            program7.setEndTimeUtcMillis(1561415400000L);
+        }
+
+
         mPrograms.add(program0);
         mPrograms.add(program1);
         mPrograms.add(program2);

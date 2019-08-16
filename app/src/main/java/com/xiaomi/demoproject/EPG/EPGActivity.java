@@ -115,7 +115,6 @@ public class EPGActivity extends AppCompatActivity {
 
         //init grid
         mProgramGridView = findViewById(R.id.channel_name_view);
-        mProgramGridView.initialize(mProgramManager);
         mProgramGridView.getRecycledViewPool()
                 .setMaxRecycledViews(
                         R.layout.program_guide_table_row,
@@ -123,12 +122,7 @@ public class EPGActivity extends AppCompatActivity {
         ProgramTableAdapter programTableAdapter = new ProgramTableAdapter(mContext, mProgramManager);
 
         mProgramGridView.setAdapter(programTableAdapter);
-        mProgramGridView.setChildFocusListener(new ProgramGridView.ChildFocusListener() {
-            @Override
-            public void onRequestChildFocus(View oldFocus, View newFocus) {
 
-            }
-        });
         mProgramGridView.setOnChildSelectedListener(
                 new OnChildSelectedListener() {
                     @Override
@@ -176,6 +170,8 @@ public class EPGActivity extends AppCompatActivity {
 
         mTimeListAdapter.update(mStartUtcTime);
         mTimelineRow.resetScroll();
+
+
     }
 
 
@@ -320,7 +316,9 @@ public class EPGActivity extends AppCompatActivity {
                                 LogUtil.d(this, "EPGActivity.dispatchKeyEvent.down.loadMore.mPageNum:" + mPageNum);
                                 //卡顿了一下，让焦点的view去查找上下view
                                 focusView = getCurrentFocus();
+                                LogUtil.i(this,"EPGActivity.dispatchKeyEvent.focusView:"+focusView);
                                 View downView = FocusFinder.getInstance().findNextFocus(mBaseLayout, focusView, View.FOCUS_DOWN);
+                                LogUtil.i(this,"EPGActivity.dispatchKeyEvent.downView:"+downView);
                                 if (downView != null) {
                                     downView.requestFocus();
                                 }

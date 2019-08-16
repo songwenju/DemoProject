@@ -21,17 +21,16 @@ import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.Range;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 
-
 import com.xiaomi.demoproject.EPG.ProgramManager.TableEntry;
+import com.xiaomi.demoproject.LogUtil;
 
 import java.util.concurrent.TimeUnit;
 
 public class ProgramRow extends TimelineGridView {
-    private static final String TAG = "ProgramRow";
+    private static final String TAG = "ProgramRow1";
     private static final boolean DEBUG = true;
 
     private static final long ONE_HOUR_MILLIS = TimeUnit.HOURS.toMillis(1);
@@ -213,6 +212,7 @@ public class ProgramRow extends TimelineGridView {
                         new Runnable() {
                             @Override
                             public void run() {
+                                LogUtil.i(this,"ProgramRow.run1.requestFocus()");
                                 requestFocus();
                             }
                         });
@@ -238,6 +238,7 @@ public class ProgramRow extends TimelineGridView {
                         new Runnable() {
                             @Override
                             public void run() {
+                                LogUtil.i(this,"ProgramRow.run2.requestFocus()");
                                 requestFocus();
                             }
                         });
@@ -270,6 +271,7 @@ public class ProgramRow extends TimelineGridView {
             for (int i = 0; i < getChildCount(); ++i) {
                 View child = getChildAt(i);
                 if (child.isShown() && child.hasFocusable()) {
+                    LogUtil.i(this,"ProgramRow.requestFocus()");
                     return child.requestFocus();
                 }
             }

@@ -17,326 +17,114 @@
 package com.xiaomi.demoproject.EPG;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.support.v17.leanback.widget.VerticalGridView;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Range;
+import android.view.FocusFinder;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
+import android.view.ViewGroup;
 
 import com.xiaomi.demoproject.LogUtil;
-import com.xiaomi.demoproject.R;
 
-
-import java.util.concurrent.TimeUnit;
-
-/** A {@link VerticalGridView} for the program table view. */
+/**
+ * A {@link VerticalGridView} for the program table view.
+ */
 public class ProgramGridView extends VerticalGridView {
     private static final String TAG = "ProgramGrid";
-
-    private static final int INVALID_INDEX = -1;
-    private static final long FOCUS_AREA_RIGHT_MARGIN_MILLIS = TimeUnit.MINUTES.toMillis(15);
-
-    //for TvClock
-    private TvClock mClock;
-
-    private final ViewTreeObserver.OnGlobalFocusChangeListener mGlobalFocusChangeListener =
-            new ViewTreeObserver.OnGlobalFocusChangeListener() {
-                @Override
-                public void onGlobalFocusChanged(View oldFocus, View newFocus) {
-                    if (newFocus != mNextFocusByUpDown) {
-                        // If focus is changed by other buttons than UP/DOWN buttons,
-                        // we clear the focus state.
-                        clearUpDownFocusState(newFocus);
-                    }
-                    mNextFocusByUpDown = null;
-                    if (GuideUtils.isDescendant(ProgramGridView.this, newFocus)) {
-                        mLastFocusedView = newFocus;
-                    }
-                }
-            };
-
-    private final ProgramManager.Listener mProgramManagerListener =
-            new ProgramManager.ListenerAdapter() {
-                @Override
-                public void onTimeRangeUpdated() {
-                    // When time range is changed, we clear the focus state.
-                    clearUpDownFocusState(null);
-                }
-            };
-
-    private final ViewTreeObserver.OnPreDrawListener mPreDrawListener =
-            new ViewTreeObserver.OnPreDrawListener() {
-                @Override
-                public boolean onPreDraw() {
-                    getViewTreeObserver().removeOnPreDrawListener(this);
-                    return true;
-                }
-            };
-
-    private ProgramManager mProgramManager;
-    private View mNextFocusByUpDown;
-
-    private int mFocusRangeLeft;
-    private int mFocusRangeRight;
-
-    private final int mRowHeight;
-    private final int mSelectionRow; // Row that is focused
-
-    private View mLastFocusedView;
-    private final Rect mTempRect = new Rect();
-    private int mLastUpDownDirection;
-
-    private boolean mKeepCurrentProgramFocused;
-
-    private ChildFocusListener mChildFocusListener;
-    private final OnRepeatedKeyInterceptListener mOnRepeatedKeyInterceptListener;
-
-    public interface ChildFocusListener {
-        /**
-         * Is called before focus is moved. Only children to {@code ProgramGrid} will be passed. See
-         * {@code ProgramGrid#setChildFocusListener(ChildFocusListener)}.
-         */
-        void onRequestChildFocus(View oldFocus, View newFocus);
-    }
-
     public ProgramGridView(Context context) {
-        this(context, null);
+        super(context);
     }
 
     public ProgramGridView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
     }
 
     public ProgramGridView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        clearUpDownFocusState(null);
 
-        // Don't cache anything that is off screen. Normally it is good to prefetch and prepopulate
-        // off screen views in order to reduce jank, however the program guide is capable to scroll
-        // in all four directions so not only would we prefetch views in the scrolling direction
-        // but also keep views in the perpendicular direction up to date.
-        // E.g. when scrolling horizontally we would have to update rows above and below the current
-        // view port even though they are not visible.
-        setItemViewCacheSize(0);
-
-        setPruneChild(false);
-
-        Resources res = context.getResources();
-        mRowHeight = res.getDimensionPixelSize(R.dimen.program_guide_table_item_row_height);
-        mSelectionRow = res.getInteger(R.integer.program_guide_selection_row);
-        mOnRepeatedKeyInterceptListener = new OnRepeatedKeyInterceptListener(this);
-        setOnKeyInterceptListener(mOnRepeatedKeyInterceptListener);
-        mClock = new TvClock(context);
     }
 
     @Override
-    public void requestChildFocus(View child, View focused) {
-        if (mChildFocusListener != null) {
-            mChildFocusListener.onRequestChildFocus(getFocusedChild(), child);
-        }
-        super.requestChildFocus(child, focused);
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        getViewTreeObserver().addOnGlobalFocusChangeListener(mGlobalFocusChangeListener);
-        if (mProgramManager != null){
-            mProgramManager.addListener(mProgramManagerListener);
-
-        }
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        getViewTreeObserver().removeOnGlobalFocusChangeListener(mGlobalFocusChangeListener);
-        if (mProgramManager != null){
-            mProgramManager.removeListener(mProgramManagerListener);
-        }
-        clearUpDownFocusState(null);
-    }
-
-    @Override
-    public View focusSearch(View focused, int direction) {
-        LogUtil.i(this,"ProgramGridView.focusSearch");
-//        mNextFocusByUpDown = null;
-//        if (focused == null || (focused != this && !GuideUtils.isDescendant(this, focused))) {
-//            return super.focusSearch(focused, direction);
-//        }
-//        if (direction == View.FOCUS_UP || direction == View.FOCUS_DOWN) {
-//            updateUpDownFocusState(focused, direction);
-//            View nextFocus = focusFind(focused, direction);
-//            if (nextFocus != null) {
-//                return nextFocus;
-//            }
-//        }
-        return super.focusSearch(focused, direction);
-    }
-
-    @Override
-    public boolean onRequestFocusInDescendants(int direction, Rect previouslyFocusedRect) {
-        if (mLastFocusedView != null && mLastFocusedView.isShown()) {
-            if (mLastFocusedView.requestFocus()) {
-                return true;
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        int y = this.getChildAt(0).getHeight();
+        View focusView = this.getFocusedChild();
+        View childView = null;
+        LogUtil.i(TAG, "ProgramGrid.dispatchKeyEvent.focusView:" + focusView);
+        if (focusView != null) {
+            switch (event.getKeyCode()) {
+                case KeyEvent.KEYCODE_DPAD_UP:
+                    LogUtil.i(TAG, "ProgramGrid.dispatchKeyEvent");
+                    if (event.getAction() == KeyEvent.ACTION_UP) {
+                        return true;
+                    } else {
+                        if (focusView instanceof ViewGroup) {
+                            //child的child
+                            childView = ((ViewGroup) focusView).getFocusedChild();
+                            LogUtil.d(TAG, "upChildView:" + childView);
+                        }
+                        if (childView != null) {
+                            View upView = FocusFinder.getInstance().findNextFocus(this, childView, View.FOCUS_UP);
+                            LogUtil.d(TAG, "upView:" + upView);
+                            if (upView == null) {
+                                this.scrollBy(0, -y);
+                                return true;
+                            } else {
+                                return super.dispatchKeyEvent(event);
+                            }
+                        }
+                    }
+                case KeyEvent.KEYCODE_DPAD_DOWN:
+                    if (event.getAction() == KeyEvent.ACTION_UP) {
+                        return true;
+                    } else {
+                        if (focusView instanceof ViewGroup) {
+                            childView = ((ViewGroup) focusView).getFocusedChild();
+                            LogUtil.d(TAG, "downChildView:" + childView);
+                        }
+                        if (childView != null) {
+                            View downView = FocusFinder.getInstance().findNextFocus(this, childView, View.FOCUS_DOWN);
+                            LogUtil.d(TAG, "downView:" + downView);
+                            if (downView == null) {
+                                this.scrollBy(0, y);
+                                return true;
+                            } else {
+                                return super.dispatchKeyEvent(event);
+                            }
+                        }
+                    }
             }
         }
-        return super.onRequestFocusInDescendants(direction, previouslyFocusedRect);
-    }
-
-    @Override
-    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-        // item's are at the almost end of screen, focus change to the next item doesn't work.
-        // It restricts that a focus item's position cannot be too far from the desired position.
-        View focusedView = findFocus();
-        if (focusedView != null && mOnRepeatedKeyInterceptListener.isFocusAccelerated()) {
-            int[] location = new int[2];
-            getLocationOnScreen(location);
-            int[] focusedLocation = new int[2];
-            focusedView.getLocationOnScreen(focusedLocation);
-            int y = focusedLocation[1] - location[1];
-            int minY = (mSelectionRow - 1) * mRowHeight;
-            if (y < minY) scrollBy(0, y - minY);
-            int maxY = (mSelectionRow + 1) * mRowHeight;
-            if (y > maxY) scrollBy(0, y - maxY);
-        }
-
+        return super.dispatchKeyEvent(event);
     }
 
 
-    /**
-     * Initializes ProgramGrid. It should be called before the view is actually attached to Window.
-     */
-    public void initialize(ProgramManager programManager) {
-        mProgramManager = programManager;
-    }
 
-    /** Registers a listener focus events occurring on children to the {@code ProgramGrid}. */
-    public void setChildFocusListener(ChildFocusListener childFocusListener) {
-        mChildFocusListener = childFocusListener;
-    }
+    private void setViewFocus(int direct) {
+        //响应五向键，在Scroll时去获得下一个焦点
+        View focusView = this.getFocusedChild();
+        View childView = null;
 
-    void onItemSelectionReset() {
-        getViewTreeObserver().addOnPreDrawListener(mPreDrawListener);
-    }
-
-    /** Returns the currently focused item's horizontal range. */
-    Range<Integer> getFocusRange() {
-        return new Range<>(mFocusRangeLeft, mFocusRangeRight);
-    }
-
-    /** Returns if the next focused item should be the current program if possible. */
-    boolean isKeepCurrentProgramFocused() {
-        return mKeepCurrentProgramFocused;
-    }
-
-    /** Returns the last up/down move direction of browsing */
-    int getLastUpDownDirection() {
-        return mLastUpDownDirection;
-    }
-
-    private View focusFind(View focused, int direction) {
-        int focusedChildIndex = getFocusedChildIndex();
-        if (focusedChildIndex == INVALID_INDEX) {
-            LogUtil.w(TAG, "No child view has focus");
-            return null;
-        }
-        int nextChildIndex =
-                direction == View.FOCUS_UP ? focusedChildIndex - 1 : focusedChildIndex + 1;
-        if (nextChildIndex < 0 || nextChildIndex >= getChildCount()) {
-            // Wraparound if reached head or end
-            if (getSelectedPosition() == 0) {
-                scrollToPosition(getAdapter().getItemCount() - 1);
-                return null;
-            } else if (getSelectedPosition() == getAdapter().getItemCount() - 1) {
-                scrollToPosition(0);
-                return null;
+        if (focusView != null) {
+            if (focusView instanceof ViewGroup) {
+                childView = ((ViewGroup) focusView).getFocusedChild();
+                LogUtil.i(TAG, "setViewFocus.scrollChildView:" + childView);
             }
-            return focused;
-        }
-        View nextFocusedProgram =
-                GuideUtils.findNextFocusedProgram(
-                        getChildAt(nextChildIndex),
-                        mFocusRangeLeft,
-                        mFocusRangeRight,
-                        mKeepCurrentProgramFocused, mClock.currentTimeMillis());
-        if (nextFocusedProgram != null) {
-            nextFocusedProgram.getGlobalVisibleRect(mTempRect);
-            mNextFocusByUpDown = nextFocusedProgram;
-
-        } else {
-            LogUtil.w(TAG, "focusFind doesn't find proper focusable");
-        }
-        return nextFocusedProgram;
-    }
-
-    // Returned value is not the position of VerticalGridView. But it's the index of ViewGroup
-    // among visible children.
-    private int getFocusedChildIndex() {
-        for (int i = 0; i < getChildCount(); ++i) {
-            if (getChildAt(i).hasFocus()) {
-                return i;
+            if (childView != null) {
+                if (direct == KeyEvent.KEYCODE_DPAD_DOWN) {
+                    View downView = FocusFinder.getInstance().findNextFocus(this, childView, View.FOCUS_DOWN);
+                    if (downView != null) {
+                        LogUtil.i(this, "setViewFocus.downView:" + downView);
+                        downView.requestFocusFromTouch();
+                    }
+                } else if (direct == KeyEvent.KEYCODE_DPAD_UP) {
+                    View upView = FocusFinder.getInstance().findNextFocus(this, childView, View.FOCUS_UP);
+                    if (upView != null) {
+                        upView.requestFocusFromTouch();
+                    }
+                }
             }
         }
-        return INVALID_INDEX;
     }
-
-    private void updateUpDownFocusState(View focused, int direction) {
-        mLastUpDownDirection = direction;
-        int rightMostFocusablePosition = getRightMostFocusablePosition();
-        Rect focusedRect = mTempRect;
-
-        // In order to avoid from focusing small width item, we clip the position with
-        // mostRightFocusablePosition.
-        focused.getGlobalVisibleRect(focusedRect);
-        mFocusRangeLeft = Math.min(mFocusRangeLeft, rightMostFocusablePosition);
-        mFocusRangeRight = Math.min(mFocusRangeRight, rightMostFocusablePosition);
-        focusedRect.left = Math.min(focusedRect.left, rightMostFocusablePosition);
-        focusedRect.right = Math.min(focusedRect.right, rightMostFocusablePosition);
-
-        if (focusedRect.left > mFocusRangeRight || focusedRect.right < mFocusRangeLeft) {
-            LogUtil.w(TAG, "The current focus is out of [mFocusRangeLeft, mFocusRangeRight]");
-            mFocusRangeLeft = focusedRect.left;
-            mFocusRangeRight = focusedRect.right;
-            return;
-        }
-        mFocusRangeLeft = Math.max(mFocusRangeLeft, focusedRect.left);
-        mFocusRangeRight = Math.min(mFocusRangeRight, focusedRect.right);
-    }
-
-    private void clearUpDownFocusState(View focus) {
-        mLastUpDownDirection = 0;
-        mFocusRangeLeft = 0;
-        mFocusRangeRight = getRightMostFocusablePosition();
-        mNextFocusByUpDown = null;
-        // If focus is not a program item, drop focus to the current program when back to the grid
-        mKeepCurrentProgramFocused =
-                !(focus instanceof ProgramItemView)
-                        || GuideUtils.isCurrentProgram((ProgramItemView) focus, mClock.currentTimeMillis());
-    }
-
-    private int getRightMostFocusablePosition() {
-        if (!getGlobalVisibleRect(mTempRect)) {
-            return Integer.MAX_VALUE;
-        }
-        return mTempRect.right - GuideUtils.convertMillisToPixel(FOCUS_AREA_RIGHT_MARGIN_MILLIS);
-    }
-
-    private int getFirstVisibleChildIndex() {
-        final LayoutManager mLayoutManager = getLayoutManager();
-        int top = mLayoutManager.getPaddingTop();
-        int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childView = getChildAt(i);
-            int childTop = mLayoutManager.getDecoratedTop(childView);
-            int childBottom = mLayoutManager.getDecoratedBottom(childView);
-            if ((childTop + childBottom) / 2 > top) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
 }
